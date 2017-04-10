@@ -7,13 +7,13 @@
 			<div class="content">
 				<form v-on:submit.prevent="login" novalidate>
 					<fieldset class="field-text">
-				        <input v-validate="{ rules: { required: true, email: true } }" v-model="email" type="text" name="email" required>
+				        <input v-validate="{ rules:{required: true, email:true}}" v-model="email" type="email" name="email" required>
 				        <hr>
 				        <label>Email</label>
 				    </fieldset>
 				    <span class="error" v-show="errors.has('email')">{{ errors.first('email') }}</span>
 				    <fieldset class="field-text">
-				        <input v-validate="{ rules: { required: true } }" v-model="password" type="password" name="password" required>
+				        <input v-validate="{rules:{required: true}}" v-model="password" type="password" name="password" required>
 				        <hr>
 				        <label>Password</label>
 				    </fieldset>

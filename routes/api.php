@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/user/get', function () {
-   return Auth::user();
+Route::post('/user/get', function (Request $request) {
+    return response()->json(Auth::user());
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->post('/user', function (Request $request) {
     return $request->user();
 });
