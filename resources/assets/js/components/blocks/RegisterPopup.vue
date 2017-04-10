@@ -6,24 +6,28 @@
 			<div>Register</div>
 			<div class="content">
 				<form v-on:submit.prevent="register" novalidate>
+                    <fieldset class="field-text">
+                        <input v-validate="{rules:{required: true}}" v-model="name" type="text" name="name" required>
+                        <hr>
+                        <label>Name</label>
+                    </fieldset>
 					<fieldset class="field-text">
-				        <input v-validate="{ rules: { required: true, email: true } }" v-model="email" type="text" name="email" required>
+				        <input v-validate="{rules:{required:true, email:true}}" v-model="email" type="email" name="email" required>
 				        <hr>
 				        <label>Email</label>
 				    </fieldset>
 				    <span class="error" v-show="errors.has('email')">{{ errors.first('email') }}</span>
 				    <fieldset class="field-text">
-				        <input v-validate="{ rules: { required: true } }" v-model="password" type="password" name="password" required>
+				        <input v-validate="{rules:{required:true}}" v-model="password" type="password" name="password" required>
 				        <hr>
 				        <label>Password</label>
 				    </fieldset>
-				    <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
+                    <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
 				    <fieldset class="field-text">
-				        <input v-validate="{ rules: { required: true, confirmed: { password } } }" v-model="comfirnPassword" type="password" name="comfirn_password" required>
+				        <input v-model="confirmedPassword" type="password" name="password_confirmation" required>
 				        <hr>
 				        <label>Confirm password</label>
 				    </fieldset>
-				    <span class="error" v-show="errors.has('comfirn_password')">{{ errors.first('comfirn_password') }}</span>
 				    <button class="ripple">Register</button>
 				</form>
 			</div>
@@ -41,29 +45,37 @@
 		data () {
 			return {
 				show: false,
+                name: null,
 				email: null,
 				password: null,
-				comfirnPassword: null
+                confirmedPassword: null
 			}
 		},
 		methods: {
 			togglePopup () {
 				this.show = !this.show;
 				if(!this.show) {
+					this.name = null;
 					this.email = null;
 					this.password = null;
-					this.comfirnPassword = null;
+					this.confirmedPassword = null;
 				}
 			},
 			register () {
-				this.$validator.validateAll().then(() => {
-					let params = { email: this.email, password: this.password },
-						options = { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } };
+                let formData = new FormData();
 
-              		this.$http.post('http://localhost:8000/users/', params, options).then((responce) => {
+                formData.append('name', this.name);
+                formData.append('email', this.email);
+                formData.append('password', this.password);
+                formData.append('password_confirmation', this.confirmedPassword);
+
+				this.$validator.validateAll().then(() => {
+              		this.$http.post(location.href + 'api/register', formData).then((responce) => {
       					this.$store.dispatch('addUser', responce.data);
       					this.togglePopup();
-          			});
+          			}, (responce) => {
+                        //TODO show failed message
+                    });
 				}).catch(() => {
 
 				});

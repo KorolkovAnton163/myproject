@@ -18,6 +18,7 @@
 				        <label>Password</label>
 				    </fieldset>
 				    <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
+					<span class="error" v-if="error">{{ error }}</span>
 				    <button class="ripple">Login</button>
 				</form>
 			</div>
@@ -36,30 +37,38 @@
 			return {
 				show: false,
 				email: null,
-				password: null
+				password: null,
+				error: null
 			}
 		},
-		computed: {
-          	resource () {
-              	return this.$resource('https://jsonplaceholder.typicode.com/users/{?email}');
-          	}
-      	},
 		methods: {
 			togglePopup () {
 				this.show = !this.show;
 				if(!this.show) {
 					this.email = null;
 					this.password = null;
+                    this.error = null;
 				}
 			},
 			login () {
+			    let formData = new FormData();
+
+				formData.append('email', this.email);
+				formData.append('password', this.password);
+
 				this.$validator.validateAll().then(() => {
-					this.resource.get({ email: this.email }).then((responce) => {
+                    this.$http.post(location.href + 'api/login', formData).then((responce) => {
 						this.$store.dispatch('addUser', responce.data[0]);
 						this.togglePopup();
-              		});
-				}).catch(() => {
+					}, (responce) => {
+                    	let error = JSON.parse(responce.bodyText);
 
+						Object.keys(error).forEach((property) => {
+                            this.error = error[property];
+					 	});
+					});
+				}).catch(() => {
+					//
 				});
 			}
 		}

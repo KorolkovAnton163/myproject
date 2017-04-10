@@ -21,5 +21,15 @@ new Vue({
         'top-nav-menu': require('./components/blocks/TopNavMenu.vue'),
         'app-header': require('./components/blocks/Header.vue'),
         'app-footer': require('./components/blocks/Footer.vue')
+    },
+    methods: {
+        getUser () {
+            this.$http.post(location.href + 'api/user/get').then((responce) => {
+                this.$store.dispatch('addUser', responce.data[0]);
+            });
+        }
+    },
+    created () {
+        this.getUser();
     }
 });
