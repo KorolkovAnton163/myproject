@@ -1,0 +1,39 @@
+.single-post-page-container {
+    padding: 10px;
+    margin-bottom: 20px;
+    h2 {
+        background: #2980b9;
+        padding: 10px;
+        box-sizing: border-box;
+        color: #fff;
+    }
+    .description-container {
+        display: flex;
+        flex-direction: row;
+        .image {
+            flex: 0 1 auto;
+            img {
+                width: 100%;
+            }
+        }
+        .description {
+            width: 65%;
+            flex: 1 0 auto;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .single-post-page-container {
+        .description-container {
+            flex-direction: column;
+            .description {
+                width: 100%;
+                padding: 0;
+                margin: 10px 0;
+            }
+        }
+    }
+}

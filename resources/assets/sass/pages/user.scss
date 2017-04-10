@@ -1,0 +1,15 @@
+.user-page-container {
+    form {
+        width: 220px;
+        margin: 0 auto;
+        button {
+            width: 100%;
+        }
+    }
+    .error {
+        display: block;
+        font-size: .7em;
+        color: #f44336;
+        padding: 0 10px;
+    }
+}

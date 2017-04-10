@@ -1,0 +1,23 @@
+footer {
+    height: 100px;
+    flex: 0 0 auto;
+    background: #292c2f;
+    padding: 10px 0;
+    .footer-inner {
+        color: #999;
+        height: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        box-sizing: border-box;
+        a {
+            color: #999;
+        }
+        .copy {
+            position: absolute;
+            right: 20px;
+            bottom: 0;
+        }
+    }
+}

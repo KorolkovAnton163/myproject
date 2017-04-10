@@ -1,0 +1,82 @@
+.overlay {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+.popup {
+    width: 500px;
+    position: absolute;
+    z-index: 1001;
+    background: #fff;
+    top: 20px;
+    left: 50%;
+    margin-left: -250px;
+    padding: 20px;
+    .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 25px;
+        height: 23px;
+        color: #fff;
+        background: #292c2f;
+        cursor: pointer;
+        text-align: center;
+    }
+    .content {
+        width: 50%;
+        position: relative;
+        margin: 0 auto;
+        .field-text {
+            margin-top: 20px;
+            input {
+                padding: 9px 5px 3px;
+            }
+        }
+        .error {
+            display: block;
+            font-size: .7em;
+            color: #f44336;
+            padding: 0 10px;
+        }
+        button {
+            width: 100%;
+            margin: 20px 0;
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .popup {
+        width: 450px;
+        margin-left: -240px;
+    }
+}
+@media screen and (max-width: 520px) {
+    .popup {
+        width: 400px;
+        margin-left: -217px;
+    }
+}
+@media screen and (max-width: 440px) {
+    .popup {
+        width: 250px;
+        margin-left: -40px;
+        .content {
+            width: 100%;
+        }
+    }
+}
+@media screen and (max-width: 375px) {
+    .popup {
+        margin-left: -57px;
+    }
+}
+@media screen and (max-width: 320px) {
+    .popup {
+        margin-left: -83px;
+    }
+}

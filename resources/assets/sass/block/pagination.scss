@@ -1,0 +1,39 @@
+.pagination {
+    text-align: center;
+    margin-top: 80px;
+    li {
+        display: inline-block;
+        margin: 0;
+        border-bottom: none;
+        a {
+            color: #fff;
+            display: block;
+            padding: 10px;
+            background: #2980b9;
+            &:hover {
+                text-decoration: none;
+                background: #999;
+            }
+            .svg-icon {
+                width: 16px;
+                height: 16px;
+                color: #fff;
+                vertical-align: middle;
+            }
+            &.next {
+                .svg-icon {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        &.active {
+            a {
+                background: #999;
+                color: #d2d6da;
+                pointer-events: none;
+                text-decoration: none;
+            }
+        }
+    }
+}

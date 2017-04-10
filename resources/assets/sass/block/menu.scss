@@ -1,0 +1,162 @@
+.nav-menu {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #fff;
+    box-sizing: border-box;
+    z-index: 10;
+    &.shadow {
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+    .nav-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        transition: margin-left .3s;
+        .site-name {
+            margin: 0 20px;
+            flex: 0 0 auto;
+            height: 50px;
+            a {
+                font-size: 1.5em;
+                line-height: 2em;
+                color: #2c3e50;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+        .nav-container {
+            flex: 1 0 auto;
+            a {
+                height: 50px;
+                color: #2c3e50;
+                float: left;
+                padding: 13px 12px;
+                box-sizing: border-box;
+                &:hover {
+                    text-decoration: none;
+                    border-bottom: 1px solid #292c2f;
+                }
+                &.active {
+                    border-bottom: 1px solid #292c2f;
+                }
+            }
+        }
+        .user-container {
+            flex: 0 0 auto;
+            .user-section {
+                padding: 14px 20px;
+                a {
+                    margin: 0 10px;
+                    .svg-icon {
+                        width: 18px;
+                        height: 21px;
+                    }
+                }
+                .logout {
+                    font-size: 12px;
+                }
+            }
+            .login-section {
+                padding: 14px 10px;
+                display: flex;
+                flex-direction: row;
+                .popup-container {
+                    flex: 0 0 auto;
+                    margin: 0 5px;
+                }
+                .svg-icon {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+    .menu-overlay {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .nav-menu {
+        .menu-button {
+            display: block;
+        }
+        .nav-wrapper {
+            width: 200px;
+            height: calc(100% - 49px);
+            margin-left: -100%;
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            background: #fff;
+            position: fixed;
+            left: 0;
+            top: 49px;
+            padding: 0 5px;
+            box-shadow: 2px 0 1px -1px rgba(0, 0, 0, .2);
+            box-sizing: border-box;
+            z-index: 10;
+            &.open {
+                margin-left: 0;
+            }
+            .site-name {
+                position: fixed;
+                left: 40px;
+                top: 0;
+            }
+            .nav-container {
+                flex: 0 0 auto;
+                a {
+                    float: none;
+                    display: block;
+                }
+            }
+            .user-container {
+                flex: 0 0 auto;
+                .user-section {
+                    a {
+                        display: block;
+                        margin: 10px;
+                        text-align: center;
+                    }
+                    .logout {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                    }
+                }
+                .field-text {
+                    width: 100% !important;
+                    margin: 10px 0 !important;
+                }
+                button {
+                    width: 100%;
+                    margin: 20px 0 0 !important;
+                }
+                .login-section {
+                    flex-direction: column;
+                    .popup-container {
+                        margin: 10px 0;
+                    }
+                }
+            }
+        }
+        .menu-overlay {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 5%;
+            height: 100%;
+            margin-top: 50px;
+            &.open {
+                width: 100%;
+                background: rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+}

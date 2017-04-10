@@ -1,0 +1,32 @@
+.select-field {
+    position: relative;
+    margin-bottom: 1.5rem;
+    select {
+        background: transparent;
+        width: 100%;
+        padding: 4px;
+        font-size: 16px;
+        color: rgba(0, 0, 0, 0.26);
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(66, 185, 131, 0.3);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        &:focus {
+            outline: none;
+        }
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0.75em;
+        right: 0.15em;
+        width: 0;
+        height: 0;
+        border-left: .25em solid transparent;
+        border-right: .25em solid transparent;
+        border-top: 0.375em solid rgba(0, 0, 0, 0.12);
+        pointer-events: none;
+    }
+}

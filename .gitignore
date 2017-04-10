@@ -1,0 +1,14 @@
+/.idea/*
+!/.idea/codeStyleSettings.xml
+/vendor
+/node_modules
+Homestead.yaml
+Homestead.json
+.env
+deployment.xml
+php.xml
+webServers.xml
+misc.xml
+/public/css/
+/public/js/
+/public/svg/

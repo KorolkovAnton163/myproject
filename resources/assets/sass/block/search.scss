@@ -1,0 +1,50 @@
+.block-search {
+    form {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        top: 50px;
+        padding: 5px 10px;
+        background: #fff;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    }
+    .field-text {
+        margin: 0;
+        height: 45px;
+    }
+    button {
+        height: 50px;
+        outline: none;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        .svg-icon {
+            width: 16px;
+            height: 16px;
+            fill: #2c3e50;
+            transform: rotate(90deg);
+        }
+    }
+    .toggle-search-button {
+        height: 50px;
+        padding: 14px 0;
+        cursor: pointer;
+        box-sizing: border-box;
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+            fill: #2c3e50;
+        }
+    }
+}
+@media screen and (max-width: 440px) {
+    .block-search {
+        position: fixed;
+        top: 0;
+        right: 10px;
+        form {
+            position: fixed;
+            right: 0;
+        }
+    }
+}

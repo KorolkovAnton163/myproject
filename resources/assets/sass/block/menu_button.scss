@@ -1,0 +1,70 @@
+.menu-button {
+    display: none;
+    width: 20px;
+    height: 20px;
+    float: left;
+    position: relative;
+    text-indent: -9999px;
+    margin: 14px 0 16px 18px;
+    cursor: pointer;
+    transition: background .3s;
+    span {
+        position: absolute;
+        display: block;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: #292c2f;
+        content: "";
+        top: 8px;
+        &:before,
+        &:after {
+            position: absolute;
+            display: block;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #292c2f;
+            content: "";
+        }
+        &:before {
+            top: -8px;
+        }
+        &:after {
+            bottom: -8px;
+        }
+    }
+    &.htx {
+        span {
+            transition: background 0s 0.3s;
+            &:before,
+            &:after {
+                transition-duration: 0.3s, 0.3s;
+                transition-delay: 0.3s, 0s;
+            }
+            &:before {
+                transition-property: top, transform;
+            }
+            &:after {
+                transition-property: bottom, transform;
+            }
+        }
+        &.is-active {
+            span {
+                background: none;
+                &:before,
+                &:after {
+                    transition-delay: 0s, 0.3s;
+                }
+                &:before {
+                    top: 0;
+                    transform: rotate(45deg);
+                }
+                &:after {
+                    bottom: 0;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+    }
+}
