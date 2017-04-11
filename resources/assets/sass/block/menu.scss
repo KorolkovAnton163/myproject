@@ -4,7 +4,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    background: #fff;
+    background: $white;
     box-sizing: border-box;
     z-index: 10;
     &.shadow {
@@ -92,7 +92,7 @@
             margin-left: -100%;
             flex-direction: column-reverse;
             justify-content: flex-end;
-            background: #fff;
+            background: $white;
             position: fixed;
             left: 0;
             top: 49px;

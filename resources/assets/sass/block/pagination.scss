@@ -6,7 +6,7 @@
         margin: 0;
         border-bottom: none;
         a {
-            color: #fff;
+            color: $white;
             display: block;
             padding: 10px;
             background: #2980b9;
@@ -17,7 +17,7 @@
             .svg-icon {
                 width: 16px;
                 height: 16px;
-                color: #fff;
+                color: $white;
                 vertical-align: middle;
             }
             &.next {
