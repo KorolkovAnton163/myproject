@@ -7,30 +7,14 @@
         box-sizing: border-box;
         color: $white;
     }
-    .description-container {
-        display: flex;
-        flex-direction: row;
-        .image {
-            flex: 0 1 auto;
-            img {
-                width: 100%;
-            }
-        }
-        .description {
-            width: 65%;
-            flex: 1 0 auto;
-            padding-left: 10px;
-            box-sizing: border-box;
-        }
-    }
 }
 
 @media screen and (max-width: 550px) {
     .single-post-page-container {
         .description-container {
             flex-direction: column;
-            .description {
-                width: 100%;
+            .additional-block {
+                width: 100% !important;
                 padding: 0;
                 margin: 10px 0;
             }

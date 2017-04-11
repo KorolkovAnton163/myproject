@@ -11,6 +11,7 @@ Vue.use(VueResource);
 Vue.use(VeeValidate);
 Vue.use(VueTouch);
 
+Vue.component('cat', require('./components/blocks/Cat.vue'));
 Vue.component('access-denied', require('./components/pages/AccessDenied.vue'));
 
 new Vue({

@@ -5,23 +5,7 @@
                 <h2>
                     <router-link class="ripple" :to="{name:'post', params: {id: post.id}}">{{ post.title }}</router-link>
                 </h2>
-                <div class="description-container">
-                    <div class="image-block">
-                        <img src="/images/header.jpg" alt="image">
-                        <router-link class="read-more ripple" :to="{name:'post', params: {id: post.id}}">show</router-link>
-                    </div>
-                    <div class="additional-block">
-                        <div class="description-block">
-                            <p><strong>info1:</strong> info 1</p>
-                            <p><strong>info2:</strong> info 2</p>
-                            <p><strong>info3:</strong> info 3</p>
-                            <p><strong>Description:</strong> {{ post.body }}</p>
-                        </div>
-                        <div class="action-block">
-                            <bookmark :id="post.id"></bookmark>
-                        </div>
-                    </div>
-                </div>
+                <post-description :post="post"></post-description>
             </div>
             <pagination :params="params" :callback="getPosts"></pagination>
         </div>
@@ -54,10 +38,9 @@
           });
       },
       components: {
-          cat: require('../blocks/Cat.vue'),
-          pagination: require('../blocks/Pagination.vue'),
-          bookmark: require('../blocks/Bookmark.vue'),
-          filters: require('../blocks/Filters.vue')
+          'pagination': require('../blocks/Pagination.vue'),
+          'filters': require('../blocks/Filters.vue'),
+          'post-description': require('../blocks/PostDescription.vue')
       },
       computed: {
           resource () {

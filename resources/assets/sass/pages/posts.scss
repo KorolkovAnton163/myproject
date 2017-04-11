@@ -19,39 +19,6 @@
         .post {
             padding: 10px;
             margin: 10px;
-            .description-container {
-                display: flex;
-                flex-direction: row;
-                .image-block {
-                    flex: 0 1 auto;
-                    img {
-                        width: 100%;
-                    }
-                    .read-more {
-                        display: block;
-                        text-align: center;
-                        &:hover {
-                            text-decoration: none;
-                        }
-                    }
-                }
-            }
-
-            .additional-block {
-                width: 65%;
-                flex: 1 0 auto;
-                padding-left: 10px;
-                box-sizing: border-box;
-                display: flex;
-                flex-direction: column;
-                .description-block {
-                    flex: 1 0 auto;
-                }
-                .action-block {
-                    text-align: center;
-                    flex: 0 0 auto;
-                }
-            }
         }
     }
 }
