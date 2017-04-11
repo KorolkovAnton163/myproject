@@ -7,7 +7,7 @@
                 </h2>
                 <div class="description-container">
                     <div class="image-block">
-                        <img src="/src/assets/images/header.jpg" alt="image">
+                        <img src="/images/header.jpg" alt="image">
                         <router-link class="read-more ripple" :to="{name:'post', params: {id: post.id}}">show</router-link>
                     </div>
                     <div class="additional-block">

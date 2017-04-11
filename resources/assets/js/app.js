@@ -24,8 +24,8 @@ new Vue({
     },
     methods: {
         getUser () {
-            this.$http.post(location.href + 'api/user/get').then((responce) => {
-                this.$store.dispatch('addUser', responce.data[0]);
+            this.$http.post(location.origin + '/api/user/get').then((responce) => {
+                this.$store.dispatch('addUser', responce.data);
             });
         }
     },

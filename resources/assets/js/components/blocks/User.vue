@@ -1,7 +1,7 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
 	<div class="user-container">
 		<div class="user-section" v-if="user">
-			<router-link :to="{name:'account'}">{{ user.username }}</router-link>
+			<router-link :to="{name:'account'}">{{ user.name }}</router-link>
 			<a>
 				<svg class="svg-icon">
         			<use xlink:href="#icon-heart"></use>

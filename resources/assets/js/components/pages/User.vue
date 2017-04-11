@@ -1,12 +1,6 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
 	<div class="page-container user-page-container">
 		<form v-on:submit.prevent="update" v-if="user" novalidate>
-			<fieldset class="field-text">
-		        <input v-validate="{ rules: { required: true } }" type="text" name="login" v-model="user.username" autocomplete="off" required>
-		        <hr>
-		        <label>Login</label>
-		    </fieldset>
-		    <span class="error" v-show="errors.has('login')">{{ errors.first('login') }}</span>
 		    <fieldset class="field-text">
 		        <input v-validate="{ rules: { required: true } }" type="text" name="name" v-model="user.name" utocomplete="off" required>
 		        <hr>
@@ -20,11 +14,11 @@
 		    </fieldset>
 		    <span class="error" v-show="errors.has('email')">{{ errors.first('email') }}</span>
 		    <fieldset class="field-text">
-		        <input v-validate="{ rules: { required: true } }" type="phone" name="phone" v-model="user.phone" utocomplete="off" required>
+		        <input v-validate="{ rules: { required: true } }" type="password" name="password" autocomplete="off" required>
 		        <hr>
-		        <label>Phone</label>
+		        <label>Password</label>
 		    </fieldset>
-		    <span class="error" v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
+		    <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
 			<button class="ripple" type="submit">Save</button>
 		</form>
 		<access-denied v-else></access-denied>
@@ -40,9 +34,9 @@
 		methods: {
 			update () {
 				this.$validator.validateAll().then(() => {
-					console.log('valid');
+
 				}).catch(() => {
-					console.log('not valid');
+
 				});
 			}
 		}

@@ -3,7 +3,7 @@
     <h2>{{ post.title }}</h2>
     <div class="description-container">
       <div class="image">
-        <img src="/src/assets/images/header.jpg" alt="image">
+        <img src="/images/header.jpg" alt="image">
       </div>
       <div class="description">
         <p><strong>info1:</strong> info 1</p>

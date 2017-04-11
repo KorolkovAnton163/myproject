@@ -43,9 +43,11 @@
                 transition-delay: 0.3s, 0s;
             }
             &:before {
+                transition-property: top, transform, -webkit-transform;
                 transition-property: top, transform;
             }
             &:after {
+                transition-property: bottom, transform, -webkit-transform;
                 transition-property: bottom, transform;
             }
         }
