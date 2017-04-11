@@ -1,9 +1,10 @@
 .account-menu {
     flex: 0 0 auto;
     padding: 0 20px;
-    margin-top: 50px;
+    margin: 50px auto;
     max-width: 1000px;
     box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, .1);
     a {
         color: #2c3e50;
         float: left;
@@ -21,7 +22,6 @@
 @media screen and (max-width: 650px) {
     .account-menu {
         padding: 0;
-        border-top: 1px solid rgba(0, 0, 0, .1);
         .menu-wrapper {
             padding-top: 50px;
             a {
