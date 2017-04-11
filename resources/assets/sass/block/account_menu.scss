@@ -9,14 +9,11 @@
         float: left;
         padding: 13px 5px;
         box-sizing: border-box;
-        margin-right: 5px;
+        border-bottom: 1px solid transparent;
         &:hover,
         &.active {
             text-decoration: none;
-            border-bottom: 1px solid #2c3e50;
-        }
-        &:last-of-type {
-            margin-right: 0;
+            border-color: #2c3e50;
         }
     }
 }
