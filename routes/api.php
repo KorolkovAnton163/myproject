@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
+Route::post('logout', 'UserController@logout');
+Route::post('login', 'UserController@login');
 
 Route::post('/user/get', function (Request $request) {
     return response()->json(Auth::user());
