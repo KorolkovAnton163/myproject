@@ -11,6 +11,16 @@ class UserController extends Controller
 {
     use ThrottlesLogins;
 
+    public function getUser(Request $request)
+    {
+        $user = Auth::user();
+
+        return $user ? [
+            'name' => $user->name,
+            'email' => $user->email,
+        ] : null;
+    }
+
     public function login(Request $request)
     {
         $this->validateLogin($request);
