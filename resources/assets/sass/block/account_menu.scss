@@ -24,6 +24,7 @@
 @media screen and (max-width: 650px) {
     .account-menu {
         padding: 0;
+        border-top: 1px solid rgba(0, 0, 0, .1);
         .menu-wrapper {
             padding-top: 50px;
             a {

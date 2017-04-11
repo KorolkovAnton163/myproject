@@ -7,7 +7,7 @@
         <div class="menu-wrapper" v-show="show">
             <router-link :to="{ name:'profile' }">Profile</router-link>
             <router-link :to="{ name:'bookmarks' }">Bookmarks</router-link>
-            <router-link v-if="user && user.canRolesEdit" :to="{ name:'role-edit' }">Profile</router-link>
+            <router-link v-if="user && user.canRolesEdit" :to="{ name:'role-edit' }">Roles</router-link>
         </div>
     </div>
 </template>
