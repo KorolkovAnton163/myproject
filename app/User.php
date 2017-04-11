@@ -19,6 +19,11 @@ class User extends Authenticatable
 
     public function role()
     {
-        return $this->hasOne(Role::class);
+        return $this->belongsTo(Role::class);
+    }
+
+    public function checkPermission($user, $permission)
+    {
+        return (bool) $user->role->permissions->where('name', $permission)->first();
     }
 }
