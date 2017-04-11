@@ -12,5 +12,5 @@
 */
 
 Route::get('/{vue_capture?}', function () {
-    return view('home');
+    return view('master');
 })->where('vue_capture', '[\/\w\.-]*');
