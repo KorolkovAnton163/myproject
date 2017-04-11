@@ -7,16 +7,16 @@
     </a>
 </template>
 <script>
-	module.exports = {
-		props: {
-			id: {
-				type: Number
-			}
-		},
-		methods: {
-			addBookmark () {
-				console.log(this.id);
-			}
-		}
-	}
+    module.exports = {
+        props: {
+            id: {
+                type: Number
+            }
+        },
+        methods: {
+            addBookmark () {
+                console.log(this.id);
+            }
+        }
+    }
 </script>

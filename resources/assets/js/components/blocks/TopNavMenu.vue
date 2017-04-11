@@ -1,16 +1,19 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
-	<nav class="nav-menu">
-		<div class="menu-button htx ripple-effect" v-bind:class="{ 'is-active': show }" v-on:click="toggleMenu">
-			<span>opened</span>
-		</div>	
-		<div class="nav-wrapper" v-bind:class="{ open: show }">
-			<div class="site-name"><router-link :to="{ name:'posts' }">Site Name</router-link></div>
-			<nav-menu></nav-menu>
-			<search></search>
-			<user></user>
-		</div>
-		<v-touch tag="div" class="menu-overlay" v-bind:class="{ open: show }" v-on:swiperight="openMenu" v-on:swipeleft="hideMenu"></v-touch>
-	</nav>
+    <nav class="nav-menu">
+        <div class="menu-button htx ripple-effect" v-bind:class="{ 'is-active': show }" v-on:click="toggleMenu">
+            <span>opened</span>
+        </div>
+        <div class="nav-wrapper" v-bind:class="{ open: show }">
+            <div class="site-name">
+                <router-link :to="{ name:'posts' }">Site Name</router-link>
+            </div>
+            <nav-menu></nav-menu>
+            <search></search>
+            <user></user>
+        </div>
+        <v-touch tag="div" class="menu-overlay" v-bind:class="{ open: show }" v-on:swiperight="openMenu"
+                 v-on:swipeleft="hideMenu"></v-touch>
+    </nav>
 </template>
 <script>
 	module.exports = {

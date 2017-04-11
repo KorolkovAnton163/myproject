@@ -1,5 +1,5 @@
 <template>
-	<div class="nav-container">
-		<a href="#">News</a>
-	</div>
+    <div class="nav-container">
+        <a href="#">News</a>
+    </div>
 </template>

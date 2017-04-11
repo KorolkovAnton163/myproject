@@ -1,39 +1,39 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
-	<div class="user-container">
-		<div class="user-section" v-if="user">
-			<router-link :to="{name:'account'}">{{ user.name }}</router-link>
-			<router-link :to="{name:'bookmarks'}">
-				<svg class="svg-icon">
-					<use xlink:href="#icon-bookmark"></use>
-				</svg>
-				bookmarks
-			</router-link>
-			<a class="logout" v-on:click.prevent="logout">Logout</a>
-		</div>
-		<div class="login-section" v-else>
-			<login-popup></login-popup>
-			<register-popup></register-popup>
-		</div>
-	</div>
+    <div class="user-container">
+        <div class="user-section" v-if="user">
+            <router-link :to="{name:'account'}">{{ user.name }}</router-link>
+            <router-link :to="{name:'bookmarks'}">
+                <svg class="svg-icon">
+                    <use xlink:href="#icon-bookmark"></use>
+                </svg>
+                bookmarks
+            </router-link>
+            <a class="logout" v-on:click.prevent="logout">Logout</a>
+        </div>
+        <div class="login-section" v-else>
+            <login-popup></login-popup>
+            <register-popup></register-popup>
+        </div>
+    </div>
 </template>
 <script>
-	module.exports = {
-	  	computed: {
-          	user () {
-				return this.$store.getters.user
-          	}
-      	},
-		methods: {
-			logout () {
+    module.exports = {
+        computed: {
+            user () {
+                return this.$store.getters.user
+            }
+        },
+        methods: {
+            logout () {
                 this.$http.post(location.origin + '/api/logout').then((responce) => {
                     this.$store.dispatch('removeUser');
-                    this.$router.push({ name: 'posts' });
+                    this.$router.push({name: 'posts'});
                 });
-			}
-		},
-		components: {
-			'login-popup': require('./LoginPopup.vue'),
-			'register-popup': require('./RegisterPopup.vue')
-		}
-	}
+            }
+        },
+        components: {
+            'login-popup': require('./LoginPopup.vue'),
+            'register-popup': require('./RegisterPopup.vue')
+        }
+    }
 </script>
