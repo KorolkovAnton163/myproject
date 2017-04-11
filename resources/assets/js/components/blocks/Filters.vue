@@ -71,11 +71,10 @@
 			},
 			fillData () {
 				if (typeof this.$route.query.tags !== 'undefined' && this.$route.query.tags) {
-					let queryTasg = this.$route.query.tags.split('-tag-');
+                    this.tags = this.$route.query.tags.split('-tag-');
 
-					this.tags = queryTasg;
 					this.fakeTags.forEach((tag) => {
-						tag.checked = (queryTasg.indexOf(tag.id.toString()) !== -1);
+						tag.checked = (this.tags.indexOf(tag.id.toString()) !== -1);
 					});
 				}
 			}
