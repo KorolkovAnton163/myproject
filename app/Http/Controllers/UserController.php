@@ -18,6 +18,7 @@ class UserController extends Controller
         return $user ? [
             'name' => $user->name,
             'email' => $user->email,
+            'canRolesEdit' => $user->can('rolesEdit', User::class) //TODO Remove
         ] : null;
     }
 

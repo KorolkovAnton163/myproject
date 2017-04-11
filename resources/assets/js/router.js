@@ -9,8 +9,10 @@ export let router = new VueRouter({
     routes: [
         { path: '/', name: 'posts', component: require('./components/pages/Posts.vue') },
         { path: '/post/:id', name: 'post', component: require('./components/pages/Post.vue') },
-        { path: '/account', name: 'account', component: require('./components/pages/User.vue') },
-        { path: '/bookmarks', name: 'bookmarks', component: require('./components/pages/Bookmarks.vue') },
+        { path: '/account', name: 'account', redirect: { name: 'profile' } },
+        { path: '/account/profile', name: 'profile', component: require('./components/pages/Profile.vue') },
+        { path: '/account/role-edit', name: 'role-edit', component: require('./components/pages/RoleEdit.vue') },
+        { path: '/account/bookmarks', name: 'bookmarks', component: require('./components/pages/Bookmarks.vue') },
         { path: '*', component: require('./components/pages/NotFound.vue') }
     ]
 });

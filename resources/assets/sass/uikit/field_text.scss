@@ -15,6 +15,7 @@
         font-size: 120%;
         outline: none;
         cursor: text;
+        text-overflow: ellipsis;
         &::-webkit-input-placeholder {
             transition: color 300ms ease;
         }
