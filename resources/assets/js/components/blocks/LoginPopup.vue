@@ -19,7 +19,7 @@
 				    </fieldset>
 				    <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
 					<span class="error" v-if="error">{{ error }}</span>
-					<label class="checkbox">
+					<label class="checkbox-label">
 						<input class="checkbox" type="checkbox" name="remember_token">Remember me
 					</label>
 				    <button class="ripple">Login</button>

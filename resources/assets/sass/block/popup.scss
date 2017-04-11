@@ -37,11 +37,9 @@
                 padding: 9px 5px 3px;
             }
         }
-        label {
-            &.checkbox {
-                display: block;
-                margin: 30px 10px 0;
-            }
+        .checkbox-label{
+            display: block;
+            margin: 30px 10px 0;
         }
         .error {
             display: block;
