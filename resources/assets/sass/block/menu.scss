@@ -18,7 +18,7 @@
         transition: margin-left .3s;
         .site-name {
             margin: 0 20px;
-            flex: 0 0 auto;
+            flex: 1 0 auto;
             height: 50px;
             a {
                 font-size: 1.5em;
@@ -26,23 +26,6 @@
                 color: #2c3e50;
                 &:hover {
                     text-decoration: none;
-                }
-            }
-        }
-        .nav-container {
-            flex: 1 0 auto;
-            a {
-                height: 50px;
-                color: #2c3e50;
-                float: left;
-                padding: 13px 12px;
-                box-sizing: border-box;
-                &:hover {
-                    text-decoration: none;
-                    border-bottom: 1px solid #292c2f;
-                }
-                &.active {
-                    border-bottom: 1px solid #292c2f;
                 }
             }
         }
