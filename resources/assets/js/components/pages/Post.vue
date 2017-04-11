@@ -1,7 +1,7 @@
 <template>
     <div class="page-container single-post-page-container" v-if="post">
         <h2>{{ post.title }}</h2>
-        <post-description :post="post"></post-description>
+        <post-description :post="post" :button="false"></post-description>
     </div>
     <div class="page-not-found" v-else>
         <cat></cat>

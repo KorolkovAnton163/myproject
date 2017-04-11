@@ -2,7 +2,7 @@
     <div class="description-container">
         <div class="image-block">
             <img src="/images/header.jpg" alt="image">
-            <router-link class="read-more ripple" :to="{name:'post', params: {id: post.id}}">show</router-link>
+            <router-link v-if="button" class="read-more ripple" :to="{name:'post', params: {id: post.id}}">show</router-link>
         </div>
         <div class="additional-block">
             <div class="description-block">
@@ -22,6 +22,10 @@
         props: {
             post: {
                 type: Object
+            },
+            button: {
+                type: Boolean,
+                default: true
             }
         },
         components: {
