@@ -19,6 +19,9 @@
 				    </fieldset>
 				    <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
 					<span class="error" v-if="error">{{ error }}</span>
+					<label class="checkbox">
+						<input class="checkbox" type="checkbox" name="remember_token">Remember me
+					</label>
 				    <button class="ripple">Login</button>
 				</form>
 			</div>
@@ -57,7 +60,7 @@
 				formData.append('password', this.password);
 
 				this.$validator.validateAll().then(() => {
-                    this.$http.post(location.href + 'api/login', formData).then((responce) => {
+                    this.$http.post(location.origin + '/api/login', formData).then((responce) => {
 						this.$store.dispatch('addUser', responce.data[0]);
 						this.togglePopup();
 					}, (responce) => {

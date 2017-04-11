@@ -1,4 +1,4 @@
-<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
 	<nav class="nav-menu">
 		<div class="menu-button htx ripple-effect" v-bind:class="{ 'is-active': show }" v-on:click="toggleMenu">
 			<span>opened</span>

@@ -25,8 +25,10 @@
       	},
 		methods: {
 			logout () {
-				this.$store.dispatch('removeUser');
-				this.$router.push({ name: 'posts' });
+                this.$http.post(location.origin + '/api/logout').then((responce) => {
+                    this.$store.dispatch('removeUser');
+                    this.$router.push({ name: 'posts' });
+                });
 			}
 		},
 		components: {
