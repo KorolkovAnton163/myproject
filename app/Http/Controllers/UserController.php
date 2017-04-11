@@ -85,7 +85,7 @@ class UserController extends Controller
 
     protected function credentials(Request $request)
     {
-        return $request->only('email', 'password');
+        return $request->only($this->username(), 'password');
     }
 
     protected function username()
