@@ -2,12 +2,12 @@
 	<div class="user-container">
 		<div class="user-section" v-if="user">
 			<router-link :to="{name:'account'}">{{ user.name }}</router-link>
-			<a>
+			<router-link :to="{name:'bookmarks'}">
 				<svg class="svg-icon">
-        			<use xlink:href="#icon-heart"></use>
-      			</svg> 
-				favorites
-			</a>
+					<use xlink:href="#icon-bookmark"></use>
+				</svg>
+				bookmarks
+			</router-link>
 			<a class="logout" v-on:click.prevent="logout">Logout</a>
 		</div>
 		<div class="login-section" v-else>

@@ -10,6 +10,7 @@ export let router = new VueRouter({
         { path: '/', name: 'posts', component: require('./components/pages/Posts.vue') },
         { path: '/post/:id', name: 'post', component: require('./components/pages/Post.vue') },
         { path: '/account', name: 'account', component: require('./components/pages/User.vue') },
+        { path: '/bookmarks', name: 'bookmarks', component: require('./components/pages/Bookmarks.vue') },
         { path: '*', component: require('./components/pages/NotFound.vue') }
     ]
 });
