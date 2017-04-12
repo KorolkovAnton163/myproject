@@ -7,6 +7,7 @@
             <div class="site-name">
                 <router-link :to="{ name:'posts' }">Site Name</router-link>
             </div>
+            <nav-menu></nav-menu>
             <search></search>
             <user></user>
         </div>
@@ -50,6 +51,7 @@
 	        }
 	    },
 		components: {
+            'nav-menu': require('./NavMenu.vue'),
 			'search': require('./Search.vue'),
 			'user': require('./User.vue')
 		},
