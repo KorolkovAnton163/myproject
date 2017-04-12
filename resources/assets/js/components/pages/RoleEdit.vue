@@ -1,4 +1,4 @@
-<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div class="page-container role-edit-page-container">
         <div v-if="user && user.canRolesEdit">
             <h2>Role Edit</h2>
@@ -14,13 +14,15 @@
                         <td v-for="permission in permissions">
                             <label class="checkbox-label">
                                 <input class="checkbox" type="checkbox" name="permissions"
-                                       v-bind:checked="isActive(role, permission)" v-bind:value="permission.id">
+                                       v-on:click="setPermission(role, permission)"
+                                       v-bind:checked="isActive(role, permission)">
                                 {{ permission.name }}
                             </label>
                         </td>
                     </tr>
                     </tbody>
                 </table>
+                <button class="ripple" v-on:click="save">Save</button>
             </div>
         </div>
         <access-denied v-else></access-denied>
@@ -50,6 +52,18 @@
                 return role.permissions.filter((item) => {
                     return item.id == permission.id
                 }).length;
+            },
+            setPermission (role, permission) {
+                if (this.isActive(role, permission)) {
+                    role.permissions.splice(role.permissions.indexOf(permission), 1);
+                } else {
+                    role.permissions.push(permission);
+                }
+            },
+            save () {
+                this.$http.post(location.origin + '/roles/update', this.roles).then((responce) => {
+                    //
+                });
             }
         },
         created () {

@@ -21,5 +21,8 @@ Route::post('login', 'UserController@login');
 Route::post('register', 'Auth\RegisterController@register');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('roles', 'RoleController@index');
+    Route::group(['prefix' => 'roles'], function () {
+        Route::post('/', 'RoleController@index');
+        Route::post('/update', 'RoleController@update');
+    });
 });
