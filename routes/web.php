@@ -14,3 +14,12 @@
 Route::get('/{vue_capture?}', function () {
     return view('master');
 })->where('vue_capture', '[\/\w\.-]*');
+
+Route::post('/user/get', 'UserController@getUser');
+Route::post('logout', 'UserController@logout');
+Route::post('login', 'UserController@login');
+Route::post('register', 'Auth\RegisterController@register');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::post('roles', 'RoleController@index');
+});

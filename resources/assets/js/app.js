@@ -11,6 +11,8 @@ Vue.use(VueResource);
 Vue.use(VeeValidate);
 Vue.use(VueTouch);
 
+Vue.http.headers.common['X-CSRF-TOKEN'] = Laravel.csrfToken;
+
 Vue.component('cat', require('./components/blocks/Cat.vue'));
 Vue.component('access-denied', require('./components/pages/AccessDenied.vue'));
 
@@ -25,7 +27,7 @@ new Vue({
     },
     methods: {
         getUser () {
-            this.$http.post(location.origin + '/api/user/get').then((responce) => {
+            this.$http.post(location.origin + '/user/get').then((responce) => {
                 this.$store.dispatch('addUser', !_.isEmpty(responce.data) ? responce.data : null);
             });
         }

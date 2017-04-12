@@ -62,7 +62,7 @@
                 formData.append('password', this.password);
 
                 this.$validator.validateAll().then(() => {
-                    this.$http.post(location.origin + '/api/login', formData).then((responce) => {
+                    this.$http.post(location.origin + '/login', formData).then((responce) => {
                         this.$store.dispatch('addUser', responce.data);
                         this.$router.push({name: 'posts'});
                     }, (responce) => {

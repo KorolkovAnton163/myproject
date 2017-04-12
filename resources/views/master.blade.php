@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta name="description" content="This my site">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}"/>
+    <script type="text/javascript">
+        window.Laravel = {!!  json_encode(['csrfToken' => csrf_token(),]) !!}
+    </script>
 </head>
 <body>
 <div id="app">

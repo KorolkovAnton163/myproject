@@ -25,7 +25,7 @@
         },
         methods: {
             logout () {
-                this.$http.post(location.origin + '/api/logout').then((responce) => {
+                this.$http.post(location.origin + '/logout').then((responce) => {
                     this.$store.dispatch('removeUser');
                     this.$router.push({name: 'posts'});
                 });

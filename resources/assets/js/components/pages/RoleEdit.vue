@@ -10,6 +10,16 @@
             user () {
                 return this.$store.getters.user
             }
+        },
+        methods: {
+            getRoles () {
+                this.$http.post(location.origin + '/roles').then((responce) => {
+                    console.log(responce.data);
+                });
+            }
+        },
+        created () {
+            this.getRoles();
         }
     }
 </script>

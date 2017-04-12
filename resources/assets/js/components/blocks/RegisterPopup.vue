@@ -73,7 +73,7 @@
                 formData.append('password_confirmation', this.confirmedPassword);
 
                 this.$validator.validateAll().then(() => {
-                    this.$http.post(location.origin + '/api/register', formData).then((responce) => {
+                    this.$http.post(location.origin + '/register', formData).then((responce) => {
                         this.$store.dispatch('addUser', responce.data);
                         this.togglePopup();
                     }, (responce) => {

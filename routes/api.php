@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::post('logout', 'UserController@logout');
-Route::post('login', 'UserController@login');
-Route::post('/user/get', 'UserController@getUser');
-Route::post('register', 'Auth\RegisterController@register');
-
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::post('roles', 'RoleController@index');
+    //
 });
