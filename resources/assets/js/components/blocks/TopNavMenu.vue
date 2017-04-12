@@ -7,6 +7,7 @@
             <div class="site-name">
                 <router-link :to="{ name:'posts' }">Site Name</router-link>
             </div>
+            <account-menu v-if="show"></account-menu>
             <nav-menu></nav-menu>
             <search></search>
             <user></user>
@@ -53,7 +54,8 @@
 		components: {
             'nav-menu': require('./NavMenu.vue'),
 			'search': require('./Search.vue'),
-			'user': require('./User.vue')
+			'user': require('./User.vue'),
+            'account-menu': require('./AccountMenu.vue'),
 		},
 		methods: {
 			toggleMenu () {

@@ -1,12 +1,14 @@
-.header {
-    flex: 0 0 auto;
+.header-container {
     margin-top: 50px;
-    padding: 20px;
-    height: 100px;
-    background: #add5ef;
-    box-sizing: border-box;
-    h1 {
-        text-align: center;
-        text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+    .header {
+        flex: 0 0 auto;
+        padding: 20px;
+        height: 100px;
+        background: #add5ef;
+        box-sizing: border-box;
+        h1 {
+            text-align: center;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+        }
     }
 }

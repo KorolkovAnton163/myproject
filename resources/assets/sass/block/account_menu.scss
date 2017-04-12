@@ -1,7 +1,7 @@
 .account-menu {
     flex: 0 0 auto;
     padding: 0 20px;
-    margin: 50px auto;
+    margin: 0 auto;
     max-width: 1000px;
     box-sizing: border-box;
     border-top: 1px solid rgba(0, 0, 0, .1);
@@ -15,26 +15,6 @@
         &.active {
             text-decoration: none;
             border-color: #2c3e50;
-        }
-    }
-}
-
-@media screen and (max-width: 650px) {
-    .account-menu {
-        padding: 0;
-        .menu-wrapper {
-            padding-top: 50px;
-            a {
-                float: none;
-                display: block;
-                padding: 13px 12px;
-                margin: 0 10px;
-            }
-        }
-        .menu-button {
-            float: right;
-            display: block;
-            margin: 15px 20px;
         }
     }
 }

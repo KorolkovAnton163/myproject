@@ -11,6 +11,7 @@
                         <hr>
                         <label>Name</label>
                     </fieldset>
+                    <span class="error" v-show="errors.has('name')">{{ errors.first('name') }}</span>
                     <fieldset class="field-text">
                         <input v-validate="{rules:{required:true, email:true}}" v-model="email" type="email"
                                name="email" required>
