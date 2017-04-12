@@ -1,11 +1,39 @@
-<template>
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div class="page-container role-edit-page-container">
-        <div v-if="user && user.canRolesEdit">Role Edit</div>
+        <div v-if="user && user.canRolesEdit">
+            <h2>Role Edit</h2>
+            <div class="role-container">
+                <table>
+                    <thead>
+                    <tr>
+                        <td v-for="role in roles">{{ role.name }}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="role in roles">
+                        <td v-for="permission in permissions">
+                            <label class="checkbox-label">
+                                <input class="checkbox" type="checkbox" name="permissions"
+                                       v-bind:checked="isActive(role, permission)" v-bind:value="permission.id">
+                                {{ permission.name }}
+                            </label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <access-denied v-else></access-denied>
     </div>
 </template>
 <script>
     module.exports = {
+        data () {
+            return {
+                roles: [],
+                permissions: []
+            }
+        },
         computed: {
             user () {
                 return this.$store.getters.user
@@ -14,8 +42,14 @@
         methods: {
             getRoles () {
                 this.$http.post(location.origin + '/roles').then((responce) => {
-                    console.log(responce.data);
+                    this.roles = responce.data.roles;
+                    this.permissions = responce.data.permissions;
                 });
+            },
+            isActive (role, permission) {
+                return role.permissions.filter((item) => {
+                    return item.id == permission.id
+                }).length;
             }
         },
         created () {
