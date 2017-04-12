@@ -1,5 +1,12 @@
 .role-edit-page-container {
     padding: 20px;
+    .popup-container {
+        margin-bottom: 20px;
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+        }
+    }
     .role-container {
         table {
             tr {

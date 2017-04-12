@@ -19,6 +19,9 @@
             </div>
         </div>
         <a v-on:click="togglePopup">
+            <svg class="svg-icon">
+                <use xlink:href="#icon-plus"></use>
+            </svg>
             add role
         </a>
     </div>
