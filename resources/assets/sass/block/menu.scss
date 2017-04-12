@@ -119,6 +119,9 @@
                         float: none;
                         display: block;
                         padding: 13px 12px;
+                        &.bookmark {
+                            display: none;
+                        }
                     }
                 }
             }
