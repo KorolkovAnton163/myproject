@@ -1,7 +1,7 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div class="page-container role-edit-page-container">
         <div v-if="user && user.canRolesEdit">
-            <h2>Role Edit</h2>
+            <h2>Edit Roles</h2><popup-role-create :callback="add"></popup-role-create>
             <div class="role-container">
                 <table>
                     <thead>
@@ -22,7 +22,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <button class="ripple" v-on:click="save">Save</button>
+                <button class="ripple" v-on:click="update">Save</button>
             </div>
         </div>
         <access-denied v-else></access-denied>
@@ -40,6 +40,9 @@
             user () {
                 return this.$store.getters.user
             }
+        },
+        components: {
+            'popup-role-create': require('../blocks/PopupRoleCreate.vue'),
         },
         methods: {
             getRoles () {
@@ -60,7 +63,10 @@
                     role.permissions.push(permission);
                 }
             },
-            save () {
+            add (data) {
+                this.roles = data.roles;
+            },
+            update () {
                 this.$http.post(location.origin + '/roles/update', {roles: this.roles}).then((responce) => {
                     //
                 });

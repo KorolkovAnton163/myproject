@@ -24,5 +24,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'roles'], function () {
         Route::post('/', 'RoleController@index');
         Route::post('/update', 'RoleController@update');
+        Route::post('/store', 'RoleController@store');
     });
 });

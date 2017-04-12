@@ -24,6 +24,20 @@ class RoleController extends Controller
         ];
     }
 
+    public function store(Request $request)
+    {
+        DB::transaction(function () use ($request) {
+            $role = new Role($request->except('_token'));
+            $role->save();
+        });
+
+        return [
+            'roles' => Role::all()->map(function ($role) {
+                return $role->present()->index();
+            })
+        ];
+    }
+
     public function update(Request $request)
     {
         DB::transaction(function () use ($request) {

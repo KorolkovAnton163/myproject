@@ -32,8 +32,8 @@
             }
         },
         components: {
-            'login-popup': require('./LoginPopup.vue'),
-            'register-popup': require('./RegisterPopup.vue')
+            'login-popup': require('./PopupLogin.vue'),
+            'register-popup': require('./PopupRegister.vue')
         }
     }
 </script>
