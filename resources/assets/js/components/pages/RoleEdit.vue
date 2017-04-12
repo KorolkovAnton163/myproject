@@ -61,7 +61,7 @@
                 }
             },
             save () {
-                this.$http.post(location.origin + '/roles/update', this.roles).then((responce) => {
+                this.$http.post(location.origin + '/roles/update', {roles: this.roles}).then((responce) => {
                     //
                 });
             }

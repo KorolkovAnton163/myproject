@@ -27,7 +27,7 @@ class RoleController extends Controller
     public function update(Request $request)
     {
         DB::transaction(function () use ($request) {
-            foreach ($request->input() as $role) {
+            foreach ($request->input('roles') as $role) {
                 $currentRole = Role::find($role['id']);
                 $currentRole->permissions()->sync(array_map(function ($permission) {
                     return $permission['id'];
