@@ -12,7 +12,7 @@
                         <hr>
                         <label>Name</label>
                     </fieldset>
-                    <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
+                    <span class="error" v-show="errors.has('name')">{{ errors.first('name') }}</span>
                     <span class="error" v-if="error">{{ error }}</span>
                     <button class="ripple">Add</button>
                 </form>
@@ -28,7 +28,8 @@
         data () {
             return {
                 show: false,
-                name: null
+                name: null,
+                error: null
             }
         },
         props: {
@@ -42,6 +43,7 @@
                 this.show = !this.show;
                 if (!this.show) {
                     this.name = null;
+                    this.error = null;
                 }
             },
             create () {
