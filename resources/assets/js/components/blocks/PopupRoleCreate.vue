@@ -14,7 +14,7 @@
                     </fieldset>
                     <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
                     <span class="error" v-if="error">{{ error }}</span>
-                    <button class="ripple">Login</button>
+                    <button class="ripple">Add</button>
                 </form>
             </div>
         </div>
