@@ -15,11 +15,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        return $user ? [
-            'name' => $user->name,
-            'email' => $user->email,
-            'canRolesEdit' => $user->can('rolesEdit', User::class) //TODO Remove
-        ] : null;
+        return $user ? $user->present()->user() : null;
     }
 
     public function login(Request $request)
@@ -59,7 +55,7 @@ class UserController extends Controller
         $this->clearLoginAttempts($request);
 
         return $this->authenticated($request, $this->guard()->user())
-            ?: response()->json(Auth::user());
+            ?: response()->json(Auth::user()->present()->user());
     }
 
     protected function sendFailedLoginResponse(Request $request)
