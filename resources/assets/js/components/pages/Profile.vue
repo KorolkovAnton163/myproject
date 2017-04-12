@@ -16,12 +16,11 @@
             </fieldset>
             <span class="error" v-show="errors.has('email')">{{ errors.first('email') }}</span>
             <fieldset class="field-text">
-                <input v-validate="{ rules: { required: true } }" type="password" name="password" autocomplete="off"
+                <input type="password" name="password" v-model="user.password" autocomplete="off"
                        required>
                 <hr>
                 <label>Password</label>
             </fieldset>
-            <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
             <button class="ripple" type="submit">Save</button>
         </form>
         <access-denied v-else></access-denied>
@@ -37,9 +36,11 @@
         methods: {
             update () {
                 this.$validator.validateAll().then(() => {
-
+                    this.$http.post(location.origin + '/users/' + this.user.id + '/update', this.user).then((responce) => {
+                        //
+                    });
                 }).catch(() => {
-
+                    //
                 });
             }
         }

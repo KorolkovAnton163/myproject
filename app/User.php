@@ -5,6 +5,7 @@ namespace App;
 use App\Presenters\UserPresenter;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use Laracasts\Presenter\PresentableTrait;
 
 class User extends Authenticatable
@@ -29,5 +30,10 @@ class User extends Authenticatable
     public function checkPermission($user, $permission)
     {
         return (bool) $user->role->permissions->where('name', $permission)->first();
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = Hash::make($value);
     }
 }

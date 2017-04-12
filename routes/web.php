@@ -16,14 +16,19 @@ Route::get('/{vue_capture?}', function () {
 })->where('vue_capture', '[\/\w\.-]*');
 
 Route::post('/user/get', 'UserController@getUser');
-Route::post('logout', 'UserController@logout');
 Route::post('login', 'UserController@login');
 Route::post('register', 'Auth\RegisterController@register');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::post('logout', 'UserController@logout');
+
     Route::group(['prefix' => 'roles'], function () {
         Route::post('/', 'RoleController@index');
         Route::post('/update', 'RoleController@update');
         Route::post('/store', 'RoleController@store');
+    });
+
+    Route::group(['prefix' => 'users'], function () {
+        Route::post('/{user}/update', 'UserController@update');
     });
 });

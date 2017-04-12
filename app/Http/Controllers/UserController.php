@@ -18,6 +18,12 @@ class UserController extends Controller
         return $user ? $user->present()->user() : null;
     }
 
+    public function update(Request $request, User $user)
+    {
+        $user->fill($request->except('_token'));
+        $user->save();
+    }
+
     public function login(Request $request)
     {
         $this->validateLogin($request);
