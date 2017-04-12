@@ -10,8 +10,8 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="role in roles">
-                        <td v-for="permission in permissions">
+                    <tr v-for="permission in permissions">
+                        <td v-for="role in roles">
                             <label class="checkbox-label">
                                 <input class="checkbox" type="checkbox" name="permissions"
                                        v-on:click="setPermission(role, permission)"
