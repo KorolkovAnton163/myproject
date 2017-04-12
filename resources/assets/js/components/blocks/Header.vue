@@ -1,5 +1,5 @@
-<template>
-    <div class="header-container">
+<template xmlns:v-bind="http://www.w3.org/1999/xhtml">
+    <div class="header-container" v-bind:class="{'border': !show && isAccount}">
         <div class="header" v-if="!isAccount">
             <h1 >This is site header</h1>
         </div>
