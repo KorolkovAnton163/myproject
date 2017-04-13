@@ -53,7 +53,7 @@
 
                 this.params.current_page = parseInt(page);
 
-                this.$http.post(location.origin + '/users/all', {page: page}).then((responce) => {
+                this.$http.post(location.origin + '/users', {page: page}).then((responce) => {
                     this.users = _.isEmpty(responce.data.count) ? responce.data.users : null;
                     this.roles = responce.data.roles;
                     this.params.total = responce.data.count;

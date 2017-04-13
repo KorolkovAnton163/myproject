@@ -10,7 +10,7 @@
                 <p><strong>info1:</strong> info 1</p>
                 <p><strong>info2:</strong> info 2</p>
                 <p><strong>info3:</strong> info 3</p>
-                <p><strong>Description:</strong> {{ post.body }}</p>
+                <p><strong>Description:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">
                 <bookmark :id="post.id"></bookmark>

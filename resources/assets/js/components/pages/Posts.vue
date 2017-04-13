@@ -43,21 +43,15 @@
             'filters': require('../blocks/Filters.vue'),
             'post-description': require('../blocks/PostDescription.vue')
         },
-        computed: {
-            resource () {
-                return this.$resource('https://jsonplaceholder.typicode.com/posts{?_start}{&_limit}');
-            }
-        },
         methods: {
             getPosts () {
-                let page = this.$route.query.page ? this.$route.query.page : this.params.current_page,
-                    start = (page - 1) * this.params.on_page;
+                let page = this.$route.query.page ? this.$route.query.page : this.params.current_page;
 
                 this.params.current_page = parseInt(page);
 
-                this.resource.get({_start: start, _limit: this.params.on_page}).then((responce) => {
-                    this.posts = responce.data.length ? responce.data : null;
-                    this.params.total = parseInt(responce.headers.map['x-total-count'][0]);
+                this.$http.post(location.origin + '/entries', {page: page}).then((responce) => {
+                    this.posts = responce.data.count ? responce.data.entries : null;
+                    this.params.total = parseInt(responce.data.count);
                 });
             }
         }

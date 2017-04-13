@@ -19,14 +19,9 @@
         components: {
             'post-description': require('../blocks/PostDescription.vue')
         },
-        computed: {
-            resource () {
-                return this.$resource('https://jsonplaceholder.typicode.com/posts{/id}');
-            }
-        },
         methods: {
             getSinglePost (postId) {
-                this.resource.get({id: postId}).then((responce) => {
+                this.$http.post(location.origin + '/entries/' + postId + '/show').then((responce) => {
                     this.post = responce.data;
                 }, (responce) => {
                     let status = responce.status;

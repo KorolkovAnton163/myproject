@@ -21,6 +21,11 @@ Route::post('/user/get', 'UserController@getUser');
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 
+Route::group(['prefix' => 'entries'], function () {
+    Route::post('/', 'EntryController@index');
+    Route::post('/{entry}/show', 'EntryController@show');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'roles'], function () {
         Route::post('/', 'RoleController@index');
@@ -29,7 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'users'], function () {
-        Route::post('/all', 'UserController@getUsers');
+        Route::post('/', 'UserController@getUsers');
         Route::post('/{user}/update', 'UserController@update');
     });
 });
