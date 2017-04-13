@@ -30,7 +30,7 @@
             }
         },
         components: {
-            'bookmark': require('../blocks/Bookmark.vue'),
+            'bookmark': require('../blocks/Bookmark.vue')
         }
     }
 </script>
