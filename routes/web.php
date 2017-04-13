@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('logout', 'UserController@logout');
+
 Route::get('/{vue_capture?}', function () {
     return view('master');
 })->where('vue_capture', '[\/\w\.-]*');
@@ -20,8 +22,6 @@ Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::post('logout', 'UserController@logout');
-
     Route::group(['prefix' => 'roles'], function () {
         Route::post('/', 'RoleController@index');
         Route::post('/update', 'RoleController@update');

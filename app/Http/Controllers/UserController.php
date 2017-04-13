@@ -69,7 +69,7 @@ class UserController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'role_id' => 2, //TODO set role User
+            'role_id' => Role::where('name', 'User')->first()->id,
             'password' => $data['password'],
         ]);
     }
@@ -99,7 +99,7 @@ class UserController extends Controller
 
         $request->session()->regenerate();
 
-        return response()->json(Auth::user());
+        return redirect()->to('/');
     }
 
     protected function sendLoginResponse(Request $request)
