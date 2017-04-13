@@ -12,6 +12,7 @@ export let router = new VueRouter({
         { path: '/account', name: 'account', redirect: { name: 'profile' } },
         { path: '/account/profile', name: 'profile', component: require('./components/pages/Profile.vue') },
         { path: '/account/role-edit', name: 'role-edit', component: require('./components/pages/RoleEdit.vue') },
+        { path: '/account/users', name: 'users', component: require('./components/pages/Users.vue') },
         { path: '/account/bookmarks', name: 'bookmarks', component: require('./components/pages/Bookmarks.vue') },
         { path: '*', component: require('./components/pages/NotFound.vue') }
     ]

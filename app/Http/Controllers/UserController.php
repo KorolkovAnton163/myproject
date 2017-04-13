@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RequestUserLogin;
 use App\Http\Requests\RequestUserStore;
+use App\Role;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -22,10 +23,35 @@ class UserController extends Controller
         return $user ? $user->present()->user() : null;
     }
 
+    public function getUsers(Request $request)
+    {
+        $query = User::query();
+
+        $count = $query->count();
+
+        if ($request->has('page')) {
+            $query->skip(($request->input('page') - 1) * 10);
+        }
+
+        $query->take(10);
+
+        $users = $query->get();
+
+        return [
+            'users' => $users->map(function ($user) {
+                return $user->present()->listing();
+            }),
+            'count' => $count,
+            'roles' => Role::all(),
+        ];
+    }
+
     public function update(Request $request, User $user)
     {
         $user->fill($request->except('_token'));
         $user->save();
+
+        return response()->json($user->present()->user());
     }
 
     public function register(RequestUserStore $request)

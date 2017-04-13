@@ -1,0 +1,28 @@
+.users-page-container {
+    padding: 20px;
+    .users-container {
+        margin-bottom: 10px;
+        .user-titles {
+            display: flex;
+            flex-direction: row;
+            span {
+                width: 25%;
+                flex: 1 0 auto;
+                padding: 5px 0;
+                font-weight: bold;
+            }
+        }
+        .user-item {
+            display: flex;
+            flex-direction: row;
+            span {
+                width: 25%;
+                margin: 0;
+                flex: 1 0 auto;
+                white-space: normal;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}

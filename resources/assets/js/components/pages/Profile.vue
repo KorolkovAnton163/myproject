@@ -37,7 +37,7 @@
             update () {
                 this.$validator.validateAll().then(() => {
                     this.$http.post(location.origin + '/users/' + this.user.id + '/update', this.user).then((responce) => {
-                        //
+                        this.user = responce.data;
                     });
                 }).catch(() => {
                     //

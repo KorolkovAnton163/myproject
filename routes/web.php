@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'users'], function () {
+        Route::post('/all', 'UserController@getUsers');
         Route::post('/{user}/update', 'UserController@update');
     });
 });
