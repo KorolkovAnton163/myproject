@@ -1,3 +1,43 @@
 .bookmark-page-container {
     padding: 20px;
+    display: flex;
+    flex-direction: row;
+    .posts-container {
+        flex: 0 1 auto;
+        h2 {
+            a {
+                color: $white;
+                margin: 0;
+                padding: 10px;
+                display: block;
+                background: #2980b9;
+                box-sizing: border-box;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+        .post {
+            margin: 20px 0;
+        }
+    }
+    .bookmark-container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .bookmark-page-container {
+        flex-direction: column-reverse;
+        .post {
+            .description-container {
+                flex-direction: column !important;
+                .additional-block {
+                    width: 100% !important;
+                    padding: 0;
+                    margin: 10px 0;
+                }
+            }
+        }
+    }
 }

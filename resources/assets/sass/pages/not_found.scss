@@ -11,4 +11,10 @@
     p {
         color: #fff;
     }
+    &.white {
+        background: $white;
+        p {
+            color: #161616;
+        }
+    }
 }

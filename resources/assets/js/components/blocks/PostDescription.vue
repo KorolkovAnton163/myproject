@@ -13,7 +13,7 @@
                 <p><strong>Description:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">
-                <bookmark :id="post.id"></bookmark>
+                <bookmark :post="post"></bookmark>
             </div>
         </div>
     </div>

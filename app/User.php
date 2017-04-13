@@ -27,6 +27,11 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function entries()
+    {
+        return $this->belongsToMany(Entry::class);
+    }
+
     public function checkPermission($user, $permission)
     {
         return (bool) $user->role->permissions->where('name', $permission)->first();
