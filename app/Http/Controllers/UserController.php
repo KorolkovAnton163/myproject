@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RequestUserLogin;
+use App\Http\Requests\RequestUserStore;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -27,10 +28,8 @@ class UserController extends Controller
         $user->save();
     }
 
-    public function register(Request $request)
+    public function register(RequestUserStore $request)
     {
-        $this->validator($request->all())->validate();
-
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);
@@ -49,19 +48,8 @@ class UserController extends Controller
         ]);
     }
 
-    protected function validator(array $data)
+    public function login(RequestUserLogin $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
-
-    public function login(Request $request)
-    {
-        $this->validateLogin($request);
-
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
@@ -114,13 +102,6 @@ class UserController extends Controller
     protected function authenticated(Request $request, $user)
     {
         //
-    }
-
-    protected function validateLogin(Request $request)
-    {
-        $this->validate($request, [
-            $this->username() => 'required', 'password' => 'required',
-        ]);
     }
 
     protected function attemptLogin(Request $request)
