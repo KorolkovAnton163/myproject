@@ -96,7 +96,7 @@
                 this.$router.push({name: this.params.url_params, query: query});
             },
             calculatePage () {
-                this.$set(this.params, 'pages', this.params.total / this.params.on_page);
+                this.$set(this.params, 'pages', Math.ceil(this.params.total / this.params.on_page));
             }
         },
         created () {
