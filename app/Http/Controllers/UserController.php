@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    use ThrottlesLogins;
+    use ThrottlesLogins, RegistersUsers;
 
     public function getUser(Request $request)
     {
@@ -22,6 +25,37 @@ class UserController extends Controller
     {
         $user->fill($request->except('_token'));
         $user->save();
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: response()->json($user->present()->user());
+    }
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'role_id' => 2, //TODO set role User
+            'password' => $data['password'],
+        ]);
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
     }
 
     public function login(Request $request)

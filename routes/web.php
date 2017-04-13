@@ -17,7 +17,7 @@ Route::get('/{vue_capture?}', function () {
 
 Route::post('/user/get', 'UserController@getUser');
 Route::post('login', 'UserController@login');
-Route::post('register', 'Auth\RegisterController@register');
+Route::post('register', 'UserController@register');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', 'UserController@logout');
