@@ -36,3 +36,10 @@
         }
     }
 }
+@media screen and (max-width: 500px) {
+    .description-container {
+        .description-block {
+            font-size: 1.2em;
+        }
+    }
+}
