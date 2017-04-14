@@ -13,7 +13,7 @@
                 <p><strong>Description:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">
-                <bookmark :post="post" v-if="post && user"></bookmark>
+                <bookmark :post="post" v-if="user"></bookmark>
             </div>
         </div>
     </div>
