@@ -60,7 +60,7 @@
                 if (e.target.checked) {
                     this.inputTags.push(val);
                 } else {
-                    this.inputTags.splice(this.tags.indexOf(val), 1);
+                    this.inputTags.splice(this.inputTags.indexOf(val), 1);
                 }
 
                 if (this.inputTags.length) {
