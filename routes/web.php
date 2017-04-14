@@ -13,11 +13,9 @@
 
 Route::get('logout', 'UserController@logout');
 
-Route::get('/{vue_capture?}', function () {
-    return view('master');
-})->where('vue_capture', '[\/\w\.-]*');
+Route::get('/{vue_capture?}', 'HomeController@index')
+    ->where('vue_capture', '[\/\w\.-]*');
 
-Route::post('/user/get', 'UserController@getUser');
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 

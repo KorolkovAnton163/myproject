@@ -16,13 +16,6 @@ class UserController extends Controller
 {
     use ThrottlesLogins, RegistersUsers;
 
-    public function getUser(Request $request)
-    {
-        $user = Auth::user();
-
-        return $user ? $user->present()->user() : null;
-    }
-
     public function getUsers(Request $request)
     {
         $query = User::query();

@@ -25,14 +25,7 @@ new Vue({
         'app-header': require('./components/blocks/Header.vue'),
         'app-footer': require('./components/blocks/Footer.vue')
     },
-    methods: {
-        getUser () {
-            this.$http.post(location.origin + '/user/get').then((responce) => {
-                this.$store.dispatch('addUser', !_.isEmpty(responce.data) ? responce.data : null);
-            });
-        }
-    },
     created () {
-        this.getUser();
+        this.$store.dispatch('addUser', user);
     }
 });

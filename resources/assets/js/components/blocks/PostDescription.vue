@@ -13,7 +13,7 @@
                 <p><strong>Description:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">
-                <bookmark :post="post"></bookmark>
+                <bookmark :post="post" v-if="user"></bookmark>
             </div>
         </div>
     </div>
@@ -27,6 +27,11 @@
             button: {
                 type: Boolean,
                 default: true
+            }
+        },
+        computed: {
+            user () {
+                return this.$store.getters.user
             }
         },
         components: {

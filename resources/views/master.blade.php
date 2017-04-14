@@ -10,6 +10,9 @@
     <script type="text/javascript">
         window.Laravel = {!!  json_encode(['csrfToken' => csrf_token()]) !!}
     </script>
+    <script>
+        window.user = {!! json_encode($user) !!}
+    </script>
 </head>
 <body>
 <div id="app">

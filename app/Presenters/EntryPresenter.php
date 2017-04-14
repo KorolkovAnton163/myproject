@@ -2,18 +2,17 @@
 
 namespace App\Presenters;
 
-use App\User;
 use Laracasts\Presenter\Presenter;
 
 class EntryPresenter extends Presenter
 {
-    public function listing(User $user)
+    public function listing($user)
     {
         return [
             'id' => $this->entity->id,
             'title' => $this->entity->title,
             'description' => $this->entity->description,
-            'bookmark' => (bool) $user->entries()->find($this->entity->id),
+            'bookmark' => !empty($user) ? (bool) $user->entries()->find($this->entity->id) : false,
         ];
     }
 
@@ -23,7 +22,7 @@ class EntryPresenter extends Presenter
             'id' => $this->entity->id,
             'title' => $this->entity->title,
             'description' => $this->entity->description,
-            'bookmark' => (bool) $user->entries()->find($this->entity->id),
+            'bookmark' => !empty($user) ? (bool) $user->entries()->find($this->entity->id) : false,
         ];
     }
 }
