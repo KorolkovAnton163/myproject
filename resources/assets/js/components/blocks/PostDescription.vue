@@ -2,7 +2,8 @@
     <div class="description-container">
         <div class="image-block">
             <img :src="post.image" :alt="post.title">
-            <router-link v-if="button" class="read-more ripple" :to="{name:'post', params: {id: post.id}}">show
+            <router-link v-if="button" class="read-more ripple" :to="{name:'post', params: {id: post.id}}">
+                show
             </router-link>
         </div>
         <div class="additional-block">

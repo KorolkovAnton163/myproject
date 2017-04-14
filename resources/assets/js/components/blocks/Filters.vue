@@ -1,9 +1,9 @@
-<template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div class="filters">
         <h3>
             Filters
             <div class="menu-button htx ripple-effect" v-on:click="showTags"
-                 v-bind:class="{ 'is-active': show }">
+                 :class="{'is-active': show}">
                 <span>opened</span>
             </div>
         </h3>
@@ -15,10 +15,10 @@
                 <option value="3">Option 3</option>
             </select>
         </div>
-        <div class="tags-container" v-if="tags" v-show="show" v-bind:class="{ 'open': show }">
+        <div class="tags-container" v-if="tags" v-show="show" :class="{'open': show}">
             <label class="tag" v-for="tag in tags">
-                <input v-on:click="addTag" class="checkbox" type="checkbox" name="tags" :value="tag.id"
-                       :checked="tag.checked">{{ tag.name }}
+                <input v-on:click="addTag" class="checkbox" type="checkbox" name="tags"
+                       :id="tag.id" :value="tag.id" :checked="tag.checked">{{ tag.name }}
             </label>
         </div>
     </div>
