@@ -23,6 +23,12 @@
         flex-direction: column;
         .description-block {
             flex: 1 0 auto;
+            .tags {
+                a {
+                    font-size: .8em;
+                    margin:0 5px;
+                }
+            }
         }
         .action-block {
             text-align: center;

@@ -20,4 +20,9 @@ class Entry extends Model
     {
         return $this->belongsToMany(Image::class);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

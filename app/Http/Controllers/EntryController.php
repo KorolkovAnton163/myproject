@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Entry;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,13 @@ class EntryController extends Controller
                 ->orWhere('description', 'like', '%' . trim($request->input('search')) . '%');
         }
 
+        if ($request->has('tags')) {
+            $tags = $request->input('tags');
+            $query->whereHas('tags', function ($query) use ($tags) {
+                $query->whereIn('id', explode(',', $tags));
+            });
+        }
+
         $count = $query->count();
 
         if ($request->has('page')) {
@@ -30,9 +38,10 @@ class EntryController extends Controller
 
         return [
             'entries' => $entries->map(function ($entry) {
-                return $entry->present()->listing(Auth::user());
+                return $entry->present()->show(Auth::user());
             }),
             'count' => $count,
+            'tags' => Tag::all(),
         ];
     }
 
@@ -59,7 +68,7 @@ class EntryController extends Controller
 
         return [
             'entries' => $entries->map(function ($entry) use ($user) {
-                return $entry->present()->listing($user);
+                return $entry->present()->show($user);
             }),
             'count' => $count,
         ];

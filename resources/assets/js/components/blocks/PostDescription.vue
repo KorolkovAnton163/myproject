@@ -7,9 +7,12 @@
         </div>
         <div class="additional-block">
             <div class="description-block">
-                <p><strong>info1:</strong> info 1</p>
-                <p><strong>info2:</strong> info 2</p>
-                <p><strong>info3:</strong> info 3</p>
+                <p><strong>info1:</strong>&nbsp;info 1</p>
+                <p><strong>info2:</strong>&nbsp;info 2</p>
+                <p class="tags">
+                    <strong>Tags:</strong>&nbsp;
+                    <a v-for="tag in post.tags">{{ tag.name }}</a>
+                </p>
                 <p><strong>Description:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">

@@ -9,14 +9,14 @@
         </h3>
         <div class="select-field" v-show="show">
             <select>
-                <option value="" selected>Choose</option>
+                <option value="" selected>Year</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
                 <option value="3">Option 3</option>
             </select>
         </div>
-        <div class="tags-container" v-show="show" v-bind:class="{ 'open': show }">
-            <label class="tag" v-for="tag in fakeTags">
+        <div class="tags-container" v-if="tags" v-show="show" v-bind:class="{ 'open': show }">
+            <label class="tag" v-for="tag in tags">
                 <input v-on:click="addTag" class="checkbox" type="checkbox" name="tags" :value="tag.id"
                        :checked="tag.checked">{{ tag.name }}
             </label>
@@ -27,17 +27,13 @@
     module.exports = {
         data () {
             return {
-                fakeTags: [
-                    {'id': 1, 'name': 'Tag text 1'},
-                    {'id': 2, 'name': 'Tag text 2'},
-                    {'id': 3, 'name': 'Tag text 3'},
-                    {'id': 4, 'name': 'Tag text 4'},
-                    {'id': 5, 'name': 'Tag text 5'},
-                    {'id': 6, 'name': 'Tag text 6'},
-                    {'id': 7, 'name': 'Tag text 7'}
-                ],
-                tags: [],
+                inputTags: [],
                 show: window.innerWidth > 650
+            }
+        },
+        props: {
+            tags: {
+                type: Array
             }
         },
         mounted() {
@@ -45,25 +41,35 @@
                 this.show = window.innerWidth > 650;
             });
         },
+        watch: {
+            'tags' (newVal, oldVal) {
+                if (+newVal !== +oldVal) {
+                    this.fillData();
+                }
+            }
+        },
         methods: {
             addTag (e) {
                 let val = e.target.getAttribute('value'),
                     query = Object.assign({}, this.$route.query);
 
-                if (e.target.checked) {
-                    this.tags.push(val);
-                } else {
-                    this.tags.splice(this.tags.indexOf(val), 1);
+                if (query.page) {
+                    delete query.page;
                 }
 
-                if (this.tags.length) {
-                    query['tags'] = this.tags.join('-tag-');
+                if (e.target.checked) {
+                    this.inputTags.push(val);
+                } else {
+                    this.inputTags.splice(this.tags.indexOf(val), 1);
+                }
+
+                if (this.inputTags.length) {
+                    query['tags'] = this.inputTags.join('-tag-');
                 } else {
                     delete query['tags'];
                 }
 
                 this.$router.push({name: 'posts', query: query});
-                this.$root.$emit('filters', this.tags);
             },
             showTags () {
                 if (window.innerWidth < 650) {
@@ -72,17 +78,13 @@
             },
             fillData () {
                 if (typeof this.$route.query.tags !== 'undefined' && this.$route.query.tags) {
-                    this.tags = this.$route.query.tags.split('-tag-');
+                    this.inputTags = this.$route.query.tags.split('-tag-');
 
-                    this.fakeTags.forEach((tag) => {
-                        tag.checked = (this.tags.indexOf(tag.id.toString()) !== -1);
-                })
-                    ;
+                    this.tags.forEach((tag) => {
+                        tag.checked = (this.inputTags.indexOf(tag.id.toString()) !== -1);
+                    });
                 }
             }
-        },
-        created () {
-            this.fillData();
         }
     }
 </script>
