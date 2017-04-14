@@ -30,7 +30,7 @@
             }
         },
         mounted () {
-            this.$root.$on('filters', (tags) => {
+            this.$root.$once('filters', (tags) => {
                 // console.log(tags);
             });
         },

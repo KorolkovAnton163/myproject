@@ -34,7 +34,7 @@
             }
         },
         mounted () {
-            this.$root.$on('removeBookmark', () => {
+            this.$root.$once('removeBookmark', () => {
                 this.getPosts();
             });
         },
