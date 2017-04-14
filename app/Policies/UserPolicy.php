@@ -16,7 +16,7 @@ class UserPolicy
 
     public function rolesEdit(User $user)
     {
-        return $user->checkPermission($user, 'role.edit');
+        return $user->checkPermission($user, 'roles.edit');
     }
 
     public function usersEdit(User $user)

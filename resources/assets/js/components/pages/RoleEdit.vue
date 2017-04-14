@@ -1,7 +1,8 @@
 <template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div class="page-container role-edit-page-container">
         <div v-if="user && user.canRolesEdit">
-            <h2>Edit Roles</h2><popup-role-create :callback="add"></popup-role-create>
+            <h2>Roles</h2>
+            <popup-role-create :callback="add"></popup-role-create>
             <div class="role-container">
                 <table>
                     <thead>

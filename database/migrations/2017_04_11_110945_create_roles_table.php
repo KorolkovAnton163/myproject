@@ -6,11 +6,16 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateRolesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+    private $roles = [
+        'Admin' => [
+            'roles.edit',
+            'users.edit',
+        ],
+        'User' => [
+            //
+        ]
+    ];
+
     public function up()
     {
         Schema::create('roles', function (Blueprint $table) {
@@ -25,26 +30,38 @@ class CreateRolesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('role_permissions', function (Blueprint $table) {
+        Schema::create('permission_role', function (Blueprint $table) {
             $table->integer('role_id')->unsigned();
             $table->integer('permission_id')->unsigned();
         });
 
-        Schema::table('role_permissions', function (Blueprint $table) {
+        Schema::table('permission_role', function (Blueprint $table) {
             $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('permission_id')->references('id')->on('permissions');
         });
+
+        foreach ($this->roles as $role => $permissions) {
+            $roleId = DB::table('roles')->insertGetId([
+                'name' =>  $role,
+            ]);
+            if (!empty($permissions)) {
+                foreach ($permissions as $permission) {
+                    $permissionId = DB::table('permissions')->insertGetId([
+                        'name' => $permission
+                    ]);
+                    DB::table('permission_role')->insert([
+                        'role_id' => $roleId,
+                        'permission_id' => $permissionId,
+                    ]);
+                }
+            }
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::drop('roles');
         Schema::drop('permissions');
-        Schema::drop('role_permissions');
+        Schema::drop('permission_role');
     }
 }
