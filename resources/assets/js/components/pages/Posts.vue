@@ -10,8 +10,7 @@
             </div>
             <pagination :params="params" :callback="getPosts"></pagination>
         </div>
-        <div class="posts-container page-not-found" v-else>
-            <cat></cat>
+        <div class="posts-container page-not-found white" v-else>
             <p>No results</p>
         </div>
         <filters></filters>
@@ -31,12 +30,16 @@
             }
         },
         mounted () {
-            this.$root.$on('search', (query) => {
-                // console.log('search: ' + query);
-            });
             this.$root.$on('filters', (tags) => {
                 // console.log(tags);
             });
+        },
+        watch: {
+            '$route.query.search' (newVal, oldVal) {
+                if (+newVal !== +oldVal) {
+                    this.getPosts();
+                }
+            }
         },
         components: {
             'pagination': require('../blocks/Pagination.vue'),
@@ -45,11 +48,19 @@
         },
         methods: {
             getPosts () {
-                let page = this.$route.query.page ? this.$route.query.page : this.params.current_page;
+                let formData = new FormData(),
+                    page = this.$route.query.page ? this.$route.query.page : this.params.current_page,
+                    searchQuery = this.$route.query.search ? this.$route.query.search : null;
+
+                formData.append('page', page);
+
+                if (searchQuery) {
+                    formData.append('search', searchQuery);
+                }
 
                 this.params.current_page = parseInt(page);
 
-                this.$http.post(location.origin + '/entries', {page: page}).then((responce) => {
+                this.$http.post(location.origin + '/entries', formData).then((responce) => {
                     this.posts = responce.data.count ? responce.data.entries : null;
                     this.params.total = parseInt(responce.data.count);
                 });

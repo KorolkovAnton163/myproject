@@ -37,13 +37,15 @@
         methods: {
             search () {
                 if (this.searchQuery) {
-                    this.$root.$emit('search', this.searchQuery);
-                    this.$router.push({name: 'posts', query: {query: this.searchQuery}});
+                    this.$router.push({name: 'posts', query: {search: this.searchQuery}});
                 }
             },
             showSearchForm () {
                 this.show = !this.show;
             }
+        },
+        created () {
+            this.searchQuery = this.$route.query.search ? this.$route.query.search : null;
         }
     }
 </script>

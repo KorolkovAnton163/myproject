@@ -13,6 +13,11 @@ class EntryController extends Controller
     {
         $query = Entry::query();
 
+        if ($request->has('search')) {
+            $query->where('title', 'like', '%' . trim($request->input('search')) . '%')
+                ->orWhere('description', 'like', '%' . trim($request->input('search')) . '%');
+        }
+
         $count = $query->count();
 
         if ($request->has('page')) {
