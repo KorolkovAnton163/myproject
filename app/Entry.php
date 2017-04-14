@@ -15,4 +15,9 @@ class Entry extends Model
     protected $fillable = [
         'title', 'description'
     ];
+
+    public function images()
+    {
+        return $this->belongsToMany(Image::class);
+    }
 }

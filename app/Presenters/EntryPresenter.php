@@ -13,6 +13,7 @@ class EntryPresenter extends Presenter
             'title' => $this->entity->title,
             'description' => $this->entity->description,
             'bookmark' => !empty($user) ? (bool) $user->entries()->find($this->entity->id) : false,
+            'image' => $this->image(),
         ];
     }
 
@@ -23,6 +24,18 @@ class EntryPresenter extends Presenter
             'title' => $this->entity->title,
             'description' => $this->entity->description,
             'bookmark' => !empty($user) ? (bool) $user->entries()->find($this->entity->id) : false,
+            'image' => $this->image(),
         ];
+    }
+
+    private function image()
+    {
+        $image = $this->entity->images()->first();
+
+        if (!empty($image) && !empty($image->imagePath())) {
+            return $image->imagePath();
+        }
+
+        return url('/') . '/images/default.jpg';
     }
 }
