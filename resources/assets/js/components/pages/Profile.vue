@@ -1,6 +1,6 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template>
     <div class="page-container user-page-container">
-        <form v-on:submit.prevent="update" v-if="user" novalidate>
+        <form @submit.prevent="update" v-if="user" novalidate>
             <fieldset class="field-text">
                 <input v-validate="{ rules: { required: true } }" type="text" name="name" v-model="user.name"
                        utocomplete="off" required>

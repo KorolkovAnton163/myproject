@@ -33,6 +33,13 @@
         .action-block {
             text-align: center;
             flex: 0 0 auto;
+            a {
+                margin: 0 5px;
+                .svg-icon {
+                    width: 20px;
+                    height:20px;
+                }
+            }
         }
     }
 }

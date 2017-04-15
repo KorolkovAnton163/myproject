@@ -1,11 +1,11 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml">
-    <a class="bookmark" v-on:click.prevent="addBookmark" v-if="!post.bookmark">
+<template>
+    <a class="bookmark" @click.prevent="addBookmark" v-if="!post.bookmark">
         <svg class="svg-icon">
             <use xlink:href="#icon-bookmark-plus"></use>
         </svg>
         add to bookmarks
     </a>
-    <a class="bookmark remove" v-on:click.prevent="removeBookmark" v-else>
+    <a class="bookmark remove" @click.prevent="removeBookmark" v-else>
         <svg class="svg-icon">
             <use xlink:href="#icon-bookmark-remove"></use>
         </svg>

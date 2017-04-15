@@ -1,11 +1,11 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template>
     <div class="popup-container">
-        <div class="overlay" v-if="show" v-on:click="togglePopup"></div>
+        <div class="overlay" v-if="show" @click="togglePopup"></div>
         <div class="popup" v-if="show">
-            <span class="close" v-on:click="togglePopup">&times;</span>
+            <span class="close" @click="togglePopup">&times;</span>
             <div>Create Role</div>
             <div class="content">
-                <form v-on:submit.prevent="create" novalidate>
+                <form @submit.prevent="create" novalidate>
                     <fieldset class="field-text">
                         <input v-validate="{rules:{required: true}}" v-model="name" type="text" name="name"
                                required>
@@ -18,7 +18,7 @@
                 </form>
             </div>
         </div>
-        <a v-on:click="togglePopup">
+        <a @click="togglePopup">
             <svg class="svg-icon">
                 <use xlink:href="#icon-plus"></use>
             </svg>

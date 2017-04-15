@@ -5,6 +5,7 @@
             <router-link class="bookmark" :to="{ name:'bookmarks' }">Bookmarks</router-link>
             <router-link v-if="user && user.canRolesEdit" :to="{ name:'role-edit' }">Roles</router-link>
             <router-link v-if="user && user.canUsersEdit" :to="{ name:'users' }">Users</router-link>
+            <router-link v-if="user && user.canEntryEdit" :to="{ name:'entry' }">Entry</router-link>
         </div>
     </div>
 </template>

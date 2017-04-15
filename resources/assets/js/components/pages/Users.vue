@@ -1,4 +1,4 @@
-<template xmlns:v-bind="http://symfony.com/schema/routing" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template>
     <div class="page-container users-page-container">
         <div v-if="user && user.canUsersEdit">
             <h2>Users</h2>
@@ -12,10 +12,10 @@
                     <span>{{ user.name }}</span>
                     <span>{{ user.email }}</span>
                     <span class="select-field">
-                        <select v-model="user.role" v-on:change="changeRole(user)">
+                        <select v-model="user.role" @change="changeRole(user)">
                             <option v-for="role in roles"
-                                    v-bind:selected="user.role == role.id"
-                                    v-bind:value="role.id">{{ role.name }}</option>
+                                    :selected="user.role == role.id"
+                                    :value="role.id">{{ role.name }}</option>
                         </select>
                     </span>
                 </div>

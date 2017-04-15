@@ -1,17 +1,17 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template>
     <ul class="pagination" v-if="params.pages > 1">
         <li>
-            <a class="prev" v-if="params.current_page > 1" v-on:click.prevent="showPrevious()">
+            <a class="prev" v-if="params.current_page > 1" @click.prevent="showPrevious()">
                 <svg class="svg-icon">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>
             </a>
         </li>
         <li v-for="num in array" :class="{ 'active': num === params.current_page }">
-            <a v-on:click.prevent="changePage(num)">{{ num }}</a>
+            <a @click.prevent="changePage(num)">{{ num }}</a>
         </li>
         <li>
-            <a class="next" v-if="params.current_page < params.pages" v-on:click.prevent="showNext()">
+            <a class="next" v-if="params.current_page < params.pages" @click.prevent="showNext()">
                 <svg class="svg-icon">
                     <use xlink:href="#icon-arrow-left"></use>
                 </svg>

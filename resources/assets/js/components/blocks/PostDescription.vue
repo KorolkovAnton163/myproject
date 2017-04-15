@@ -17,6 +17,12 @@
                 <p><strong>Description:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">
+                <router-link :to="{name:'entry', params: {id: post.id}}" class="entry-edit">
+                    <svg class="svg-icon">
+                        <use xlink:href="#icon-edit"></use>
+                    </svg>
+                    Edit
+                </router-link>
                 <bookmark :post="post" v-if="user"></bookmark>
             </div>
         </div>

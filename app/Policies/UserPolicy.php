@@ -23,4 +23,9 @@ class UserPolicy
     {
         return $user->checkPermission($user, 'users.edit');
     }
+
+    public function entryEdit(User $user)
+    {
+        return $user->checkPermission($user, 'entry.edit');
+    }
 }

@@ -1,11 +1,11 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template>
     <div class="block-search">
-        <div class="toggle-search-button tgs-button ripple-effect" v-on:click="showSearchForm">
+        <div class="toggle-search-button tgs-button ripple-effect" @click="showSearchForm">
             <svg class="svg-icon">
                 <use xlink:href="#icon-search"></use>
             </svg>
         </div>
-        <form class="search-form" v-on:submit.prevent="search" v-show="show" novalidate>
+        <form class="search-form" @submit.prevent="search" v-show="show" novalidate>
             <fieldset class="field-text">
                 <input id="search-input" v-model="searchQuery" type="text" name="query" required>
                 <hr>

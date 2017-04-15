@@ -1,4 +1,4 @@
-<template xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template>
     <div class="page-container role-edit-page-container">
         <div v-if="user && user.canRolesEdit">
             <h2>Roles</h2>
@@ -15,15 +15,15 @@
                         <td v-for="role in roles">
                             <label class="checkbox-label">
                                 <input class="checkbox" type="checkbox" name="permissions"
-                                       v-on:click="setPermission(role, permission)"
-                                       v-bind:checked="isActive(role, permission)">
+                                       @click="setPermission(role, permission)"
+                                       :checked="isActive(role, permission)">
                                 {{ permission.name }}
                             </label>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-                <button class="ripple" v-on:click="update">Save</button>
+                <button class="ripple" @click="update">Save</button>
             </div>
         </div>
         <access-denied v-else></access-denied>

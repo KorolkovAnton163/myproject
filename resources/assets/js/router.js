@@ -14,6 +14,7 @@ export let router = new VueRouter({
         { path: '/account/role-edit', name: 'role-edit', component: require('./components/pages/RoleEdit.vue') },
         { path: '/account/users', name: 'users', component: require('./components/pages/Users.vue') },
         { path: '/account/bookmarks', name: 'bookmarks', component: require('./components/pages/Bookmarks.vue') },
+        { path: '/account/entry/:id?', name: 'entry', component: require('./components/pages/Entry.vue') },
         { path: '*', component: require('./components/pages/NotFound.vue') }
     ]
 });
