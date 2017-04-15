@@ -34,7 +34,7 @@
             }
         },
         mounted () {
-            this.$root.$once('removeBookmark', () => {
+            this.$root.$on('removeBookmark', () => {
                 this.getPosts();
             });
         },
@@ -58,6 +58,9 @@
                     this.params.total = parseInt(responce.data.count);
                 });
             }
+        },
+        destroyed () {
+            this.$root.$off('removeBookmark');
         }
     }
 </script>
