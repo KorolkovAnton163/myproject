@@ -14,7 +14,7 @@
         left: 0;
         width: 100%;
         height: 3px;
-        background-color: #292c2f;
+        background-color: $shark;
         content: "";
         top: 8px;
         &:before,
@@ -24,7 +24,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background-color: #292c2f;
+            background-color: $shark;
             content: "";
         }
         &:before {
