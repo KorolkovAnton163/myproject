@@ -8,7 +8,7 @@
     box-sizing: border-box;
     z-index: 10;
     &.shadow {
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
     }
     .nav-wrapper {
         max-width: 1000px;
@@ -23,7 +23,7 @@
             a {
                 font-size: 1.5em;
                 line-height: 2em;
-                color: #2c3e50;
+                color: $slateGray;
                 &:hover {
                     text-decoration: none;
                 }
@@ -33,7 +33,7 @@
             flex: 1 0 auto;
             a {
                 height: 50px;
-                color: #2c3e50;
+                color: $slateGray;
                 float: left;
                 padding: 13px 12px;
                 box-sizing: border-box;
