@@ -3,18 +3,18 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #161616;
+    background: $codGray;
     padding: 20% 0;
     flex: 1 0 auto;
     box-sizing: border-box;
     min-width: 320px;
     p {
-        color: #fff;
+        color: $white;
     }
     &.white {
         background: $white;
         p {
-            color: #161616;
+            color: $codGray;
         }
     }
 }

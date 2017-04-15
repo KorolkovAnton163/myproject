@@ -9,10 +9,10 @@
             color: $white;
             display: block;
             padding: 10px;
-            background: #2980b9;
+            background: $mariner;
             &:hover {
                 text-decoration: none;
-                background: #999;
+                background: $dustyGray;
             }
             .svg-icon {
                 width: 16px;
@@ -29,8 +29,8 @@
 
         &.active {
             a {
-                background: #999;
-                color: #d2d6da;
+                background: $dustyGray;
+                color: $iron;
                 pointer-events: none;
                 text-decoration: none;
             }

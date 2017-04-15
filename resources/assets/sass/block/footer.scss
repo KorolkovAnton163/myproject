@@ -4,7 +4,7 @@ footer {
     background: $shark;
     padding: 10px 0;
     .footer-inner {
-        color: #999;
+        color: $dustyGray;
         height: 100%;
         max-width: 1000px;
         margin: 0 auto;
@@ -12,7 +12,7 @@ footer {
         position: relative;
         box-sizing: border-box;
         a {
-            color: #999;
+            color: $dustyGray;
         }
         .copy {
             position: absolute;
