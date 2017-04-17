@@ -1,13 +1,15 @@
 <template>
     <div class="page-container entry-page-container">
         <div class="entry-container" v-if="user && user.canEntryEdit">
-            <form @submit.prevent="save">
+            <form @submit.prevent="save" novalidate>
                 <fieldset class="field-text">
                     <input v-validate="{ rules: { required: true } }" type="text" name="title" v-model="entry.title"
                            utocomplete="off" required>
                     <hr>
                     <label>Title</label>
                 </fieldset>
+                <span class="error" v-show="errors.has('title')">{{ errors.first('title') }}</span>
+                <button type="submit" class="ripple">Save</button>
             </form>
         </div>
         <access-denied v-else></access-denied>
@@ -34,11 +36,15 @@
                 }
             },
             save () {
-
+                this.$validator.validateAll().then(() => {
+                    //
+                }).catch(() => {
+                    //
+                });
             }
         },
         created () {
-
+            this.getEntry();
         }
     }
 </script>

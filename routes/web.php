@@ -41,4 +41,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/', 'UserController@getUsers');
         Route::post('/{user}/update', 'UserController@update');
     });
+
+    Route::group(['prefix' => 'entry'], function () {
+       Route::post('{entry}', 'EntryController@edit');
+    });
 });

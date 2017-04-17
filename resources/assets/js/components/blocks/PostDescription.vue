@@ -17,7 +17,7 @@
                 <p><strong>Description:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">
-                <router-link :to="{name:'entry', params: {id: post.id}}" class="entry-edit">
+                <router-link v-if="user && user.canEntryEdit" :to="{name:'entry', params: {id: post.id}}" class="entry-edit">
                     <svg class="svg-icon">
                         <use xlink:href="#icon-edit"></use>
                     </svg>

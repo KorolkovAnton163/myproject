@@ -18,6 +18,16 @@ class EntryPresenter extends Presenter
         ];
     }
 
+    public function edit()
+    {
+        return [
+            'id' => $this->entity->id,
+            'title' => $this->entity->title,
+            'description' => $this->entity->description,
+            'tags' => $this->entity->tags
+        ];
+    }
+
     private function image()
     {
         $image = $this->entity->images()->first();

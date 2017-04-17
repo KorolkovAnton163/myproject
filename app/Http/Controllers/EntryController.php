@@ -50,6 +50,11 @@ class EntryController extends Controller
         return $entry->present()->show(Auth::user());
     }
 
+    public function edit(Request $request, Entry $entry)
+    {
+        return $entry->present()->edit();
+    }
+
     public function bookmarks(Request $request)
     {
         $user = Auth::user();
