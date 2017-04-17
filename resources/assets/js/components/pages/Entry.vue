@@ -27,12 +27,21 @@
                 return this.$store.getters.user
             }
         },
+        watch: {
+            '$route.params.id' (newVal, oldVal) {
+                if (+newVal !== +oldVal) {
+                    this.getEntry();
+                }
+            }
+        },
         methods: {
             getEntry () {
                 if (this.$route.params.id !== 'undefined' && this.$route.params.id) {
                     this.$http.post(location.origin + '/entry/' + this.$route.params.id).then((responce) => {
                         this.entry = responce.data;
                     });
+                } else {
+                    this.entry = [];
                 }
             },
             save () {
