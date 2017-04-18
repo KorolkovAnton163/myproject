@@ -12,7 +12,7 @@
                 <p><strong>info2:</strong>&nbsp;info 2</p>
                 <p class="tags">
                     <strong>Tags:</strong>&nbsp;
-                    <a v-for="tag in post.tags">{{ tag.name }}</a>
+                    <a v-for="tag in post.tags" @click="addTag(tag.id)">{{ tag.name }}</a>
                 </p>
                 <p><strong>Description:</strong> {{ post.description }}</p>
             </div>
@@ -46,6 +46,11 @@
         },
         components: {
             'bookmark': require('../blocks/Bookmark.vue')
+        },
+        methods: {
+            addTag (id) {
+                this.$router.push({name: 'posts', query: {tags: id.toString()}});
+            }
         }
     }
 </script>
