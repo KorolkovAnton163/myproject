@@ -46,6 +46,11 @@
                 if (+newVal !== +oldVal) {
                     this.fillData();
                 }
+            },
+            '$route.query.tags' (newVal, oldVal) {
+                if (+newVal !== +oldVal) {
+                    this.fillData();
+                }
             }
         },
         methods: {
@@ -82,6 +87,8 @@
 
                     this.tags.forEach((tag) => {
                         tag.checked = (this.inputTags.indexOf(tag.id.toString()) !== -1);
+                        $('.tags-container').find('input[value="' + tag.id + '"]')
+                            .prop('checked', this.inputTags.indexOf(tag.id.toString()) !== -1);
                     });
                 }
             }
