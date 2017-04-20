@@ -1,7 +1,7 @@
 <template>
     <div class="header-container" :class="{'border': !show && isAccount}">
         <div class="header" v-if="!isAccount">
-            <h1 >This is site header</h1>
+            <h1>This is site header</h1>
         </div>
         <account-menu v-else v-show="show"></account-menu>
     </div>
@@ -21,7 +21,7 @@
         components: {
             'account-menu': require('./AccountMenu.vue'),
         },
-        mounted() {
+        mounted () {
             window.addEventListener('resize', () => {
                 this.show = window.innerWidth > 500;
             });

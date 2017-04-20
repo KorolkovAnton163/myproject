@@ -4,9 +4,9 @@
             <span>opened</span>
         </div>
         <div class="nav-wrapper" :class="{ open: show }">
-            <div class="site-name">
+            <h1 class="site-name">
                 <router-link :to="{ name:'posts' }">Site Name</router-link>
-            </div>
+            </h1>
             <account-menu v-if="show"></account-menu>
             <nav-menu></nav-menu>
             <search></search>

@@ -26,9 +26,9 @@ Route::group(['prefix' => 'entries'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'bookmarks'], function () {
-        Route::post('/', 'EntryController@bookmarks');
-        Route::post('{entry}/store', 'EntryController@bookmarkStore');
-        Route::post('{entry}/destroy', 'EntryController@bookmarkDestroy');
+        Route::post('/', 'BookmarkController@index');
+        Route::post('{entry}/store', 'BookmarkController@store');
+        Route::post('{entry}/destroy', 'BookmarkController@destroy');
     });
 
     Route::group(['prefix' => 'roles'], function () {
