@@ -67,7 +67,7 @@ class EntryController extends Controller
             $entry->description = $input['description'];
 
             if (!empty($input['image']['id'])) {
-                $entry->images()->sync($input['image']['id'], false);
+                $entry->images()->sync($input['image']['id']);
             }
 
             $entry->save();

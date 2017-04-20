@@ -3,7 +3,7 @@
         <h2>{{ post.title }}</h2>
         <post-description :post="post" :button="false"></post-description>
     </div>
-    <div class="page-not-found" v-else>
+    <div class="page-not-found" v-else-if="noPost">
         <cat></cat>
         <p>Post not found</p>
     </div>
@@ -13,7 +13,8 @@
     module.exports = {
         data () {
             return {
-                post: {}
+                post: null,
+                noPost: false
             }
         },
         watch: {
@@ -31,10 +32,7 @@
                 this.$http.post(location.origin + '/entries/' + postId + '/show').then((responce) => {
                     this.post = responce.data;
                 }, (responce) => {
-                    let status = responce.status;
-                    if (404 == status) {
-                        this.post = null;
-                    }
+                    this.noPost = true
                 });
             }
         },
