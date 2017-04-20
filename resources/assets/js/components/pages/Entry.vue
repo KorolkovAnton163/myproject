@@ -9,6 +9,13 @@
                     <label>Title</label>
                 </fieldset>
                 <span class="error" v-show="errors.has('title')">{{ errors.first('title') }}</span>
+                <fieldset class="textarea">
+                    <textarea v-validate="{ rules: { required: true } }" name="description"
+                              id="description" cols="30" rows="2" required></textarea>
+                    <hr>
+                    <label>Description</label>
+                </fieldset>
+                <span class="error" v-show="errors.has('description')">{{ errors.first('description') }}</span>
                 <button type="submit" class="ripple">Save</button>
             </form>
         </div>
