@@ -1,7 +1,13 @@
 <template>
     <div class="header-container" :class="{'border': !show && isAccount}">
         <div class="header" v-if="!isAccount">
-            <h1>This is site header</h1>
+            <div class="header-inner">
+                <router-link v-if="entries" v-for="entry in entries"
+                             :to="{name:'post', params: {id: entry.id}}"
+                             :style="{backgroundImage: 'url(' + entry.image + ')'}">
+                    <span class="title">{{ entry.title }}</span>
+                </router-link>
+            </div>
         </div>
         <account-menu v-else v-show="show"></account-menu>
     </div>
@@ -10,6 +16,7 @@
     module.exports = {
         data () {
             return {
+                entries: [],
                 show: window.innerWidth > 500
             }
         },
@@ -25,6 +32,16 @@
             window.addEventListener('resize', () => {
                 this.show = window.innerWidth > 500;
             });
+        },
+        methods: {
+            getNew () {
+                this.$http.post(location.origin + '/entries/new').then((responce) => {
+                    this.entries = responce.data;
+                });
+            }
+        },
+        created () {
+            this.getNew();
         }
     }
 </script>

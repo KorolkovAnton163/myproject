@@ -3,15 +3,91 @@
     .header {
         flex: 0 0 auto;
         padding: 20px;
-        height: 100px;
         background: $blizzardBlue;
         box-sizing: border-box;
-        h1 {
-            text-align: center;
-            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+        text-align: center;
+        .header-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+            a {
+                flex: 0 1 25%;
+                margin: 0 5px;
+                position: relative;
+                box-sizing: border-box;
+                background-size: cover;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                overflow: hidden;
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    padding-bottom: 120%;
+                }
+                &:hover {
+                    .title {
+                        margin-bottom: 0;
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+                .title {
+                    color: $gallery;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    padding: 5px;
+                    box-sizing: border-box;
+                    margin-bottom: -100%;
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: all .3s;
+                    background: rgba(0, 0, 0, .3);
+                }
+            }
         }
     }
     &.border {
         border-top: 1px solid rgba(0, 0, 0, .1);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .header-container {
+        .header {
+            padding: 0;
+            .header-inner {
+                a {
+                    margin: 0;
+                    flex: 1 0 100%;
+                    animation: 30s slide infinite;
+                    position: relative;
+                    left: 0;
+                    &:after {
+                        padding-bottom: 50%;
+                    }
+                    .title {
+                        margin-bottom: 0;
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+                @keyframes slide {
+                    0% { left: 0; }
+                    20% { left: 0; }
+                    25% { left: -100%; }
+                    45% { left: -100%; }
+                    50% { left: -200%; }
+                    70% { left: -200%; }
+                    75% { left: -300%; }
+                    95% { left: -300%; }
+                    100% { left: -400%; }
+                }
+            }
+        }
     }
 }

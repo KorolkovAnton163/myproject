@@ -38,7 +38,7 @@ class EntryController extends Controller
 
         return [
             'entries' => $entries->map(function ($entry) {
-                return $entry->present()->show(Auth::user());
+                return $entry->present()->listing(Auth::user());
             }),
             'count' => $count,
             'tags' => Tag::all(),
@@ -53,5 +53,12 @@ class EntryController extends Controller
     public function edit(Request $request, Entry $entry)
     {
         return $entry->present()->edit();
+    }
+
+    public function getNew(Request $request)
+    {
+        return Entry::orderBy('updated_at', 'desc')->take(5)->get()->map(function ($entry) {
+            return $entry->present()->listing();
+        });
     }
 }
