@@ -16,6 +16,13 @@
                 post: {}
             }
         },
+        watch: {
+            '$route.params.id' (newVal, oldVal) {
+                if (+newVal !== +oldVal) {
+                    this.getSinglePost(newVal);
+                }
+            }
+        },
         components: {
             'post-description': require('../blocks/PostDescription.vue')
         },
