@@ -45,5 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'entry'], function () {
         Route::post('/{entry}', 'EntryController@edit');
+        Route::post('/{entry}/update', 'EntryController@update');
     });
+
+    Route::post('image/upload', 'ImageController@upload');
 });

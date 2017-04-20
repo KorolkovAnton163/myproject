@@ -17,9 +17,9 @@ class Image extends Model
 
     public function imagePath()
     {
-        $file = implode('/', [url('/'), $this->path, $this->name]) . '.' . $this->extension;
+        $file = implode('/', [url('/'), $this->path, $this->name]);
 
-        if (file_exists($file)) {
+        if (file_exists(public_path(implode('/', [$this->path, $this->name])))) {
             return $file;
         }
         return null;

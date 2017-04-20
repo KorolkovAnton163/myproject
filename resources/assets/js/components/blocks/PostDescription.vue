@@ -1,7 +1,7 @@
 <template>
     <div class="description-container">
-        <div class="image-block">
-            <img :src="post.image" :alt="post.title">
+        <div class="image-block" v-if="post">
+            <img :src="post.image.path" :alt="post.title">
             <router-link v-if="button" class="read-more ripple" :to="{name:'post', params: {id: post.id}}">
                 show
             </router-link>
@@ -32,7 +32,8 @@
     module.exports = {
         props: {
             post: {
-                type: Object
+                type: Object,
+                default: null
             },
             button: {
                 type: Boolean,

@@ -11,11 +11,12 @@
                 <span class="error" v-show="errors.has('title')">{{ errors.first('title') }}</span>
                 <fieldset class="textarea">
                     <textarea v-validate="{ rules: { required: true } }" name="description"
-                              id="description" cols="30" rows="2" required></textarea>
+                              v-model="entry.description" id="description" required></textarea>
                     <hr>
                     <label>Description</label>
                 </fieldset>
                 <span class="error" v-show="errors.has('description')">{{ errors.first('description') }}</span>
+                <image-uploader :image="entry.image"></image-uploader>
                 <button type="submit" class="ripple">Save</button>
             </form>
         </div>
@@ -26,13 +27,18 @@
     module.exports = {
         data () {
             return {
-                entry: []
+                entry: {}
             }
         },
         computed: {
             user () {
                 return this.$store.getters.user
             }
+        },
+        mounted () {
+            this.$on('imageUpload', (image) => {
+                this.entry['image'] = image;
+            });
         },
         watch: {
             '$route.params.id' (newVal, oldVal) {
@@ -41,6 +47,9 @@
                 }
             }
         },
+        components: {
+            'image-uploader': require('../blocks/ImageUpload.vue')
+        },
         methods: {
             getEntry () {
                 if (this.$route.params.id !== 'undefined' && this.$route.params.id) {
@@ -48,12 +57,18 @@
                         this.entry = responce.data;
                     });
                 } else {
-                    this.entry = [];
+                    this.entry = {};
                 }
             },
             save () {
                 this.$validator.validateAll().then(() => {
-                    //
+                    if (this.entry.id) {
+                        this.$http.post(location.origin + '/entry/' + this.entry.id + '/update', this.entry).then((responce) => {
+
+                        });
+                    } else {
+
+                    }
                 }).catch(() => {
                     //
                 });
@@ -61,6 +76,9 @@
         },
         created () {
             this.getEntry();
+        },
+        destroyed () {
+            this.$off('imageUpload');
         }
     }
 </script>

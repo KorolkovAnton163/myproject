@@ -13,6 +13,7 @@ class ImageController extends Controller
     const DISK = 'public';
     const SUB_FOLDER = 'images';
 
+    //TODO add validation request
     public function upload(Request $request)
     {
         $file = $request->file('image');
@@ -30,5 +31,10 @@ class ImageController extends Controller
         Storage::disk(self::DISK)->makeDirectory($path);
 
         $file->move(public_path($path), $file->getClientOriginalName());
+
+        return [
+            'id' => $image->id,
+            'path' => url('/') . '/' . $image->path . '/' . $image->name,
+        ];
     }
 }

@@ -4,7 +4,7 @@
             <div class="header-inner">
                 <router-link v-if="entries" v-for="entry in entries"
                              :to="{name:'post', params: {id: entry.id}}"
-                             :style="{backgroundImage: 'url(' + entry.image + ')'}">
+                             :style="{backgroundImage: 'url(' + entry.image.path + ')'}">
                     <span class="title">{{ entry.title }}</span>
                 </router-link>
             </div>

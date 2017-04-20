@@ -1,11 +1,12 @@
 .entry-page-container {
     padding: 20px;
-    .field-text {
-        margin: 10px 0;
-        width: 300px;
+    fieldset {
+        margin: 20px 0 5px 0;
     }
-    .textarea {
-        margin: 10px 0;
-        width: 600px;
+    .field-text {
+        max-width: 300px;
+    }
+    .image-upload {
+        margin: 10px auto;
     }
 }

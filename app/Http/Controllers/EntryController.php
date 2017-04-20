@@ -7,6 +7,7 @@ use App\Entry;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EntryController extends Controller
 {
@@ -50,9 +51,33 @@ class EntryController extends Controller
         return $entry->present()->show(Auth::user());
     }
 
+    //TODO add validation request
     public function edit(Request $request, Entry $entry)
     {
         return $entry->present()->edit();
+    }
+
+    //TODO add validation request
+    public function update(Request $request, Entry $entry)
+    {
+        DB::transaction(function () use ($entry, $request) {
+            $input = $request->input();
+
+            $entry->title = $input['title'];
+            $entry->description = $input['description'];
+
+            if (!empty($input['image']['id'])) {
+                $entry->images()->sync($input['image']['id'], false);
+            }
+
+            $entry->save();
+        });
+    }
+
+    //TODO add validation request
+    public function store(Request $request)
+    {
+
     }
 
     public function getNew(Request $request)

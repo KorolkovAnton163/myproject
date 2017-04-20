@@ -36,6 +36,7 @@ class EntryPresenter extends Presenter
             'id' => $this->entity->id,
             'title' => $this->entity->title,
             'description' => $this->entity->description,
+            'image' => $this->image(),
             'tags' => $this->entity->tags
         ];
     }
@@ -45,9 +46,14 @@ class EntryPresenter extends Presenter
         $image = $this->entity->images()->first();
 
         if (!empty($image) && !empty($image->imagePath())) {
-            return $image->imagePath();
+            return [
+                'id' => $image->id,
+                'path' => $image->imagePath(),
+            ];
         }
 
-        return url('/') . '/images/default.jpg';
+        return [
+            'path' => url('/') . '/images/default.jpg'
+        ];
     }
 }

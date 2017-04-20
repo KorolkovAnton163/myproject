@@ -1,0 +1,23 @@
+.image-upload {
+    position: relative;
+    padding: 0;
+    margin: 10px;
+    border: none;
+    overflow: visible;
+    max-width: 300px;
+    img {
+        width: 100%;
+    }
+    label {
+        display: block;
+        text-align: center;
+        cursor: pointer;
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+    }
+}
