@@ -16,7 +16,8 @@ class UserPresenter extends Presenter
             'password' => '',
             'canRolesEdit' => $this->entity->can('rolesEdit', User::class),
             'canUsersEdit' => $this->entity->can('usersEdit', User::class),
-            'canEntryEdit' => $this->entity->can('entryEdit', User::class),
+            'canEntryEdit' => $this->entity->can('entriesEdit', User::class),
+            'canTagsEdit' => $this->entity->can('tagsEdit', User::class),
         ];
     }
 

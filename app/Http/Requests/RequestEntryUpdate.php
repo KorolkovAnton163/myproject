@@ -10,7 +10,7 @@ class RequestEntryUpdate extends FormRequest
 {
     public function authorize()
     {
-        return $this->user()->can('entryEdit', User::class);
+        return $this->user()->can('entriesEdit', User::class);
     }
 
     public function rules()

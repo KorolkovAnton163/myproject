@@ -50,5 +50,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/{entry}/update', 'EntryController@update');
     });
 
+    Route::group(['prefix' => 'tags'], function () {
+        Route::post('/', 'TagController@index');
+    });
+
     Route::post('image/upload', 'ImageController@upload');
 });
