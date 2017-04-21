@@ -26,7 +26,7 @@
             }
         },
         components: {
-            'account-menu': require('./AccountMenu.vue'),
+            'account-menu': require('./AccountMenu.vue')
         },
         mounted () {
             window.addEventListener('resize', () => {
