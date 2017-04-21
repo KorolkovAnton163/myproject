@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestEntryUpdate extends FormRequest
+class RequestEntryCreate extends FormRequest
 {
     public function authorize()
     {
@@ -16,10 +16,7 @@ class RequestEntryUpdate extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:150',
-            'description' => 'required|max:5000',
-            'image.id' => 'required|exists:images,id',
-            'tags.*' => 'required|exists:tags,id',
+           //
         ];
     }
 }

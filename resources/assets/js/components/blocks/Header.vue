@@ -35,9 +35,11 @@
         },
         methods: {
             getNew () {
-                this.$http.post(location.origin + '/entries/new').then((responce) => {
-                    this.entries = responce.data;
-                });
+                if (!this.isAccount) {
+                    this.$http.post(location.origin + '/entries/new').then((responce) => {
+                        this.entries = responce.data;
+                    });
+                }
             }
         },
         created () {

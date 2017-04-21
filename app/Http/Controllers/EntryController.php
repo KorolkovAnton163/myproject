@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Entry;
+use App\Http\Requests\RequestEntryCreate;
 use App\Http\Requests\RequestEntryEdit;
 use App\Http\Requests\RequestEntryStore;
 use App\Http\Requests\RequestEntryUpdate;
@@ -54,9 +55,19 @@ class EntryController extends Controller
         return $entry->present()->show(Auth::user());
     }
 
+    public function create(RequestEntryCreate $request)
+    {
+        return [
+            'tags' => Tag::all()
+        ];
+    }
+
     public function edit(RequestEntryEdit $request, Entry $entry)
     {
-        return $entry->present()->edit();
+        return [
+            'entry' => $entry->present()->edit(),
+            'tags' => Tag::all()
+        ];
     }
 
     public function update(RequestEntryUpdate $request, Entry $entry)
@@ -67,11 +78,10 @@ class EntryController extends Controller
             $entry->title = $input['title'];
             $entry->description = $input['description'];
 
-            if (!empty($input['image']['id'])) {
-                $entry->images()->sync($input['image']['id']);
-            }
-
             $entry->save();
+
+            $entry->images()->sync($input['image']['id']);
+            $entry->tags()->sync($input['tags']);
         });
     }
 
@@ -88,6 +98,7 @@ class EntryController extends Controller
             $entry->save();
 
             $entry->images()->sync($input['image']['id']);
+            $entry->tags()->sync($input['tags']);
 
             return $entry;
         });

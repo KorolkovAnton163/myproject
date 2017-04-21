@@ -12,9 +12,9 @@ class EntryPresenter extends Presenter
             'id' => $this->entity->id,
             'title' => $this->entity->title,
             'description' => $this->entity->description,
-            'bookmark' => !empty($user) ? (bool) $user->entries()->find($this->entity->id) : false,
+            'bookmark' => !empty($user) ? (bool)$user->entries()->find($this->entity->id) : false,
             'image' => $this->image(),
-            'tags' => $this->entity->tags
+            'tags' => $this->entity->tags,
         ];
     }
 
@@ -24,9 +24,9 @@ class EntryPresenter extends Presenter
             'id' => $this->entity->id,
             'title' => $this->entity->title,
             'description' => $this->entity->description,
-            'bookmark' => !empty($user) ? (bool) $user->entries()->find($this->entity->id) : false,
+            'bookmark' => !empty($user) ? (bool)$user->entries()->find($this->entity->id) : false,
             'image' => $this->image(),
-            'tags' => $this->entity->tags
+            'tags' => $this->entity->tags,
         ];
     }
 
@@ -36,8 +36,8 @@ class EntryPresenter extends Presenter
             'id' => $this->entity->id,
             'title' => $this->entity->title,
             'description' => $this->entity->description,
-            'image' => $this->image(),
-            'tags' => $this->entity->tags
+            'image' => !empty($this->image()['id']) ? $this->image() : null,
+            'tags' => $this->entity->tags->pluck('id'),
         ];
     }
 

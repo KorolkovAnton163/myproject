@@ -44,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'entry'], function () {
+        Route::post('/', 'EntryController@create');
         Route::post('/store', 'EntryController@store');
         Route::post('/{entry}', 'EntryController@edit');
         Route::post('/{entry}/update', 'EntryController@update');
