@@ -64,10 +64,12 @@
                 this.$validator.validateAll().then(() => {
                     if (this.entry.id) {
                         this.$http.post(location.origin + '/entry/' + this.entry.id + '/update', this.entry).then((responce) => {
-
+                            //
                         });
                     } else {
-
+                        this.$http.post(location.origin + '/entry/store', this.entry).then((responce) => {
+                            //
+                        });
                     }
                 }).catch(() => {
                     //

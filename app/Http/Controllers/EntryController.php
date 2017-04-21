@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Entry;
+use App\Http\Requests\RequestEntryEdit;
+use App\Http\Requests\RequestEntryStore;
+use App\Http\Requests\RequestEntryUpdate;
 use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +38,7 @@ class EntryController extends Controller
 
         $query->take(10);
 
-        $entries = $query->get();
+        $entries = $query->orderBy('updated_at', 'desc')->get();
 
         return [
             'entries' => $entries->map(function ($entry) {
@@ -51,14 +54,12 @@ class EntryController extends Controller
         return $entry->present()->show(Auth::user());
     }
 
-    //TODO add validation request
-    public function edit(Request $request, Entry $entry)
+    public function edit(RequestEntryEdit $request, Entry $entry)
     {
         return $entry->present()->edit();
     }
 
-    //TODO add validation request
-    public function update(Request $request, Entry $entry)
+    public function update(RequestEntryUpdate $request, Entry $entry)
     {
         DB::transaction(function () use ($entry, $request) {
             $input = $request->input();
@@ -74,10 +75,22 @@ class EntryController extends Controller
         });
     }
 
-    //TODO add validation request
-    public function store(Request $request)
+    public function store(RequestEntryStore $request)
     {
+        return DB::transaction(function () use ($request) {
+            $input = $request->input();
 
+            $entry = new Entry([
+                'title' => $input['title'],
+                'description' => $input['description'],
+            ]);
+
+            $entry->save();
+
+            $entry->images()->sync($input['image']['id']);
+
+            return $entry;
+        });
     }
 
     public function getNew(Request $request)
