@@ -3,7 +3,7 @@
         <div class="header" v-if="!isAccount">
             <div class="header-inner">
                 <router-link v-if="entries" v-for="entry in entries"
-                             :to="{name:'post', params: {alias: entry.alias}}"
+                             :to="{name:'entry', params: {alias: entry.alias}}"
                              :style="{backgroundImage: 'url(' + entry.image.path + ')'}">
                     <span class="title">{{ entry.title }}</span>
                 </router-link>

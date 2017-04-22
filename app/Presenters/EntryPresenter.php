@@ -25,6 +25,7 @@ class EntryPresenter extends Presenter
             'id' => $this->entity->id,
             'title' => $this->entity->title,
             'description' => $this->entity->description,
+            'alias' => $this->entity->alias,
             'bookmark' => !empty($user) ? (bool)$user->entries()->find($this->entity->id) : false,
             'image' => $this->image(),
             'tags' => $this->entity->tags,

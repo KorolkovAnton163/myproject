@@ -2,7 +2,7 @@
     <div class="description-container">
         <div class="image-block">
             <img :src="post.image.path" :alt="post.title">
-            <router-link v-if="button" class="read-more ripple" :to="{name:'post', params: {alias: post.alias}}">
+            <router-link v-if="button" class="read-more ripple" :to="{name:'entry', params: {alias: post.alias}}">
                 show
             </router-link>
         </div>
@@ -17,7 +17,7 @@
                 <p class="description"><strong>Описание:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">
-                <router-link v-if="user && user.canEntryEdit" :to="{name:'entry', params: {id: post.id}}" class="entry-edit">
+                <router-link v-if="user && user.canEntryEdit" :to="{name:'entry-edit', params: {id: post.id}}" class="entry-edit">
                     <svg class="svg-icon">
                         <use xlink:href="#icon-edit"></use>
                     </svg>

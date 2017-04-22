@@ -3,7 +3,7 @@
         <div class="posts-container" v-if="posts">
             <div class="post" v-for="post in posts">
                 <h2>
-                    <router-link class="ripple" :to="{name:'post', params: {alias: post.alias}}">{{ post.title }}
+                    <router-link class="ripple" :to="{name:'entry', params: {alias: post.alias}}">{{ post.title }}
                     </router-link>
                 </h2>
                 <post-description :post="post"></post-description>
