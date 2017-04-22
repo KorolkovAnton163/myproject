@@ -52,6 +52,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'tags'], function () {
         Route::post('/', 'TagController@index');
+        Route::post('/store', 'TagController@store');
+        Route::put('/update', 'TagController@update');
+        Route::delete('/{tag}/destroy', 'TagController@destroy');
     });
 
     Route::post('image/upload', 'ImageController@upload');

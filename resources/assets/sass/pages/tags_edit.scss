@@ -1,0 +1,32 @@
+.tags-page-container {
+    padding: 20px;
+    .tags-container {
+        .new-tag {
+            max-width: 300px;
+            margin-bottom: 50px;
+            .field-text {
+                margin: 0;
+            }
+        }
+        .tag {
+            max-width: 300px;
+            position: relative;
+            padding-right: 50px;
+            margin: 10px 0;
+            .field-text {
+                margin: 0;
+            }
+            .delete {
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                cursor: pointer;
+                .svg-icon {
+                    width: 20px;
+                    height: 20px;
+                    color: $pomegranate;
+                }
+            }
+        }
+    }
+}

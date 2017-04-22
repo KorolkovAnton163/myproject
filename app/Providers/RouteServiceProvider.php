@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Entry;
+use App\Tag;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -30,6 +31,7 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::model('user', User::class);
         Route::model('entry', Entry::class);
+        Route::model('tag', Tag::class);
 
         Route::bind('entryByAlias', function ($value) {
             $entry = Entry::where('alias', $value)->first();
