@@ -11,10 +11,10 @@
                 <p><strong>info1:</strong>&nbsp;info 1</p>
                 <p><strong>info2:</strong>&nbsp;info 2</p>
                 <p class="tags">
-                    <strong>Tags:</strong>&nbsp;
-                    <a v-for="tag in post.tags" @click="addTag(tag.id)">{{ tag.name }}</a>
+                    <strong>Жанры:</strong>&nbsp;
+                    <a v-for="tag in post.tags" @click="search(tag.id)">{{ tag.name }}</a>
                 </p>
-                <p><strong>Description:</strong> {{ post.description }}</p>
+                <p class="description"><strong>Описание:</strong> {{ post.description }}</p>
             </div>
             <div class="action-block">
                 <router-link v-if="user && user.canEntryEdit" :to="{name:'entry', params: {id: post.id}}" class="entry-edit">
@@ -49,7 +49,7 @@
             'bookmark': require('../blocks/Bookmark.vue')
         },
         methods: {
-            addTag (id) {
+            search (id) {
                 this.$router.push({name: 'posts', query: {tags: id.toString()}});
             }
         }

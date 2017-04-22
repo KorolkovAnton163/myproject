@@ -1,5 +1,5 @@
 <template>
-    <div class="header-container" :class="{'border': !show && isAccount}">
+    <div class="header-container"  :class="{'border': !show && isAccount}">
         <div class="header" v-if="!isAccount">
             <div class="header-inner">
                 <router-link v-if="entries" v-for="entry in entries"
@@ -17,12 +17,16 @@
         data () {
             return {
                 entries: [],
+                isAccount: false,
                 show: window.innerWidth > 500
             }
         },
-        computed: {
-            isAccount () {
-                return this.$route.path.indexOf('account') !== -1;
+        watch: {
+            '$route' (newVal, oldVal) {
+                if (+newVal !== +oldVal) {
+                    this.checkIsAccount();
+                    this.getNew();
+                }
             }
         },
         components: {
@@ -40,9 +44,13 @@
                         this.entries = responce.data;
                     });
                 }
+            },
+            checkIsAccount () {
+                this.isAccount = (this.$route.path.indexOf('account') !== -1);
             }
         },
         created () {
+            this.checkIsAccount();
             this.getNew();
         }
     }
