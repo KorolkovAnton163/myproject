@@ -21,7 +21,7 @@ Route::post('register', 'UserController@register');
 
 Route::group(['prefix' => 'entries'], function () {
     Route::post('/', 'EntryController@index');
-    Route::post('/{entry}/show', 'EntryController@show');
+    Route::post('/{entryByAlias}/show', 'EntryController@show');
     Route::post('/new', 'EntryController@getNew');
 });
 

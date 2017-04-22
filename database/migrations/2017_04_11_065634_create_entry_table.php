@@ -17,6 +17,7 @@ class CreateEntryTable extends Migration
             $table->increments('id');
             $table->text('title');
             $table->text('description');
+            $table->text('alias')->unique();
             $table->timestamps();
         });
     }

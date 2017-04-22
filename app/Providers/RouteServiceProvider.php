@@ -6,6 +6,7 @@ use App\Entry;
 use App\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,15 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::model('user', User::class);
         Route::model('entry', Entry::class);
+
+        Route::bind('entryByAlias', function ($value) {
+            $entry = Entry::where('alias', $value)->first();
+            if (!empty($entry)) {
+                return $entry;
+            }
+
+            throw new NotFoundHttpException;
+        });
     }
 
     /**

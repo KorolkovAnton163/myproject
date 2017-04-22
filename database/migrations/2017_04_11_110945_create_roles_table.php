@@ -10,6 +10,8 @@ class CreateRolesTable extends Migration
         'Admin' => [
             'roles.edit',
             'users.edit',
+            'entries.edit',
+            'tags.edit'
         ],
         'User' => [
             //

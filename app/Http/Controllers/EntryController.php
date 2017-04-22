@@ -77,6 +77,7 @@ class EntryController extends Controller
 
             $entry->title = $input['title'];
             $entry->description = $input['description'];
+            $entry->alias = $input['title'];
 
             $entry->save();
 
@@ -93,6 +94,7 @@ class EntryController extends Controller
             $entry = new Entry([
                 'title' => $input['title'],
                 'description' => $input['description'],
+                'alias' => $input['title'],
             ]);
 
             $entry->save();

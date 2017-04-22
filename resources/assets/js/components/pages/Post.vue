@@ -28,8 +28,8 @@
             'post-description': require('../blocks/PostDescription.vue')
         },
         methods: {
-            getSinglePost (postId) {
-                this.$http.post(location.origin + '/entries/' + postId + '/show').then((responce) => {
+            getSinglePost (alias) {
+                this.$http.post(location.origin + '/entries/' + alias + '/show').then((responce) => {
                     this.post = responce.data;
                 }, (responce) => {
                     this.noPost = true
@@ -37,7 +37,7 @@
             }
         },
         created () {
-            this.getSinglePost(this.$route.params.id);
+            this.getSinglePost(this.$route.params.alias);
         }
     }
 </script>
