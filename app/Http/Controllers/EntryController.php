@@ -9,6 +9,8 @@ use App\Http\Requests\RequestEntryEdit;
 use App\Http\Requests\RequestEntryStore;
 use App\Http\Requests\RequestEntryUpdate;
 use App\Tag;
+use App\Title;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,14 +23,22 @@ class EntryController extends Controller
 
         if ($request->has('search')) {
             $query->where('title', 'like', '%' . trim($request->input('search')) . '%')
-                ->orWhere('description', 'like', '%' . trim($request->input('search')) . '%');
+                ->orWhere('description', 'like', '%' . trim($request->input('search')) . '%')
+                ->orWhereHas('titles', function ($query) use ($request) {
+                    $query->where('name', 'like', '%' . trim($request->input('search')) . '%');
+                });
         }
 
         if ($request->has('tags')) {
-            $tags = $request->input('tags');
-            $query->whereHas('tags', function ($query) use ($tags) {
-                $query->whereIn('id', explode(',', $tags));
-            });
+            foreach (explode(',', $request->input('tags')) as $tag) {
+                $query->whereHas('tags', function ($query) use ($tag) {
+                    $query->where('id', $tag);
+                });
+            }
+        }
+
+        if ($request->has('year')) {
+            $query->where('year', $request->input('year'));
         }
 
         $count = $query->count();
@@ -39,14 +49,17 @@ class EntryController extends Controller
 
         $query->take(10);
 
-        $entries = $query->orderBy('updated_at', 'desc')->get();
+        $entries = $query->orderBy('year', 'desc')
+            ->orderBy('updated_at', 'desc')
+            ->get();
 
         return [
             'entries' => $entries->map(function ($entry) {
                 return $entry->present()->listing(Auth::user());
             }),
             'count' => $count,
-            'tags' => Tag::all(),
+            'tags' => Tag::orderBy('name')->get(),
+            'years' => range(Carbon::now()->format('Y'), '1985'),
         ];
     }
 
@@ -58,7 +71,8 @@ class EntryController extends Controller
     public function create(RequestEntryCreate $request)
     {
         return [
-            'tags' => Tag::all()
+            'tags' => Tag::orderBy('name')->get(),
+            'years' => range(Carbon::now()->format('Y'), '1985'),
         ];
     }
 
@@ -66,7 +80,8 @@ class EntryController extends Controller
     {
         return [
             'entry' => $entry->present()->edit(),
-            'tags' => Tag::all()
+            'tags' => Tag::orderBy('name')->get(),
+            'years' => range(Carbon::now()->format('Y'), '1985'),
         ];
     }
 
@@ -78,11 +93,11 @@ class EntryController extends Controller
             $entry->title = $input['title'];
             $entry->description = $input['description'];
             $entry->alias = $input['title'];
+            $entry->year = $input['year'];
 
             $entry->save();
 
-            $entry->images()->sync($input['image']['id']);
-            $entry->tags()->sync($input['tags']);
+            $this->saveEntryParams($entry, $input);
         });
     }
 
@@ -95,15 +110,30 @@ class EntryController extends Controller
                 'title' => $input['title'],
                 'description' => $input['description'],
                 'alias' => $input['title'],
+                'year' => $input['year'],
             ]);
 
             $entry->save();
 
-            $entry->images()->sync($input['image']['id']);
-            $entry->tags()->sync($input['tags']);
+            $this->saveEntryParams($entry, $input);
 
             return $entry;
         });
+    }
+
+    private function saveEntryParams(Entry $entry, $input)
+    {
+        $entry->images()->sync($input['image']['id']);
+        $entry->tags()->sync($input['tags']);
+
+        Title::where('entry_id', $entry->id)->delete();
+        foreach ($input['titles'] as $title) {
+            $title = new Title([
+                'entry_id' => $entry->id,
+                'name' => $title['name'],
+            ]);
+            $title->save();
+        }
     }
 
     public function getNew(Request $request)

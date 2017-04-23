@@ -8,13 +8,32 @@
                                :value="tag.id" :checked="tag.checked">{{ tag.name }}
                     </label>
                 </div>
+                <fieldset class="select-field">
+                    <select v-model="entry.year">
+                        <option v-for="year in years" :value="year">{{ year }}</option>
+                    </select>
+                </fieldset>
                 <fieldset class="field-text">
                     <input v-validate="{ rules: { required: true } }" type="text" name="title" v-model="entry.title"
-                           utocomplete="off" required>
+                           autocomplete="off" required>
                     <hr>
                     <label>Title</label>
                 </fieldset>
                 <span class="error" v-show="errors.has('title')">{{ errors.first('title') }}</span>
+                <div class="titles">
+                    <span>Titles</span>
+                    <fieldset class="field-text" v-for="title in titles">
+                        <input type="text" name="title" v-model="title.name" autocomplete="off" required>
+                        <hr>
+                        <label>Title</label>
+                    </fieldset>
+                    <span class="button-add" @click="addTitle">
+                        <svg class="svg-icon">
+                            <use xlink:href="#icon-plus"></use>
+                        </svg>
+                        Add
+                    </span>
+                </div>
                 <fieldset class="textarea">
                     <textarea v-validate="{ rules: { required: true } }" name="description"
                               v-model="entry.description" id="description" required></textarea>
@@ -34,7 +53,9 @@
         data () {
             return {
                 entry: {},
-                tags: {}
+                tags: {},
+                titles: [],
+                years: []
             }
         },
         computed: {
@@ -63,7 +84,9 @@
                     this.$http.post(location.origin + '/entry/' + this.$route.params.id).then((responce) => {
                         this.entry = responce.data.entry;
                         this.tags = responce.data.tags;
-                        this.fillTags();
+                        this.years = responce.data.years;
+                        this.titles = responce.data.entry.titles;
+                        this.fillData();
                     }, (responce) => {
                         this.user.canEntryEdit = false;
                     });
@@ -71,6 +94,7 @@
                     this.$http.post(location.origin + '/entry').then((responce) => {
                         this.entry = {};
                         this.tags = responce.data.tags;
+                        this.years = responce.data.years;
                     }, (responce) => {
                         this.user.canEntryEdit = false;
                     });
@@ -78,12 +102,19 @@
             },
             save () {
                 this.$validator.validateAll().then(() => {
-                    this.$http.post(location.origin + (this.entry.id ? '/entry/' + this.entry.id + '/update' : '/entry/store'), this.entry);
+                    this.entry['titles'] = this.titles;
+                    this.$http.post(location.origin + (this.entry.id ? '/entry/' + this.entry.id + '/update' : '/entry/store'), this.entry).then((responce) => {
+                        if (typeof this.entry.id == 'undefined') {
+                            this.entry = {};
+                            this.titles = [];
+                            this.clearTags();
+                        }
+                    });
                 }).catch(() => {
                     //
                 });
             },
-            fillTags () {
+            fillData () {
                 this.tags.forEach((item) => {
                     item.checked = (this.entry.tags.indexOf(item.id) !== -1);
                 });
@@ -101,7 +132,15 @@
                     this.entry.tags.splice(this.entry.tags.indexOf(val), 1);
                 }
 
-                this.fillTags();
+                this.fillData();
+            },
+            clearTags () {
+                this.tags.forEach((item) => {
+                    item.checked = false;
+                });
+            },
+            addTitle () {
+                this.titles.push({name: ''});
             }
         },
         created () {

@@ -7,12 +7,10 @@
                 <span>opened</span>
             </div>
         </h3>
+        <label for="years" >Year</label>
         <div class="select-field" v-show="show">
-            <select>
-                <option value="" selected>Year</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+            <select id="years" v-model="currentYear" @change="addYear">
+                <option v-for="year in years" :value="year">{{ year }}</option >
             </select>
         </div>
         <div class="tags-container" v-if="tags" v-show="show" :class="{'open': show}">
@@ -28,11 +26,15 @@
         data () {
             return {
                 inputTags: [],
-                show: window.innerWidth > 650
+                show: window.innerWidth > 650,
+                currentYear: null
             }
         },
         props: {
             tags: {
+                type: Array
+            },
+            years: {
                 type: Array
             }
         },
@@ -76,6 +78,21 @@
 
                 this.$router.push({name: 'posts', query: query});
             },
+            addYear () {
+                let query = Object.assign({}, this.$route.query);
+
+                if (query.page) {
+                    delete query.page;
+                }
+
+                if (this.currentYear) {
+                    query['year'] = this.currentYear;
+                } else {
+                    delete query['year'];
+                }
+
+                this.$router.push({name: 'posts', query: query});
+            },
             showTags () {
                 if (window.innerWidth < 650) {
                     this.show = !this.show;
@@ -90,6 +107,9 @@
                         $('.tags-container').find('input[value="' + tag.id + '"]')
                             .prop('checked', this.inputTags.indexOf(tag.id.toString()) !== -1);
                     });
+                }
+                if (typeof this.$route.query.year !== 'undefined' && this.$route.query.year) {
+                    this.currentYear = parseInt(this.$route.query.year);
                 }
             }
         }

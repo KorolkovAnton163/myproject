@@ -18,7 +18,12 @@ class CreateEntryTable extends Migration
             $table->text('title');
             $table->text('description');
             $table->text('alias')->unique();
+            $table->text('year');
             $table->timestamps();
+        });
+
+        Schema::table('entries', function (Blueprint $table) {
+            $table->foreign('id')->references('entry_id')->on('titles')->onDelete('cascade');
         });
     }
 

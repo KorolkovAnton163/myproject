@@ -1,6 +1,9 @@
 .select-field {
     position: relative;
     margin-bottom: 1.5rem;
+    padding: 0;
+    border: none;
+    overflow: visible;
     select {
         background: transparent;
         width: 100%;

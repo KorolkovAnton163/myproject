@@ -1,29 +1,31 @@
 <template>
     <div class="description-container">
         <div class="image-block">
-            <img :src="post.image.path" :alt="post.title">
-            <router-link v-if="button" class="read-more ripple" :to="{name:'entry', params: {alias: post.alias}}">
+            <img :src="entry.image.path" :alt="entry.title">
+            <router-link v-if="button" class="read-more ripple" :to="{name:'entry', params: {alias: entry.alias}}">
                 show
             </router-link>
         </div>
         <div class="additional-block">
             <div class="description-block">
-                <p><strong>info1:</strong>&nbsp;info 1</p>
-                <p><strong>info2:</strong>&nbsp;info 2</p>
+                <div class="titles">
+                    <p class="additional-title" v-for="title in entry.titles">{{ title.name }}</p>
+                </div>
+                <p v-if="entry.year"><strong>Год:</strong>&nbsp;{{ entry.year }}</p>
                 <p class="tags">
                     <strong>Жанры:</strong>&nbsp;
-                    <a v-for="tag in post.tags" @click="search(tag.id)">{{ tag.name }}</a>
+                    <a v-for="tag in entry.tags" @click="search(tag.id)">{{ tag.name }}</a>
                 </p>
-                <p class="description"><strong>Описание:</strong> {{ post.description }}</p>
+                <p class="description"><strong>Описание:</strong> {{ entry.description }}</p>
             </div>
             <div class="action-block">
-                <router-link v-if="user && user.canEntryEdit" :to="{name:'entry-edit', params: {id: post.id}}" class="entry-edit">
+                <router-link v-if="user && user.canEntryEdit" :to="{name:'entry-edit', params: {id: entry.id}}" class="entry-edit">
                     <svg class="svg-icon">
                         <use xlink:href="#icon-edit"></use>
                     </svg>
                     Edit
                 </router-link>
-                <bookmark :post="post" v-if="user"></bookmark>
+                <bookmark :post="entry" v-if="user"></bookmark>
             </div>
         </div>
     </div>
@@ -31,7 +33,7 @@
 <script>
     module.exports = {
         props: {
-            post: {
+            entry: {
                 type: Object,
                 default: null
             },

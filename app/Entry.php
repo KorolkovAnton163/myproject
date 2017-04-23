@@ -13,7 +13,7 @@ class Entry extends Model
     use PresentableTrait;
 
     protected $fillable = [
-        'title', 'description', 'alias'
+        'title', 'description', 'alias', 'year'
     ];
 
     public function images()
@@ -24,6 +24,11 @@ class Entry extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function titles()
+    {
+        return $this->hasMany(Title::class);
     }
 
     public function setAliasAttribute($value)

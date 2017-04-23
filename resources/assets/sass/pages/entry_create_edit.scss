@@ -1,13 +1,31 @@
 .entry-page-container {
     padding: 20px;
     .tags-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         .tag {
-            margin: 0 10px;
+            flex: 1 0 auto;
+            margin: 10px;
+        }
+    }
+    .titles {
+        margin: 20px 0;
+        .button-add {
+            display: block;
+            width: 100px;
+            margin-top: 10px;
+            cursor: pointer;
+            .svg-icon {
+                width: 20px;
+                height:20px;
+            }
         }
     }
     fieldset {
         margin: 20px 0 5px 0;
     }
+    .select-field,
     .field-text {
         max-width: 300px;
     }
