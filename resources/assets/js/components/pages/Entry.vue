@@ -4,10 +4,11 @@
             <form @submit.prevent="save" novalidate>
                 <div class="tags-container" v-if="tags">
                     <label class="tag" v-for="tag in tags">
-                        <input @click="changeTag" class="checkbox" type="checkbox" name="tags"
-                               :value="tag.id" :checked="tag.checked">{{ tag.name }}
+                        <input v-validate="{ rules: { required: true } }" @click="changeTag" class="checkbox"
+                               type="checkbox" name="tags" :value="tag.id" :checked="tag.checked">{{ tag.name }}
                     </label>
                 </div>
+                <span class="error" v-show="errors.has('tags')">{{ errors.first('tags') }}</span>
                 <fieldset class="select-field">
                     <select v-model="entry.year">
                         <option v-for="year in years" :value="year">{{ year }}</option>
@@ -27,12 +28,12 @@
                         <hr>
                         <label>Title</label>
                     </fieldset>
-                    <span class="button-add" @click="addTitle">
+                    <a class="button-add" @click.prevent="addTitle">
                         <svg class="svg-icon">
                             <use xlink:href="#icon-plus"></use>
                         </svg>
                         Add
-                    </span>
+                    </a>
                 </div>
                 <fieldset class="textarea">
                     <textarea v-validate="{ rules: { required: true } }" name="description"
@@ -42,6 +43,8 @@
                 </fieldset>
                 <span class="error" v-show="errors.has('description')">{{ errors.first('description') }}</span>
                 <image-uploader :image="entry.image"></image-uploader>
+                <input v-validate="{ rules: { required: true } }" type="hidden" name="image" v-model="image.id">
+                <span class="error" v-show="errors.has('image')">{{ errors.first('image') }}</span>
                 <button type="submit" class="ripple">Save</button>
             </form>
         </div>
@@ -54,6 +57,7 @@
             return {
                 entry: {},
                 tags: {},
+                image: {},
                 titles: [],
                 years: []
             }
@@ -65,6 +69,7 @@
         },
         mounted () {
             this.$on('imageUpload', (image) => {
+                this.image = image;
                 this.entry['image'] = image;
             });
         },
@@ -109,6 +114,9 @@
                             this.titles = [];
                             this.clearTags();
                         }
+                        this.$root.$emit('success', 'Save success.');
+                    }, (responce) => {
+                        this.$root.$emit('fail', responce);
                     });
                 }).catch(() => {
                     //

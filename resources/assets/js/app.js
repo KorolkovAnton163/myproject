@@ -14,6 +14,7 @@ Vue.use(VueTouch);
 Vue.http.headers.common['X-CSRF-TOKEN'] = Laravel.csrfToken;
 
 Vue.component('cat', require('./components/blocks/Cat.vue'));
+Vue.component('message-box', require('./components/blocks/MessageBox.vue'));
 Vue.component('access-denied', require('./components/pages/AccessDenied.vue'));
 
 new Vue({

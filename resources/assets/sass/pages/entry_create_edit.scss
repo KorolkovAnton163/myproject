@@ -4,9 +4,13 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        margin-bottom: 10px;
         .tag {
             flex: 1 0 auto;
             margin: 10px;
+            &:first-of-type {
+                margin: 0;
+            }
         }
     }
     .titles {

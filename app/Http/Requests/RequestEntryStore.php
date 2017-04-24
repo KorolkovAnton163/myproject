@@ -19,7 +19,8 @@ class RequestEntryStore extends FormRequest
             'title' => 'required|string|max:150',
             'description' => 'required|max:5000',
             'image.id' => 'required|exists:images,id',
-            'tags.*' => 'required|exists:tags,id',
+            'tags' => 'required',
+            'tags.*' => 'exists:tags,id',
         ];
     }
 }

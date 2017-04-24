@@ -16,6 +16,7 @@
 </head>
 <body>
 <div id="app">
+    <message-box></message-box>
     <top-nav-menu></top-nav-menu>
     <app-header></app-header>
     <router-view></router-view>
