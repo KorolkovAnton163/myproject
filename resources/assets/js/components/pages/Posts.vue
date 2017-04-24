@@ -1,5 +1,11 @@
 <template>
     <div class="page-container posts-page-container">
+        <span class="clear-search" v-if="$route.query.search">
+            Вы искали: <a>{{ this.$route.query.search }}</a>
+            <svg class="svg-icon" @click="clearQuery">
+                <use xlink:href="#icon-delete"></use>
+            </svg>
+        </span>
         <div class="posts-container" v-if="posts">
             <div class="post" v-for="post in posts">
                 <h2>
@@ -31,22 +37,19 @@
                 }
             }
         },
-        watch: {
-            '$route.query.tags' (newVal, oldVal) {
-                if (+newVal !== +oldVal) {
-                    this.getPosts();
-                }
-            },
-            '$route.query.year' (newVal, oldVal) {
-                if (+newVal !== +oldVal) {
-                    this.getPosts();
-                }
-            },
-            '$route.query.search' (newVal, oldVal) {
-                if (+newVal !== +oldVal) {
-                    this.getPosts();
-                }
-            }
+        mounted () {
+            this.$root.$on('changeTags', () => {
+                this.getPosts();
+            });
+            this.$root.$on('changeYear', () => {
+                this.getPosts();
+            });
+            this.$root.$on('search', () => {
+                this.getPosts();
+            });
+            this.$root.$on('home', () => {
+                this.getPosts();
+            });
         },
         components: {
             'pagination': require('../blocks/Pagination.vue'),
@@ -83,7 +86,17 @@
                     this.tags = responce.data.tags;
                     this.years = responce.data.years;
                 });
+            },
+            clearQuery () {
+                this.$router.push({name: 'posts'});
+                this.getPosts();
             }
+        },
+        destroyed () {
+            this.$root.$off('changeTags');
+            this.$root.$off('changeYear');
+            this.$root.$off('search');
+            this.$root.$off('home');
         }
     }
 </script>

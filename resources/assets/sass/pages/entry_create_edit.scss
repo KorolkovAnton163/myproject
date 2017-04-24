@@ -5,21 +5,15 @@
         flex-direction: row;
         flex-wrap: wrap;
         margin-bottom: 10px;
+        max-width: 600px;
         .tag {
             flex: 1 0 auto;
             margin: 10px;
-            &:first-of-type {
-                margin: 0;
-            }
         }
     }
     .titles {
         margin: 20px 0;
         .button-add {
-            display: block;
-            width: 100px;
-            margin-top: 10px;
-            cursor: pointer;
             .svg-icon {
                 width: 20px;
                 height:20px;
@@ -33,7 +27,25 @@
     .field-text {
         max-width: 300px;
     }
+    .title-container {
+        position: relative;
+        padding-right: 20px;
+        max-width: 300px;
+        .delete {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            .svg-icon {
+                width: 20px;
+                height: 20px;
+                color: $pomegranate;
+            }
+        }
+    }
+    .textarea {
+        max-width: 600px;
+    }
     .image-upload {
-        margin: 10px auto;
+        margin: 10px 0;
     }
 }

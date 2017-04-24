@@ -64,14 +64,6 @@
                 if (+newVal !== +oldVal) {
                     this.calculatePage();
                 }
-            },
-            '$route.query.page' (newVal, oldVal) {
-                if (+newVal !== +oldVal) {
-                    if (typeof newVal == 'undefined') {
-                        this.$set(this.params, 'current_page', 1);
-                    }
-                    this.callback();
-                }
             }
         },
         methods: {
@@ -79,12 +71,14 @@
                 if (this.params.current_page > 1) {
                     this.$set(this.params, 'current_page', this.params.current_page - 1);
                     this.changePage(this.params.current_page);
+                    this.callback();
                 }
             },
             showNext () {
                 if (this.params.current_page < this.params.pages) {
                     this.$set(this.params, 'current_page', this.params.current_page + 1);
                     this.changePage(this.params.current_page);
+                    this.callback();
                 }
             },
             changePage (page) {
@@ -94,6 +88,7 @@
 
                 this.$set(this.params, 'current_page', page);
                 this.$router.push({name: this.params.url_params, query: query});
+                this.callback();
             },
             calculatePage () {
                 this.$set(this.params, 'pages', Math.ceil(this.params.total / this.params.on_page));

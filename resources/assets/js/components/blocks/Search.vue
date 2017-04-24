@@ -36,9 +36,9 @@
         },
         methods: {
             search () {
-                if (this.searchQuery) {
-                    this.$router.push({name: 'posts', query: {search: this.searchQuery}});
-                }
+                let query = this.searchQuery ? {search: this.searchQuery} : null;
+                this.$router.push({name: 'posts', query: query});
+                this.$root.$emit('search');
             },
             showSearchForm () {
                 this.show = !this.show;

@@ -61,9 +61,7 @@
                 let val = e.target.getAttribute('value'),
                     query = Object.assign({}, this.$route.query);
 
-                if (query.page) {
-                    delete query.page;
-                }
+                query.page = 1;
 
                 if (e.target.checked) {
                     this.inputTags.push(val);
@@ -78,13 +76,12 @@
                 }
 
                 this.$router.push({name: 'posts', query: query});
+                this.$root.$emit('changeTags');
             },
             addYear () {
                 let query = Object.assign({}, this.$route.query);
 
-                if (query.page) {
-                    delete query.page;
-                }
+                query.page = 1;
 
                 if (this.currentYear) {
                     query['year'] = this.currentYear;
@@ -93,6 +90,7 @@
                 }
 
                 this.$router.push({name: 'posts', query: query});
+                this.$root.$emit('changeYear');
             },
             showTags () {
                 if (window.innerWidth < 650) {
@@ -108,9 +106,13 @@
                         $('.tags-container').find('input[value="' + tag.id + '"]')
                             .prop('checked', this.inputTags.indexOf(tag.id.toString()) !== -1);
                     });
+                } else {
+                    this.inputTags = [];
                 }
                 if (typeof this.$route.query.year !== 'undefined' && this.$route.query.year) {
                     this.currentYear = parseInt(this.$route.query.year);
+                } else {
+                    this.currentYear = '';
                 }
             }
         }

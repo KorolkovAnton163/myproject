@@ -10,10 +10,11 @@
                 </div>
                 <span class="error" v-show="errors.has('tags')">{{ errors.first('tags') }}</span>
                 <fieldset class="select-field">
-                    <select v-model="entry.year">
+                    <select v-validate="{ rules: { required: true } }" name="year" v-model="entry.year">
                         <option v-for="year in years" :value="year">{{ year }}</option>
                     </select>
                 </fieldset>
+                <span class="error" v-show="errors.has('year')">{{ errors.first('year') }}</span>
                 <fieldset class="field-text">
                     <input v-validate="{ rules: { required: true } }" type="text" name="title" v-model="entry.title"
                            autocomplete="off" required>
@@ -23,17 +24,24 @@
                 <span class="error" v-show="errors.has('title')">{{ errors.first('title') }}</span>
                 <div class="titles">
                     <span>Titles</span>
-                    <fieldset class="field-text" v-for="title in titles">
-                        <input type="text" name="title" v-model="title.name" autocomplete="off" required>
-                        <hr>
-                        <label>Title</label>
-                    </fieldset>
                     <a class="button-add" @click.prevent="addTitle">
                         <svg class="svg-icon">
                             <use xlink:href="#icon-plus"></use>
                         </svg>
                         Add
                     </a>
+                    <div class="title-container" v-for="title in titles">
+                        <fieldset class="field-text">
+                            <input type="text" name="title" v-model="title.name" autocomplete="off" required>
+                            <hr>
+                            <label>Title</label>
+                        </fieldset>
+                        <a class="delete" @click.prevent="removeTitle(title)">
+                             <svg class="svg-icon">
+                                <use xlink:href="#icon-delete"></use>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 <fieldset class="textarea">
                     <textarea v-validate="{ rules: { required: true } }" name="description"
@@ -73,13 +81,6 @@
                 this.entry['image'] = image;
             });
         },
-        watch: {
-            '$route.params.id' (newVal, oldVal) {
-                if (+newVal !== +oldVal) {
-                    this.getEntry();
-                }
-            }
-        },
         components: {
             'image-uploader': require('../blocks/ImageUpload.vue')
         },
@@ -91,6 +92,7 @@
                         this.tags = responce.data.tags;
                         this.years = responce.data.years;
                         this.titles = responce.data.entry.titles;
+                        this.image = responce.data.entry.image;
                         this.fillData();
                     }, (responce) => {
                         this.user.canEntryEdit = false;
@@ -146,6 +148,9 @@
                 this.tags.forEach((item) => {
                     item.checked = false;
                 });
+            },
+            removeTitle (title) {
+                this.titles.splice(this.titles.indexOf(title), 1);
             },
             addTitle () {
                 this.titles.push({name: ''});

@@ -5,7 +5,7 @@
         </div>
         <div class="nav-wrapper" :class="{ open: show }">
             <h1 class="site-name">
-                <router-link :to="{ name:'posts' }">Site Name</router-link>
+                <a @click.prevent="home">Site Name</a>
             </h1>
             <account-menu v-if="show"></account-menu>
             <nav-menu></nav-menu>
@@ -66,7 +66,11 @@
 			},
 			hideMenu () {
 				this.show = false;
-			}
+			},
+            home () {
+			    this.$router.push({name: 'posts'});
+                this.$root.$emit('home');
+            }
 		}
 	}
 </script>

@@ -1,6 +1,18 @@
 .posts-page-container {
     display: flex;
     flex-direction: row;
+    position: relative;
+    .clear-search {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        .svg-icon {
+            cursor: pointer;
+            width: 17px;
+            height: 17px;
+            color: $pomegranate;
+        }
+    }
     h2 {
         a {
             color: $white;

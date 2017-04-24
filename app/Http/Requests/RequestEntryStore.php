@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RequestEntryStore extends FormRequest
@@ -21,6 +22,7 @@ class RequestEntryStore extends FormRequest
             'image.id' => 'required|exists:images,id',
             'tags' => 'required',
             'tags.*' => 'exists:tags,id',
+            'year' => 'required|in:' . implode(',', range(Carbon::now()->format('Y'), '1985')),
         ];
     }
 }
