@@ -18,7 +18,7 @@
             }
         },
         watch: {
-            '$route.params.id' (newVal, oldVal) {
+            '$route.params.alias' (newVal, oldVal) {
                 if (+newVal !== +oldVal) {
                     this.getSinglePost(newVal);
                 }
