@@ -53,6 +53,7 @@
         methods: {
             search (id) {
                 this.$router.push({name: 'posts', query: {tags: id.toString()}});
+                this.$root.$emit('changeTags');
             }
         }
     }
