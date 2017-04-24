@@ -3,14 +3,14 @@
         <form @submit.prevent="update" v-if="user" novalidate>
             <fieldset class="field-text">
                 <input v-validate="{ rules: { required: true } }" type="text" name="name" v-model="user.name"
-                       utocomplete="off" required>
+                       autocomplete="off" required>
                 <hr>
                 <label>Name</label>
             </fieldset>
             <span class="error" v-show="errors.has('name')">{{ errors.first('name') }}</span>
             <fieldset class="field-text">
                 <input v-validate="{ rules: { required: true, email: true } }" type="email" name="email"
-                       v-model="user.email" utocomplete="off" required>
+                       v-model="user.email" autocomplete="off" required>
                 <hr>
                 <label>Email</label>
             </fieldset>

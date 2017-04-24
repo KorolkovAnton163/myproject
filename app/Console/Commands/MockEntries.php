@@ -24,6 +24,8 @@ class MockEntries extends Command
             $entry = new Entry([
                 'title' => $moc->title,
                 'description' => $moc->body,
+                'alias' => $moc->title,
+                'year' => '2017'
             ]);
             $entry->save();
         }

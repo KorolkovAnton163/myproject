@@ -15,15 +15,11 @@ class CreateEntryTable extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('title');
+            $table->string('title');
             $table->text('description');
-            $table->text('alias')->unique();
-            $table->text('year');
+            $table->string('alias')->unique();
+            $table->string('year');
             $table->timestamps();
-        });
-
-        Schema::table('entries', function (Blueprint $table) {
-            $table->foreign('id')->references('entry_id')->on('titles')->onDelete('cascade');
         });
     }
 

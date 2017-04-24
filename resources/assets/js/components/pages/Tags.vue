@@ -4,17 +4,18 @@
             <form @submit.prevent="create" class="new-tag" novalidate>
                 <fieldset class="field-text">
                     <input v-validate="{ rules: { required: true } }" type="text" name="name" v-model="newTag.name"
-                           utocomplete="off" required>
+                           autocomplete="off" required>
                     <hr>
                     <label>Name</label>
                 </fieldset>
+                <span class="error" v-show="errors.has('name')">{{ errors.first('name') }}</span>
                 <button type="submit" class="ripple">Add</button>
             </form>
-            <form @submit.prevent="update" novalidate>
+            <form @submit.prevent="update" novalidate v-if="tags">
                 <div class="tag" v-for="tag in tags">
                     <fieldset class="field-text">
                         <input v-validate="{ rules: { required: true } }" type="text" name="name" v-model="tag.name"
-                               utocomplete="off" required>
+                               autocomplete="off" required>
                         <hr>
                         <label>Name</label>
                     </fieldset>
@@ -52,11 +53,15 @@
             create () {
                 let formData = new FormData();
 
-                formData.append('name', this.newTag.name);
+                this.$validator.validateAll().then(() => {
+                    formData.append('name', this.newTag.name);
 
-                this.$http.post(location.origin + '/tags/store', formData).then((responce) => {
-                    this.tags.push(responce.data);
-                    this.newTag = {};
+                    this.$http.post(location.origin + '/tags/store', formData).then((responce) => {
+                        this.tags.push(responce.data);
+                        this.newTag = {};
+                    });
+                }).catch(() => {
+                    //
                 });
             },
             destroy (id) {

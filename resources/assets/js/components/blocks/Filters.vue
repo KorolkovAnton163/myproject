@@ -10,6 +10,7 @@
         <label for="years" >Year</label>
         <div class="select-field" v-show="show">
             <select id="years" v-model="currentYear" @change="addYear">
+                <option value="">no choosen</option>
                 <option v-for="year in years" :value="year">{{ year }}</option >
             </select>
         </div>
@@ -27,7 +28,7 @@
             return {
                 inputTags: [],
                 show: window.innerWidth > 650,
-                currentYear: null
+                currentYear: ''
             }
         },
         props: {
