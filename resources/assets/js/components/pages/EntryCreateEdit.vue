@@ -50,7 +50,7 @@
                     <label>Description</label>
                 </fieldset>
                 <span class="error" v-show="errors.has('description')">{{ errors.first('description') }}</span>
-                <image-uploader :image="entry.image"></image-uploader>
+                <image-uploader :image="image"></image-uploader>
                 <input v-validate="{ rules: { required: true } }" type="hidden" name="image" v-model="image.id">
                 <span class="error" v-show="errors.has('image')">{{ errors.first('image') }}</span>
                 <button type="submit" class="ripple">Save</button>
@@ -92,7 +92,7 @@
                         this.tags = responce.data.tags;
                         this.years = responce.data.years;
                         this.titles = responce.data.entry.titles;
-                        this.image = responce.data.entry.image;
+                        this.image = !_.isEmpty(responce.data.entry.image) ? responce.data.entry.image : {};
                         this.fillData();
                     }, (responce) => {
                         this.user.canEntryEdit = false;

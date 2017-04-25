@@ -6,7 +6,7 @@
                 <use xlink:href="#icon-upload"></use>
             </svg>
             Image
-            <input id="images" type="file" name="images" @change="upload">
+            <input id="images" type="file" name="images" @change="upload" accept="image/jpeg,image/png">
         </label>
     </fieldset>
 </template>

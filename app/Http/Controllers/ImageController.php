@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\RequestImageUpload;
 use App\Image;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -13,8 +13,7 @@ class ImageController extends Controller
     const DISK = 'public';
     const SUB_FOLDER = 'images';
 
-    //TODO add validation request
-    public function upload(Request $request)
+    public function upload(RequestImageUpload $request)
     {
         $file = $request->file('image');
         $date = Carbon::now();
