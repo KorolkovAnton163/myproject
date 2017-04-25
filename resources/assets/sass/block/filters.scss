@@ -5,12 +5,11 @@
     box-sizing: border-box;
     h3 {
         text-align: left;
-        margin-bottom: 1rem;
         position: relative;
         .menu-button {
             position: absolute;
             top: -9px;
-            margin-left: 7px;
+            margin-left: 0;
             width: 16px;
             height: 16px;
             span {
@@ -36,6 +35,7 @@
         width: 100%;
         border-bottom: 1px solid $iron;
         h3 {
+            margin-bottom: 1rem;
             text-align: center;
             .menu-button {
                 display: inline-block;

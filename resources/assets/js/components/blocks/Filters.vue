@@ -1,24 +1,25 @@
 <template>
     <div class="filters">
         <h3>
-            Filters
             <div class="menu-button htx ripple-effect" @click="showTags"
                  :class="{'is-active': show}">
                 <span>opened</span>
             </div>
         </h3>
-        <label for="years" >Year</label>
-        <div class="select-field" v-show="show">
-            <select id="years" v-model="currentYear" @change="addYear">
-                <option value="">no choosen</option>
-                <option v-for="year in years" :value="year">{{ year }}</option >
-            </select>
-        </div>
-        <div class="tags-container" v-if="tags" v-show="show" :class="{'open': show}">
-            <label class="tag" v-for="tag in tags">
-                <input @click="addTag" class="checkbox" type="checkbox" name="tags"
-                       :id="tag.id" :value="tag.id" :checked="tag.checked">{{ tag.name }}
-            </label>
+        <div v-show="show">
+            <label for="years" >Year</label>
+            <div class="select-field" v-if="years">
+                <select id="years" v-model="currentYear" @change="addYear">
+                    <option value="">no choosen</option>
+                    <option v-for="year in years" :value="year">{{ year }}</option >
+                </select>
+            </div>
+            <div class="tags-container" v-if="tags" :class="{'open': show}">
+                <label class="tag" v-for="tag in tags">
+                    <input @click="addTag" class="checkbox" type="checkbox" name="tags"
+                           :id="tag.id" :value="tag.id" :checked="tag.checked">{{ tag.name }}
+                </label>
+            </div>
         </div>
     </div>
 </template>

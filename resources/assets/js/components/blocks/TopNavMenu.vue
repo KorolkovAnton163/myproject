@@ -55,7 +55,7 @@
             'nav-menu': require('./NavMenu.vue'),
 			'search': require('./Search.vue'),
 			'user': require('./User.vue'),
-            'account-menu': require('./AccountMenu.vue'),
+            'account-menu': require('./AccountMenu.vue')
 		},
 		methods: {
 			toggleMenu () {

@@ -1,5 +1,6 @@
 <template>
     <div class="page-container posts-page-container">
+        <loader :loading="loading"></loader>
         <span class="clear-search" v-if="$route.query.search">
             Вы искали: <a>{{ this.$route.query.search }}</a>
             <svg class="svg-icon" @click="clearQuery">
@@ -9,7 +10,8 @@
         <div class="posts-container" v-if="posts">
             <div class="post" v-for="post in posts">
                 <h2>
-                    <router-link class="ripple" :to="{name:'entry', params: {alias: post.alias}}">{{ post.title }}
+                    <router-link class="ripple" :to="{name:'entry', params: {alias: post.alias}}">
+                        {{ post.title }}
                     </router-link>
                 </h2>
                 <post-description :entry="post"></post-description>
@@ -34,7 +36,8 @@
                     on_page: 10,
                     current_page: 1,
                     url_params: 'posts'
-                }
+                },
+                loading: false,
             }
         },
         mounted () {
@@ -48,13 +51,15 @@
                 this.getPosts();
             });
             this.$root.$on('home', () => {
+                this.params.current_page = 1;
                 this.getPosts();
             });
         },
         components: {
             'pagination': require('../blocks/Pagination.vue'),
             'filters': require('../blocks/Filters.vue'),
-            'post-description': require('../blocks/PostDescription.vue')
+            'post-description': require('../blocks/PostDescription.vue'),
+            'loader': require('../blocks/Loader.vue')
         },
         methods: {
             getPosts () {
@@ -80,11 +85,17 @@
 
                 this.params.current_page = parseInt(page);
 
+                this.loading = true;
+
                 this.$http.post(location.origin + '/entries', formData).then((responce) => {
                     this.posts = !_.isEmpty(responce.data.entries) ? responce.data.entries : null;
                     this.params.total = parseInt(responce.data.count);
                     this.tags = responce.data.tags;
                     this.years = responce.data.years;
+                    this.loading = false;
+                }, (responce) => {
+                    this.$root.$emit('fail', responce);
+                    this.loading = false;
                 });
             },
             clearQuery () {

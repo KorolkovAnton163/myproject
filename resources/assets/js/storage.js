@@ -8,23 +8,23 @@ export let store = new Vuex.Store({
         user: null
     },
     actions: {
-        addUser({commit}, user) {
+        addUser ({commit}, user) {
             commit('ADD_USER', user)
         },
-        removeUser({commit}) {
+        removeUser ({commit}) {
             commit('REMOVE_USER')
         }
     },
     mutations: {
-        ADD_USER(state, user) {
+        ADD_USER (state, user) {
             state.user = user
         },
-        REMOVE_USER(state) {
+        REMOVE_USER (state) {
             state.user = null
         }
     },
     getters: {
-        user(state) {
+        user (state) {
             return state.user
         }
     }
