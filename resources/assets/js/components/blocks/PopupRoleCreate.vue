@@ -3,18 +3,18 @@
         <div class="overlay" v-if="show" @click="togglePopup"></div>
         <div class="popup" v-if="show">
             <span class="close" @click="togglePopup">&times;</span>
-            <div>Create Role</div>
+            <div>Добавть роль</div>
             <div class="content">
                 <form @submit.prevent="create" novalidate>
                     <fieldset class="field-text">
                         <input v-validate="{rules:{required: true}}" v-model="name" type="text" name="name"
                                required>
                         <hr>
-                        <label>Name</label>
+                        <label>Название</label>
                     </fieldset>
                     <span class="error" v-show="errors.has('name')">{{ errors.first('name') }}</span>
                     <span class="error" v-if="error">{{ error }}</span>
-                    <button class="ripple">Add</button>
+                    <button class="ripple">Добавить</button>
                 </form>
             </div>
         </div>
@@ -22,7 +22,7 @@
             <svg class="svg-icon">
                 <use xlink:href="#icon-plus"></use>
             </svg>
-            add role
+            добавть роль
         </a>
     </div>
 </template>

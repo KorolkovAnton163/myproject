@@ -19,7 +19,7 @@
             <pagination :params="params" :callback="getPosts"></pagination>
         </div>
         <div class="posts-container page-not-found white" v-else>
-            <p>No results</p>
+            <p>Ничего не найдено :(</p>
         </div>
         <filters :years="years" :tags="tags"></filters>
     </div>

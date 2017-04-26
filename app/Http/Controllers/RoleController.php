@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Globals\PermissionsName;
 use App\Http\Requests\RequestRoleEdit;
 use App\Http\Requests\RequestRoleStore;
 use App\Http\Requests\RequestRoleUpdate;
@@ -21,7 +22,7 @@ class RoleController extends Controller
             'permissions' => Permission::all()->map(function ($permission) {
                 return [
                     'id' => $permission->id,
-                    'name' => $permission->name,
+                    'name' => PermissionsName::$permissionsName[$permission->name],
                 ];
             }),
         ];

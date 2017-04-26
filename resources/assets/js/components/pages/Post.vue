@@ -7,7 +7,7 @@
         </div>
         <div class="page-not-found" v-else-if="noPost">
             <cat></cat>
-            <p>Post not found</p>
+            <p>Запись не найдена :(</p>
         </div>
     </div>
 </template>
@@ -18,7 +18,7 @@
             return {
                 post: null,
                 noPost: false,
-                loading: false,
+                loading: false
             }
         },
         watch: {
