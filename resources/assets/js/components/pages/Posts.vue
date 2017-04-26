@@ -37,7 +37,7 @@
                     current_page: 1,
                     url_params: 'posts'
                 },
-                loading: false,
+                loading: false
             }
         },
         mounted () {
@@ -51,7 +51,6 @@
                 this.getPosts();
             });
             this.$root.$on('home', () => {
-                this.params.current_page = 1;
                 this.getPosts();
             });
         },
@@ -64,7 +63,7 @@
         methods: {
             getPosts () {
                 let formData = new FormData(),
-                    page = this.$route.query.page ? this.$route.query.page : this.params.current_page,
+                    page = this.$route.query.page ? this.$route.query.page : 1,
                     tags = this.$route.query.tags ? this.$route.query.tags : null,
                     year = this.$route.query.year ? this.$route.query.year : null,
                     searchQuery = this.$route.query.search ? this.$route.query.search : null;
