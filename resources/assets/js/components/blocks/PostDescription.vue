@@ -3,7 +3,7 @@
         <div class="image-block">
             <img :src="entry.image.path" :alt="entry.title">
             <router-link v-if="button" class="read-more ripple" :to="{name:'entry', params: {alias: entry.alias}}">
-                show
+                Смотреть
             </router-link>
         </div>
         <div class="additional-block">
@@ -23,7 +23,7 @@
                     <svg class="svg-icon">
                         <use xlink:href="#icon-edit"></use>
                     </svg>
-                    Edit
+                    редактировать
                 </router-link>
                 <bookmark :post="entry" v-if="user"></bookmark>
             </div>

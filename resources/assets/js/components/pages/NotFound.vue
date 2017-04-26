@@ -1,7 +1,7 @@
 <template>
     <div class="page-not-found">
         <cat></cat>
-        <p>404 Page not found :(</p>
+        <p>404 Страница не найдена :(</p>
     </div>
 </template>
 <script>

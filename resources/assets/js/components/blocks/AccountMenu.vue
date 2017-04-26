@@ -1,12 +1,12 @@
 <template>
     <div class="account-menu">
         <div class="menu-wrapper" v-if="user">
-            <router-link :to="{ name:'profile' }">Profile</router-link>
-            <router-link class="bookmark" :to="{ name:'bookmarks' }">Bookmarks</router-link>
-            <router-link v-if="user && user.canRolesEdit" :to="{ name:'role-edit' }">Roles</router-link>
-            <router-link v-if="user && user.canUsersEdit" :to="{ name:'users' }">Users</router-link>
-            <router-link v-if="user && user.canEntryEdit" :to="{ name:'entry-edit' }">Entry</router-link>
-            <router-link v-if="user && user.canTagsEdit" :to="{ name:'tags' }">Tags</router-link>
+            <router-link :to="{ name:'profile' }">Профиль</router-link>
+            <router-link class="bookmark" :to="{ name:'bookmarks' }">Закладки</router-link>
+            <router-link v-if="user && user.canRolesEdit" :to="{ name:'role-edit' }">Роли</router-link>
+            <router-link v-if="user && user.canUsersEdit" :to="{ name:'users' }">Пользователи</router-link>
+            <router-link v-if="user && user.canEntryEdit" :to="{ name:'entry-edit' }">Записи</router-link>
+            <router-link v-if="user && user.canTagsEdit" :to="{ name:'tags' }">Тэги</router-link>
         </div>
     </div>
 </template>

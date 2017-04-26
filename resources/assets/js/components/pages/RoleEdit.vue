@@ -1,7 +1,7 @@
 <template>
     <div class="page-container role-edit-page-container">
         <div v-if="user && user.canRolesEdit">
-            <h2>Roles</h2>
+            <h2>Роли</h2>
             <popup-role-create :callback="add"></popup-role-create>
             <div class="role-container">
                 <table>
@@ -23,7 +23,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <button class="ripple" @click="update">Save</button>
+                <button class="ripple" @click="update">Сохранить</button>
             </div>
         </div>
         <access-denied v-else></access-denied>

@@ -3,13 +3,13 @@
         <svg class="svg-icon">
             <use xlink:href="#icon-bookmark-plus"></use>
         </svg>
-        add to bookmarks
+        добавить в закладки
     </a>
     <a class="bookmark remove" @click.prevent="removeBookmark" v-else>
         <svg class="svg-icon">
             <use xlink:href="#icon-bookmark-remove"></use>
         </svg>
-        remove bookmark
+        удалить из закладок
     </a>
 </template>
 <script>

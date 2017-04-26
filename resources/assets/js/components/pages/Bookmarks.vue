@@ -1,7 +1,7 @@
 <template>
     <div class="page-container bookmark-page-container">
         <div class="bookmark-container" v-if="user">
-            <h2>Bookmark</h2>
+            <h2>Закладки</h2>
             <div class="posts-container" v-if="posts">
                 <div class="post" v-for="post in posts" v-if="post.bookmark">
                     <h2>
@@ -14,7 +14,7 @@
                 <pagination :params="params" :callback="getPosts"></pagination>
             </div>
             <div class="posts-container page-not-found white" v-else>
-                <p>No bookmarks</p>
+                <p>Вы еще ничго не добавили.</p>
             </div>
         </div>
         <access-denied v-else></access-denied>

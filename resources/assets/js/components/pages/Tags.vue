@@ -6,10 +6,10 @@
                     <input v-validate="{ rules: { required: true } }" type="text" name="name" v-model="newTag.name"
                            autocomplete="off" required>
                     <hr>
-                    <label>Name</label>
+                    <label>Название</label>
                 </fieldset>
                 <span class="error" v-show="errors.has('name')">{{ errors.first('name') }}</span>
-                <button type="submit" class="ripple">Add</button>
+                <button type="submit" class="ripple">добавить тег</button>
             </form>
             <form @submit.prevent="update" novalidate v-if="tags">
                 <div class="tag" v-for="tag in tags">
@@ -17,7 +17,7 @@
                         <input v-validate="{ rules: { required: true } }" type="text" name="name" v-model="tag.name"
                                autocomplete="off" required>
                         <hr>
-                        <label>Name</label>
+                        <label>Название</label>
                     </fieldset>
                     <span class="delete" @click="destroy(tag.id)">
                         <svg class="svg-icon">
@@ -25,7 +25,7 @@
                         </svg>
                     </span>
                 </div>
-                <button type="submit" class="ripple">Save</button>
+                <button type="submit" class="ripple">Сохранить</button>
             </form>
         </div>
         <access-denied v-else></access-denied>

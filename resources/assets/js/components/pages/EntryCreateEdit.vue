@@ -9,8 +9,9 @@
                     </label>
                 </div>
                 <span class="error" v-show="errors.has('tags')">{{ errors.first('tags') }}</span>
+                <label for="year">Год</label>
                 <fieldset class="select-field">
-                    <select v-validate="{ rules: { required: true } }" name="year" v-model="entry.year">
+                    <select id="year" v-validate="{ rules: { required: true } }" name="year" v-model="entry.year">
                         <option v-for="year in years" :value="year">{{ year }}</option>
                     </select>
                 </fieldset>
@@ -19,22 +20,22 @@
                     <input v-validate="{ rules: { required: true } }" type="text" name="title" v-model="entry.title"
                            autocomplete="off" required>
                     <hr>
-                    <label>Title</label>
+                    <label>Заголовок</label>
                 </fieldset>
                 <span class="error" v-show="errors.has('title')">{{ errors.first('title') }}</span>
                 <div class="titles">
-                    <span>Titles</span>
+                    <span>Дополнительные заголовки</span>
                     <a class="button-add" @click.prevent="addTitle">
                         <svg class="svg-icon">
                             <use xlink:href="#icon-plus"></use>
                         </svg>
-                        Add
+                        добавить
                     </a>
                     <div class="title-container" v-for="title in titles">
                         <fieldset class="field-text">
                             <input type="text" name="title" v-model="title.name" autocomplete="off" required>
                             <hr>
-                            <label>Title</label>
+                            <label>Название</label>
                         </fieldset>
                         <a class="delete" @click.prevent="removeTitle(title)">
                              <svg class="svg-icon">
@@ -47,7 +48,7 @@
                     <textarea v-validate="{ rules: { required: true } }" name="description"
                               v-model="entry.description" id="description" required></textarea>
                     <hr>
-                    <label>Description</label>
+                    <label>Краткое описание</label>
                 </fieldset>
                 <span class="error" v-show="errors.has('description')">{{ errors.first('description') }}</span>
                 <image-uploader :image="image"></image-uploader>

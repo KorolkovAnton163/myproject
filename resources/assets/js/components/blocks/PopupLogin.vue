@@ -3,28 +3,28 @@
         <div class="overlay" v-if="show" @click="togglePopup"></div>
         <div class="popup" v-if="show">
             <span class="close" @click="togglePopup">&times;</span>
-            <div>Login</div>
+            <div>Вход</div>
             <div class="content">
                 <form @submit.prevent="login" novalidate>
                     <fieldset class="field-text">
                         <input v-validate="{ rules:{required: true, email:true}}" v-model="email" type="email"
                                name="email" required>
                         <hr>
-                        <label>Email</label>
+                        <label>Почта</label>
                     </fieldset>
                     <span class="error" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                     <fieldset class="field-text">
                         <input v-validate="{rules:{required: true}}" v-model="password" type="password" name="password"
                                required>
                         <hr>
-                        <label>Password</label>
+                        <label>Пароль</label>
                     </fieldset>
                     <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
                     <span class="error" v-if="error">{{ error }}</span>
                     <label class="checkbox-label">
                         <input class="checkbox" type="checkbox" name="remember_token">Remember me
                     </label>
-                    <button class="ripple">Login</button>
+                    <button class="ripple">Войти</button>
                 </form>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <svg class="svg-icon">
                 <use xlink:href="#icon-account"></use>
             </svg>
-            login
+            вход
         </a>
     </div>
 </template>

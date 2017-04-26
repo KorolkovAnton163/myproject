@@ -9,7 +9,7 @@
             <fieldset class="field-text">
                 <input id="search-input" v-model="searchQuery" type="text" name="query" required>
                 <hr>
-                <label>Search</label>
+                <label>Поиск:</label>
             </fieldset>
             <button type="submit" class="ripple-effect">
                 <svg class="svg-icon">

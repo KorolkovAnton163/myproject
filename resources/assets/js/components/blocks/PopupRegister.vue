@@ -3,35 +3,35 @@
         <div class="overlay" v-if="show" @click="togglePopup"></div>
         <div class="popup" v-if="show">
             <span class="close" @click="togglePopup">&times;</span>
-            <div>Register</div>
+            <div>Регистрация</div>
             <div class="content">
                 <form @submit.prevent="register" novalidate>
                     <fieldset class="field-text">
                         <input v-validate="{rules:{required: true}}" v-model="name" type="text" name="name" required>
                         <hr>
-                        <label>Name</label>
+                        <label>Имя</label>
                     </fieldset>
                     <span class="error" v-show="errors.has('name')">{{ errors.first('name') }}</span>
                     <fieldset class="field-text">
                         <input v-validate="{rules:{required:true, email:true}}" v-model="email" type="email"
                                name="email" required>
                         <hr>
-                        <label>Email</label>
+                        <label>Почта</label>
                     </fieldset>
                     <span class="error" v-show="errors.has('email')">{{ errors.first('email') }}</span>
                     <fieldset class="field-text">
                         <input v-validate="{rules:{required:true}}" v-model="password" type="password" name="password"
                                required>
                         <hr>
-                        <label>Password</label>
+                        <label>Пароль</label>
                     </fieldset>
                     <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
                     <fieldset class="field-text">
                         <input v-model="confirmedPassword" type="password" name="password_confirmation" required>
                         <hr>
-                        <label>Confirm password</label>
+                        <label>Подтвердите пароль</label>
                     </fieldset>
-                    <button class="ripple">Register</button>
+                    <button class="ripple">Зарегистрироваться</button>
                 </form>
             </div>
         </div>
@@ -39,7 +39,7 @@
             <svg class="svg-icon">
                 <use xlink:href="#icon-account-plus"></use>
             </svg>
-            register
+            регистрация
         </a>
     </div>
 </template>

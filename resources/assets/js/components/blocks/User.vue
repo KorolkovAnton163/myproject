@@ -6,9 +6,9 @@
                 <svg class="svg-icon">
                     <use xlink:href="#icon-bookmark"></use>
                 </svg>
-                bookmarks
+                закладки
             </router-link>
-            <a class="logout" href="/logout">Logout</a>
+            <a class="logout" href="/logout">Выход</a>
         </div>
         <div class="login-section" v-else>
             <login-popup></login-popup>

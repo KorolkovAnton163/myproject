@@ -1,12 +1,12 @@
 <template>
     <div class="page-container users-page-container">
         <div v-if="user && user.canUsersEdit">
-            <h2>Users</h2>
+            <h2>Пользователи</h2>
             <div class="users-container">
                 <div class="user-titles">
-                    <span>Name</span>
-                    <span>Email</span>
-                    <span>Role</span>
+                    <span>Имя</span>
+                    <span>Почта</span>
+                    <span>Роль</span>
                 </div>
                 <div class="user-item" v-for="user in users">
                     <span>{{ user.name }}</span>

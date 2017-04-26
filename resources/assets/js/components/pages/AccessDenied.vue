@@ -1,5 +1,5 @@
 <template>
     <div class="access-denied">
-        <p>Access denied.</p>
+        <p>Доступ запрещен.</p>
     </div>
 </template>

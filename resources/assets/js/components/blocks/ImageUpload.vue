@@ -5,7 +5,7 @@
             <svg class="svg-icon">
                 <use xlink:href="#icon-upload"></use>
             </svg>
-            Image
+            Изоброжение (формат .JPEG, .PNG)
             <input id="images" type="file" name="images" @change="upload" accept="image/jpeg,image/png">
         </label>
     </fieldset>

@@ -5,23 +5,23 @@
                 <input v-validate="{ rules: { required: true } }" type="text" name="name" v-model="user.name"
                        autocomplete="off" required>
                 <hr>
-                <label>Name</label>
+                <label>Имя</label>
             </fieldset>
             <span class="error" v-show="errors.has('name')">{{ errors.first('name') }}</span>
             <fieldset class="field-text">
                 <input v-validate="{ rules: { required: true, email: true } }" type="email" name="email"
                        v-model="user.email" autocomplete="off" required>
                 <hr>
-                <label>Email</label>
+                <label>Почта</label>
             </fieldset>
             <span class="error" v-show="errors.has('email')">{{ errors.first('email') }}</span>
             <fieldset class="field-text">
                 <input type="password" name="password" v-model="user.password" autocomplete="off"
                        required>
                 <hr>
-                <label>Password</label>
+                <label>Пароль</label>
             </fieldset>
-            <button class="ripple" type="submit">Save</button>
+            <button class="ripple" type="submit">Сохранить</button>
         </form>
         <access-denied v-else></access-denied>
     </div>

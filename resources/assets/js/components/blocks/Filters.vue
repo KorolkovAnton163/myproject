@@ -7,10 +7,10 @@
             </div>
         </h3>
         <div v-show="show">
-            <label for="years" >Year</label>
+            <label for="years" >Год</label>
             <div class="select-field" v-if="years">
                 <select id="years" v-model="currentYear" @change="addYear">
-                    <option value="">no choosen</option>
+                    <option value="">не выбрано</option>
                     <option v-for="year in years" :value="year">{{ year }}</option >
                 </select>
             </div>
