@@ -9,7 +9,7 @@
                             {{ post.title }}
                         </router-link>
                     </h2>
-                    <post-description :post="post"></post-description>
+                    <post-description :entry="post"></post-description>
                 </div>
                 <pagination :params="params" :callback="getPosts"></pagination>
             </div>
