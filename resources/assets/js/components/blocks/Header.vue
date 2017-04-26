@@ -46,7 +46,8 @@
                 }
             },
             checkIsAccount () {
-                this.isAccount = (this.$route.path.indexOf('account') !== -1);
+                this.isAccount = (this.$route.path.indexOf('profile') !== -1) ||
+                    (this.$route.path.indexOf('admin') !== -1);
             }
         },
         created () {
