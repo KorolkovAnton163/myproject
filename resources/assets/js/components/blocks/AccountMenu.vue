@@ -1,7 +1,7 @@
 <template>
     <div class="account-menu">
         <div class="menu-wrapper" v-if="user">
-            <router-link :to="{ name:'profile' }">Профиль</router-link>
+            <router-link :to="{ name:'profile' }" exact>Профиль</router-link>
             <router-link class="bookmark" :to="{ name:'bookmarks' }">Закладки</router-link>
             <router-link v-if="user && user.canRolesEdit" :to="{ name:'role-edit' }">Роли</router-link>
             <router-link v-if="user && user.canUsersEdit" :to="{ name:'users' }">Пользователи</router-link>
