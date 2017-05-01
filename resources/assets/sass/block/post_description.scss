@@ -57,6 +57,12 @@
 }
 @media screen and (max-width: 500px) {
     .description-container {
+        .image-block {
+            img {
+                max-width: inherit;
+                max-height: inherit;
+            }
+        }
         .description-block {
             font-size: 1.2em;
         }
