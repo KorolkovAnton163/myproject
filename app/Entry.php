@@ -31,6 +31,11 @@ class Entry extends Model
         return $this->hasMany(Title::class);
     }
 
+    public function videos()
+    {
+        return $this->belongsToMany(Video::class);
+    }
+
     public function setAliasAttribute($value)
     {
         $this->attributes['alias'] = str_slug($value);

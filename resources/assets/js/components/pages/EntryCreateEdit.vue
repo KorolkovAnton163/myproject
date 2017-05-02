@@ -54,6 +54,27 @@
                 <image-uploader :image="image"></image-uploader>
                 <input v-validate="{ rules: { required: true } }" type="hidden" name="image" v-model="image.id">
                 <span class="error" v-show="errors.has('image')">{{ errors.first('image') }}</span>
+                <div class="videos">
+                    <span>Видео</span>
+                    <a class="button-add" @click.prevent="addVideo">
+                        <svg class="svg-icon">
+                            <use xlink:href="#icon-plus"></use>
+                        </svg>
+                        добавить
+                    </a>
+                    <div class="video-container" v-for="video in videos">
+                        <fieldset class="field-text">
+                            <input type="text" name="title" v-model="video.url" autocomplete="off" required>
+                            <hr>
+                            <label>Ссылка на видео</label>
+                        </fieldset>
+                        <a class="delete" @click.prevent="removeVideo(video)">
+                            <svg class="svg-icon">
+                                <use xlink:href="#icon-delete"></use>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
                 <button type="submit" class="ripple">Save</button>
             </form>
         </div>
@@ -68,7 +89,8 @@
                 tags: {},
                 image: {},
                 titles: [],
-                years: []
+                years: [],
+                videos: []
             }
         },
         computed: {
@@ -89,12 +111,7 @@
             getEntry () {
                 if (this.$route.params.id !== 'undefined' && this.$route.params.id) {
                     this.$http.post(location.origin + '/entry/' + this.$route.params.id).then((responce) => {
-                        this.entry = responce.data.entry;
-                        this.tags = responce.data.tags;
-                        this.years = responce.data.years;
-                        this.titles = responce.data.entry.titles;
-                        this.image = !_.isEmpty(responce.data.entry.image) ? responce.data.entry.image : {};
-                        this.fillData();
+                        this.fillData(responce.data);
                     }, (responce) => {
                         this.user.canEntryEdit = false;
                     });
@@ -111,10 +128,12 @@
             save () {
                 this.$validator.validateAll().then(() => {
                     this.entry['titles'] = this.titles;
+                    this.entry['videos'] = this.videos;
                     this.$http.post(location.origin + (this.entry.id ? '/entry/' + this.entry.id + '/update' : '/entry/store'), this.entry).then((responce) => {
                         if (typeof this.entry.id == 'undefined') {
                             this.entry = {};
                             this.titles = [];
+                            this.videos = [];
                             this.clearTags();
                         }
                         this.$root.$emit('success', 'Save success.');
@@ -125,7 +144,14 @@
                     //
                 });
             },
-            fillData () {
+            fillData (data) {
+                this.entry = data.entry;
+                this.tags = data.tags;
+                this.years = data.years;
+                this.titles = data.entry.titles;
+                this.videos = data.entry.videos;
+                this.image = !_.isEmpty(data.entry.image) ? data.entry.image : {};
+
                 this.tags.forEach((item) => {
                     item.checked = (this.entry.tags.indexOf(item.id) !== -1);
                 });
@@ -155,6 +181,12 @@
             },
             addTitle () {
                 this.titles.push({name: ''});
+            },
+            addVideo () {
+                this.videos.push({url: ''})
+            },
+            removeVideo (video) {
+                this.videos.splice(this.videos.indexOf(video), 1);
             }
         },
         created () {

@@ -10,6 +10,7 @@ use App\Http\Requests\RequestEntryStore;
 use App\Http\Requests\RequestEntryUpdate;
 use App\Tag;
 use App\Title;
+use App\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -129,7 +130,7 @@ class EntryController extends Controller
         $entry->images()->sync($input['image']['id']);
         $entry->tags()->sync($input['tags']);
 
-        Title::where('entry_id', $entry->id)->delete();
+        $entry->titles()->delete();
         foreach ($input['titles'] as $title) {
             $title = new Title([
                 'entry_id' => $entry->id,
@@ -137,6 +138,17 @@ class EntryController extends Controller
             ]);
             $title->save();
         }
+
+        $videos = [];
+        $entry->videos()->delete();
+        foreach ($input['videos'] as $video) {
+            $video = new Video([
+                'url' => $video['url'],
+            ]);
+            $video->save();
+            $videos[] = $video->id;
+        }
+        $entry->videos()->sync($videos);
     }
 
     public function getNew(Request $request)

@@ -46,6 +46,7 @@ class EntryPresenter extends Presenter
             'image' => !empty($this->image()['id']) ? $this->image() : [],
             'tags' => $this->entity->tags->pluck('id'),
             'titles' => $this->entity->titles,
+            'videos' => $this->entity->videos,
         ];
     }
 
