@@ -98,6 +98,13 @@
                 return this.$store.getters.user
             }
         },
+        watch: {
+            '$route.params.id' (newVal, oldVal) {
+                if (+newVal !== +oldVal) {
+                    this.getEntry();
+                }
+            }
+        },
         mounted () {
             this.$on('imageUpload', (image) => {
                 this.image = image;
@@ -117,7 +124,7 @@
                     });
                 } else {
                     this.$http.post(location.origin + '/entry').then((responce) => {
-                        this.entry = {};
+                        this.clearData();
                         this.tags = responce.data.tags;
                         this.years = responce.data.years;
                     }, (responce) => {
@@ -131,9 +138,7 @@
                     this.entry['videos'] = this.videos;
                     this.$http.post(location.origin + (this.entry.id ? '/entry/' + this.entry.id + '/update' : '/entry/store'), this.entry).then((responce) => {
                         if (typeof this.entry.id == 'undefined') {
-                            this.entry = {};
-                            this.titles = [];
-                            this.videos = [];
+                            this.clearData();
                             this.clearTags();
                         }
                         this.$root.$emit('success', 'Save success.');
@@ -155,6 +160,12 @@
                 this.tags.forEach((item) => {
                     item.checked = (this.entry.tags.indexOf(item.id) !== -1);
                 });
+            },
+            clearData () {
+                this.entry = {};
+                this.image = {};
+                this.titles = [];
+                this.videos = [];
             },
             changeTag (e) {
                 let val = parseInt(e.target.getAttribute('value'));
