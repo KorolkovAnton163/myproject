@@ -74,6 +74,7 @@
                     query['tags'] = this.inputTags.join('-tag-');
                 } else {
                     delete query['tags'];
+                    delete query['page'];
                 }
 
                 this.$router.push({name: 'posts', query: query});
