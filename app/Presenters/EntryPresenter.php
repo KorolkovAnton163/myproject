@@ -33,6 +33,14 @@ class EntryPresenter extends Presenter
             'image' => $this->image(),
             'tags' => $this->entity->tags,
             'titles' => $this->entity->titles,
+            'videos' => $this->entity->videos->map(function ($video) {
+                return [
+                    'id' => $video->id,
+                    'url' => $video->url,
+                    'active' => false,
+                ];
+            }),
+            'videosCount' => $this->entity->videos()->count(),
         ];
     }
 

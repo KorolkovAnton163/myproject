@@ -140,7 +140,9 @@ class EntryController extends Controller
         }
 
         $videos = [];
-        $entry->videos()->delete();
+        Video::whereHas('entries', function ($query) use ($entry) {
+            $query->where('id', $entry->id);
+        })->delete();
         foreach ($input['videos'] as $video) {
             $video = new Video([
                 'url' => $video['url'],

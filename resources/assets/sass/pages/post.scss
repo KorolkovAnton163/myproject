@@ -14,6 +14,84 @@
             }
         }
     }
+    .videos-container {
+        display: flex;
+        flex-direction: row;
+        margin: 40px auto;
+        .videos-wrapper {
+            flex: 1 0 auto;
+            position: relative;
+            .video {
+                text-align: center;
+                position: relative;
+                iframe {
+                    max-width: 640px;
+                }
+                .video-bookmark {
+                    position: absolute;
+                    right: 35px;
+                    top: 0;
+                    .svg-icon {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+            .video-loader-container {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 99%;
+                z-index: -1;
+                padding: 0 12%;
+                box-sizing: border-box;
+                .video-loader {
+                    background: $black;
+                    text-align: center;
+                    color: $white;
+                    height: 99%;
+                    padding-top: 28%;
+                    box-sizing: border-box;
+                }
+            }
+        }
+        .videos-navigation-wrapper {
+            flex: 0 0 auto;
+            .navigation-item {
+                display: block;
+                box-sizing: border-box;
+                font-size: 1.2em;
+                font-weight: 400;
+                &.active {
+                   background: $lynch;
+                    cursor: default;
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .single-post-page-container {
+        .videos-container {
+            flex-direction: column;
+            .videos-wrapper {
+                .video {
+                    padding: 0 0 40px;
+                    .video-bookmark {
+                        top: inherit;
+                        right: 0;
+                        bottom: 0;
+                    }
+                }
+                .video-loader-container {
+                    height: 90.81%;
+                    padding: 0;
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 550px) {
