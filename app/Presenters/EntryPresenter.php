@@ -34,7 +34,7 @@ class EntryPresenter extends Presenter
             'tags' => $this->entity->tags,
             'titles' => $this->entity->titles,
             'videos' => $this->entity->videos()->orderBy('id')->get()->map(function ($video) use ($user) {
-                return $video->present()->entry($user);
+                return $video->present()->show($user);
             }),
             'videosCount' => $this->entity->videos()->count(),
         ];
@@ -50,7 +50,9 @@ class EntryPresenter extends Presenter
             'image' => !empty($this->image()['id']) ? $this->image() : [],
             'tags' => $this->entity->tags->pluck('id'),
             'titles' => $this->entity->titles,
-            'videos' => $this->entity->videos,
+            'videos' => $this->entity->videos()->orderBy('id')->get()->map(function ($video) {
+                return $video->present()->edit();
+            }),
         ];
     }
 

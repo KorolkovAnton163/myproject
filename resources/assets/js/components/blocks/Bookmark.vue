@@ -23,12 +23,14 @@
             addBookmark () {
                 this.$http.post(location.origin + '/bookmarks/' + this.post.id + '/store').then((responce) => {
                     this.post.bookmark = true;
+                    this.$root.$emit('success', 'Добавлино в закладки.');
                 });
             },
             removeBookmark () {
                 this.$http.post(location.origin + '/bookmarks/' + this.post.id + '/destroy').then((responce) => {
                     this.post.bookmark = false;
                     this.$root.$emit('removeBookmark');
+                    this.$root.$emit('success', 'Удалено из закладок.');
                 });
             }
         }

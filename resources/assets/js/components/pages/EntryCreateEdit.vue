@@ -90,7 +90,8 @@
                 image: {},
                 titles: [],
                 years: [],
-                videos: []
+                videos: [],
+                removedVideos: []
             }
         },
         computed: {
@@ -136,6 +137,7 @@
                 this.$validator.validateAll().then(() => {
                     this.entry['titles'] = this.titles;
                     this.entry['videos'] = this.videos;
+                    this.entry['removedVideos'] = this.removedVideos;
                     this.$http.post(location.origin + (this.entry.id ? '/entry/' + this.entry.id + '/update' : '/entry/store'), this.entry).then((responce) => {
                         if (typeof this.entry.id == 'undefined') {
                             this.clearData();
@@ -197,6 +199,7 @@
                 this.videos.push({url: ''})
             },
             removeVideo (video) {
+                this.removedVideos.push(video);
                 this.videos.splice(this.videos.indexOf(video), 1);
             }
         },
