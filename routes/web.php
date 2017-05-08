@@ -50,6 +50,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/{entry}/update', 'EntryController@update');
     });
 
+    Route::group(['prefix' => 'videos'], function () {
+       Route::post('/{entry}/{video}/bookmark', 'VideoController@bookmark');
+    });
+
     Route::group(['prefix' => 'tags'], function () {
         Route::post('/', 'TagController@index');
         Route::post('/store', 'TagController@store');

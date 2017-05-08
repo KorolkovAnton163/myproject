@@ -5,7 +5,7 @@
             <router-link class="bookmark" :to="{ name:'bookmarks' }">Закладки</router-link>
             <router-link v-if="user && user.canRolesEdit" :to="{ name:'role-edit' }">Роли</router-link>
             <router-link v-if="user && user.canUsersEdit" :to="{ name:'users' }">Пользователи</router-link>
-            <router-link v-if="user && user.canEntryEdit" :to="{ name:'entry-edit' }">Записи</router-link>
+            <router-link v-if="user && user.canEntryEdit" :to="{ name:'entry-edit' }">Запись</router-link>
             <router-link v-if="user && user.canTagsEdit" :to="{ name:'tags' }">Тэги</router-link>
         </div>
     </div>

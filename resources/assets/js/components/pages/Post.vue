@@ -4,11 +4,12 @@
         <div class="post-container" v-if="post">
             <h2>{{ post.title }}</h2>
             <post-description :entry="post" :button="false"></post-description>
-            <div class="videos-container" v-if="post.videos">
+            <div class="videos-container" v-if="isVideos">
                 <div class="videos-wrapper">
-                    <div class="video" v-for="video in post.videos" v-if="video.active">
+                    <div class="video" v-for="video in post.videos" v-show="video.active">
                         <iframe width="100%" height="390" :src="video.url" frameborder="0" allowfullscreen></iframe>
-                        <a v-if="user" class="video-bookmark" title="Закладка на видео" @click.prevent="addVideoBookmark(video)">
+                        <a v-if="user" class="video-bookmark ripple-effect" title="Закладка на видео"
+                           :class="{ active : video.bookmark }" @click.prevent="addVideoBookmark(video)">
                             <svg class="svg-icon">
                                 <use xlink:href="#icon-bookmark"></use>
                             </svg>
@@ -39,6 +40,7 @@
             return {
                 post: null,
                 noPost: false,
+                isVideos: false,
                 loading: false
             }
         },
@@ -63,6 +65,7 @@
                 this.loading = true;
                 this.$http.post(location.origin + '/entries/' + alias + '/show').then((responce) => {
                     this.post = responce.data;
+                    this.isVideos = responce.data.videos.length;
                     this.setActiveVideo();
                     this.loading = false;
                 }, (responce) => {
@@ -78,12 +81,28 @@
                         });
                         video.active = true;
                     } else {
-                        this.post.videos[0].active = true;
+                        let bookmark = this.post.videos.filter((item) => {
+                            return item.bookmark;
+                        });
+                        if (!bookmark.length) {
+                            this.post.videos[0].active = true;
+                        } else {
+                            this.post.videos.forEach((item) => {
+                                item.active = item.bookmark;
+                            });
+                        }
                     }
                 }
             },
             addVideoBookmark (video) {
-                console.log(video.id)
+                this.$http.post(location.origin + '/videos/' + this.post.id + '/' + video.id + '/bookmark').then((responce) => {
+                    this.post.videos.forEach((item) => {
+                        item.bookmark = (item.id == video.id);
+                    });
+                    this.$root.$emit('success', 'Закладка на видео добавлена.');
+                }, (responce) => {
+                    this.$root.$emit('fail', responce);
+                });
             }
         },
         created () {

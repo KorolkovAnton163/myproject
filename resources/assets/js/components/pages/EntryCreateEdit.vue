@@ -141,7 +141,7 @@
                             this.clearData();
                             this.clearTags();
                         }
-                        this.$root.$emit('success', 'Save success.');
+                        this.$root.$emit('success', 'Запись сохранена.');
                     }, (responce) => {
                         this.$root.$emit('fail', responce);
                     });

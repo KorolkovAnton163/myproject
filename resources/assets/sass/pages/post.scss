@@ -35,6 +35,11 @@
                         width: 30px;
                         height: 30px;
                     }
+                    &.active {
+                        .svg-icon {
+                            fill: $pomegranate;
+                        }
+                    }
                 }
             }
             .video-loader-container {

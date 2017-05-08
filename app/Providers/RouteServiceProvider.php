@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Entry;
 use App\Tag;
 use App\User;
+use App\Video;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -32,6 +33,7 @@ class RouteServiceProvider extends ServiceProvider
         Route::model('user', User::class);
         Route::model('entry', Entry::class);
         Route::model('tag', Tag::class);
+        Route::model('video', Video::class);
 
         Route::bind('entryByAlias', function ($value) {
             $entry = Entry::where('alias', $value)->first();
