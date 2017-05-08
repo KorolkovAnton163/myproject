@@ -141,13 +141,16 @@ class EntryController extends Controller
 
         $videos = [];
         foreach ($input['videos'] as $video) {
-            $existVideo = Video::where('url', $video['url'])->first();
+            $existVideo = Video::find($video['id']);
             if (!$existVideo) {
                 $newVideo = new Video([
                     'url' => $video['url'],
                 ]);
                 $newVideo->save();
                 $videos[] = $newVideo->id;
+            } else {
+                $existVideo->url = $video['url'];
+                $existVideo->save();
             }
         }
         $entry->videos()->sync($videos, false);
