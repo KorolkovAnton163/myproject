@@ -2,10 +2,16 @@
 
 namespace App;
 
+use App\Presenters\VideoPresenter;
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
 
 class Video extends Model
 {
+    use PresentableTrait;
+
+    protected $presenter = VideoPresenter::class;
+
     protected $fillable = [
         'url',
     ];

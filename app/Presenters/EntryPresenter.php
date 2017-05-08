@@ -34,12 +34,7 @@ class EntryPresenter extends Presenter
             'tags' => $this->entity->tags,
             'titles' => $this->entity->titles,
             'videos' => $this->entity->videos->map(function ($video) use ($user) {
-                return [
-                    'id' => $video->id,
-                    'url' => $video->url,
-                    'active' => false,
-                    'bookmark' =>  $user ? (bool)$video->users()->where('users.id', $user->id)->first() : false,
-                ];
+                return $video->present()->entry($user);
             }),
             'videosCount' => $this->entity->videos()->count(),
         ];
