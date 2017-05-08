@@ -75,7 +75,7 @@
                         </a>
                     </div>
                 </div>
-                <button type="submit" class="ripple">Save</button>
+                <button type="submit" class="ripple">Сохранить</button>
             </form>
         </div>
         <access-denied v-else></access-denied>

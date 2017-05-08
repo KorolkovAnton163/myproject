@@ -16,7 +16,7 @@
                         </a>
                     </div>
                     <div class="video-loader-container">
-                        <div class="video-loader">Loading...</div>
+                        <div class="video-loader">Загрузка...</div>
                     </div>
                 </div>
                 <div class="videos-navigation-wrapper">
