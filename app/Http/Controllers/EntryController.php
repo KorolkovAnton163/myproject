@@ -148,15 +148,17 @@ class EntryController extends Controller
                 $newVideo->save();
                 $videos[] = $newVideo->id;
             } else {
-                Video::find($video['id'])->update([
-                   'url' => $video['url'],
+                $existVideo = Video::find($video['id']);
+                $existVideo->update([
+                    'url' => $video['url'],
                 ]);
+                $videos[] = $existVideo->id;
             }
         }
-        $entry->videos()->sync($videos, false);
         foreach ($input['removedVideos'] as $removedVideo) {
             Video::find($removedVideo['id'])->delete();
         }
+        $entry->videos()->sync($videos);
     }
 
     public function getNew(Request $request)
