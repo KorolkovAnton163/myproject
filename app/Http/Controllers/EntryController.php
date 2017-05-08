@@ -140,17 +140,17 @@ class EntryController extends Controller
         }
 
         $videos = [];
-        Video::whereHas('entries', function ($query) use ($entry) {
-            $query->where('id', $entry->id);
-        })->delete();
         foreach ($input['videos'] as $video) {
-            $video = new Video([
-                'url' => $video['url'],
-            ]);
-            $video->save();
-            $videos[] = $video->id;
+            $existVideo = Video::where('url', $video['url'])->first();
+            if (!$existVideo) {
+                $newVideo = new Video([
+                    'url' => $video['url'],
+                ]);
+                $newVideo->save();
+                $videos[] = $newVideo->id;
+            }
         }
-        $entry->videos()->sync($videos);
+        $entry->videos()->sync($videos, false);
     }
 
     public function getNew(Request $request)

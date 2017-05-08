@@ -6,7 +6,7 @@
             <post-description :entry="post" :button="false"></post-description>
             <div class="videos-container" v-if="isVideos">
                 <div class="videos-wrapper">
-                    <div class="video" v-for="video in post.videos" v-show="video.active">
+                    <div class="video" v-for="video in post.videos" v-if="video.active">
                         <iframe width="100%" height="390" :src="video.url" frameborder="0" allowfullscreen></iframe>
                         <a v-if="user" class="video-bookmark ripple-effect" title="Закладка на видео"
                            :class="{ active : video.bookmark }" @click.prevent="addVideoBookmark(video)">
