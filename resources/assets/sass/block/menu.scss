@@ -6,6 +6,7 @@
     top: 0;
     background: $white;
     box-sizing: border-box;
+    line-height: 50px;
     z-index: 1000;
     &.shadow {
         box-shadow: 0 1px 1px rgba(0, 0, 0, .3);
@@ -34,7 +35,6 @@
                 height: 50px;
                 color: $slateGray;
                 float: left;
-                padding: 13px 12px;
                 box-sizing: border-box;
                 &:hover {
                     text-decoration: none;
@@ -48,7 +48,7 @@
         .user-container {
             flex: 0 0 auto;
             .user-section {
-                padding: 14px 20px;
+                padding: 0 20px;
                 a {
                     margin: 0 10px;
                     .svg-icon {
@@ -62,7 +62,6 @@
                 }
             }
             .login-section {
-                padding: 14px 10px;
                 display: flex;
                 flex-direction: row;
                 .popup-container {
@@ -118,7 +117,7 @@
                         margin: 0;
                         float: none;
                         display: block;
-                        padding: 13px 12px;
+                        padding: 0 12px;
                         &.bookmark {
                             display: none;
                         }
@@ -130,6 +129,7 @@
                 a {
                     float: none;
                     display: block;
+                    padding: 0 12px;
                 }
             }
             .user-container {
@@ -137,7 +137,6 @@
                 .user-section {
                     a {
                         display: block;
-                        margin: 10px;
                         text-align: center;
                     }
                     .logout {
@@ -156,8 +155,9 @@
                 }
                 .login-section {
                     flex-direction: column;
+                    padding: 0 12px;
                     .popup-container {
-                        margin: 10px 0;
+                        margin: 0;
                     }
                 }
             }
