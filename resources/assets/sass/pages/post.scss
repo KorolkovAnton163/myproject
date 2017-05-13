@@ -63,7 +63,6 @@
         .videos-navigation-wrapper {
             flex: 0 0 auto;
             max-height: 390px;
-            overflow-y: scroll;
             .navigation-item {
                 display: block;
                 box-sizing: border-box;
@@ -77,6 +76,9 @@
                 &:hover {
                     text-decoration: none;
                 }
+            }
+            &.overflow {
+                overflow-y: scroll;
             }
         }
     }

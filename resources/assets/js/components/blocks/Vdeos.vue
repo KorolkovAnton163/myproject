@@ -14,7 +14,7 @@
                 <div class="video-loader">Загрузка...</div>
             </div>
         </div>
-        <div class="videos-navigation-wrapper" v-if="showNavigation">
+        <div class="videos-navigation-wrapper" v-if="showNavigation" :class="{ overflow: overflowNavigation }">
             <a class="navigation-item ripple" v-for="(video, index) in entry.videos"
                :class="{ active : video.active }" @click.prevent="setActiveVideo(video)">
                 Эпизод #{{index + 1}}
@@ -26,7 +26,8 @@
     module.exports = {
         data () {
             return {
-                showNavigation: true
+                showNavigation: true,
+                overflowNavigation: true
             }
         },
         props: {
@@ -43,6 +44,7 @@
             'entry' (newVal, oldVal) {
                 if (+newVal !== +oldVal) {
                     this.setActiveVideo();
+                    this.prepareNavigation();
                 }
             }
         },
@@ -65,7 +67,10 @@
                         });
                     }
                 }
+            },
+            prepareNavigation () {
                 this.showNavigation = this.entry.videos.length > 1;
+                this.overflowNavigation = this.entry.videos.length > 7;
             },
             addVideoBookmark (video) {
                 this.$http.post(location.origin + '/videos/' + this.entry.id + '/' + video.id + '/bookmark').then((responce) => {
@@ -80,6 +85,7 @@
         },
         created () {
             this.setActiveVideo();
+            this.prepareNavigation();
         }
     }
 </script>
