@@ -3,7 +3,7 @@
         <div class="videos-wrapper">
             <div class="video" v-for="video in entry.videos" v-if="video.active">
                 <iframe width="100%" height="390" :src="video.url" frameborder="0" allowfullscreen></iframe>
-                <a v-if="user" class="video-bookmark ripple-effect" title="Закладка на видео"
+                <a v-if="user && showNavigation" class="video-bookmark ripple-effect" title="Закладка на видео"
                    :class="{ active : video.bookmark }" @click.prevent="addVideoBookmark(video)">
                     <svg class="svg-icon">
                         <use xlink:href="#icon-bookmark"></use>
@@ -14,7 +14,7 @@
                 <div class="video-loader">Загрузка...</div>
             </div>
         </div>
-        <div class="videos-navigation-wrapper">
+        <div class="videos-navigation-wrapper" v-if="showNavigation">
             <a class="navigation-item ripple" v-for="(video, index) in entry.videos"
                :class="{ active : video.active }" @click.prevent="setActiveVideo(video)">
                 Эпизод #{{index + 1}}
@@ -24,6 +24,11 @@
 </template>
 <script>
     module.exports = {
+        data () {
+            return {
+                showNavigation: true
+            }
+        },
         props: {
             entry: {
                 type: Object
@@ -35,7 +40,7 @@
             }
         },
         watch: {
-            'videos' (newVal, oldVal) {
+            'entry' (newVal, oldVal) {
                 if (+newVal !== +oldVal) {
                     this.setActiveVideo();
                 }
@@ -43,25 +48,24 @@
         },
         methods: {
             setActiveVideo (video) {
-                if (this.entry.videos.length) {
-                    if (!!video) {
-                        this.entry.videos.forEach((item) => {
-                            item.active = false;
-                        });
-                        video.active = true;
+                if (!!video) {
+                    this.entry.videos.forEach((item) => {
+                        item.active = false;
+                    });
+                    video.active = true;
+                } else {
+                    let bookmark = this.entry.videos.filter((item) => {
+                        return item.bookmark;
+                    });
+                    if (!bookmark.length) {
+                        this.entry.videos[0].active = true;
                     } else {
-                        let bookmark = this.entry.videos.filter((item) => {
-                            return item.bookmark;
+                        this.entry.videos.forEach((item) => {
+                            item.active = item.bookmark;
                         });
-                        if (!bookmark.length) {
-                            this.entry.videos[0].active = true;
-                        } else {
-                            this.entry.videos.forEach((item) => {
-                                item.active = item.bookmark;
-                            });
-                        }
                     }
                 }
+                this.showNavigation = this.entry.videos.length > 1;
             },
             addVideoBookmark (video) {
                 this.$http.post(location.origin + '/videos/' + this.entry.id + '/' + video.id + '/bookmark').then((responce) => {
