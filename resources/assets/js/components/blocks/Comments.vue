@@ -73,7 +73,7 @@
 
                     this.$http.post(location.origin + '/comments/' + this.entry.id + '/' + user.id + '/store', formData).then((responce) => {
                         this.comment = null;
-                        this.comments = responce.data.comment;
+                        this.comments = responce.data.comments;
                         this.params.total = parseInt(responce.data.count);
                         this.$root.$emit('success', 'Комментарий добавлен.');
                     }, (responce) => {
