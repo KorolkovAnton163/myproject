@@ -37,9 +37,6 @@ class EntryPresenter extends Presenter
                 return $video->present()->show($user);
             }),
             'videosCount' => $this->entity->videos()->count(),
-            'comments' => $this->entity->comments()->orderBy('created_at', 'desc')->get()->map(function ($comment) {
-                return $comment->present()->listing();
-            }),
         ];
     }
 

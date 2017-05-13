@@ -52,7 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'comments'], function () {
-       Route::post('{entry}/{user}/store', 'CommentController@store');
+        Route::post('{entry}/show', 'CommentController@show');
+        Route::post('{entry}/{user}/store', 'CommentController@store');
     });
 
     Route::group(['prefix' => 'videos'], function () {

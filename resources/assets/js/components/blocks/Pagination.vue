@@ -82,12 +82,14 @@
                 }
             },
             changePage (page) {
-                let query = Object.assign({}, this.$route.query);
-
-                query['page'] = page;
-
                 this.$set(this.params, 'current_page', page);
-                this.$router.push({name: this.params.url_params, query: query});
+
+                if (this.params.url_params) {
+                    let query = Object.assign({}, this.$route.query);
+
+                    query['page'] = page;
+                    this.$router.push({name: this.params.url_params, query: query});
+                }
                 this.callback();
             },
             calculatePage () {

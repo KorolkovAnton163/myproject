@@ -14,7 +14,7 @@ class RequestCommentStore extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'string'
+            'text' => 'required|string'
         ];
     }
 }
