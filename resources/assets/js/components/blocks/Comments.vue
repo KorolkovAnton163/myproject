@@ -15,7 +15,7 @@
                 <label>Комментарий</label>
             </fieldset>
             <span class="error" v-show="errors.has('text')">{{ errors.first('text') }}</span>
-            <button type="submit" class="ripple">Сохранить</button>
+            <button type="submit" class="ripple">Отправить</button>
         </form>
         <h3 v-else>Только зарегистрированные пользователи могут оставлять комментарии.</h3>
     </div>
