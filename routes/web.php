@@ -25,6 +25,10 @@ Route::group(['prefix' => 'entries'], function () {
     Route::post('/new', 'EntryController@getNew');
 });
 
+Route::group(['prefix' => 'comments'], function() {
+    Route::post('{entry}/show', 'CommentController@show');
+});
+
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'bookmarks'], function () {
         Route::post('/', 'BookmarkController@index');
@@ -52,7 +56,6 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'comments'], function () {
-        Route::post('{entry}/show', 'CommentController@show');
         Route::post('{entry}/{user}/store', 'CommentController@store');
     });
 
