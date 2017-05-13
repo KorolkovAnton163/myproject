@@ -1,0 +1,28 @@
+.comments-container {
+    margin: 20px auto;
+    h3 {
+        margin: 20px auto;
+    }
+    .comments-wrapper {
+        .comment {
+            margin: 20px 0;
+            .comment-header {
+                padding: 10px 20px;
+                box-sizing: border-box;
+                background: $mariner;
+                color: $white;
+                font-weight: 700;
+                span {
+                    font-weight: 300;
+                }
+            }
+            .comment-text {
+                padding: 20px;
+                box-sizing: border-box;
+            }
+            &:last-of-type {
+                border-bottom: 1px solid $alto;
+            }
+        }
+    }
+}

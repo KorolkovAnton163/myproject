@@ -31,9 +31,15 @@ class Entry extends Model
         return $this->hasMany(Title::class);
     }
 
+    // TODO Rewrite relation on hasMany
     public function videos()
     {
         return $this->belongsToMany(Video::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function setAliasAttribute($value)

@@ -4,6 +4,7 @@
         <div class="post-container" v-if="post">
             <h2>{{ post.title }}</h2>
             <post-description :entry="post" :button="false"></post-description>
+            <!-- TODO Move video in other block -->
             <div class="videos-container" v-if="isVideos">
                 <div class="videos-wrapper">
                     <div class="video" v-for="video in post.videos" v-if="video.active">
@@ -26,6 +27,7 @@
                     </a>
                 </div>
             </div>
+            <comments :entry="post"></comments>
         </div>
         <div class="page-not-found" v-else-if="noPost">
             <cat></cat>
@@ -58,7 +60,8 @@
         },
         components: {
             'post-description': require('../blocks/PostDescription.vue'),
-            'loader': require('../blocks/Loader.vue')
+            'loader': require('../blocks/Loader.vue'),
+            'comments': require('../blocks/Comments.vue')
         },
         methods: {
             getSinglePost (alias) {

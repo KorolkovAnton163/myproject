@@ -43,11 +43,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/{user}/update', 'UserController@update');
     });
 
+    // TODO rename prefix on entries
     Route::group(['prefix' => 'entry'], function () {
         Route::post('/', 'EntryController@create');
         Route::post('/store', 'EntryController@store');
         Route::post('/{entry}', 'EntryController@edit');
         Route::post('/{entry}/update', 'EntryController@update');
+    });
+
+    Route::group(['prefix' => 'comments'], function () {
+       Route::post('{entry}/{user}/store', 'CommentController@store');
     });
 
     Route::group(['prefix' => 'videos'], function () {
