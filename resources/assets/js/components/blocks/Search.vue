@@ -33,6 +33,9 @@
                     this.show = false;
                 }
             });
+            this.$root.$on('clearSearch', () => {
+                this.searchQuery = null;
+            });
         },
         methods: {
             search () {

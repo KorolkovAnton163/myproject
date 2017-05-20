@@ -98,6 +98,7 @@
                 });
             },
             clearQuery () {
+                this.$root.$emit('clearSearch');
                 this.$router.push({name: 'posts'});
                 this.getPosts();
             }
