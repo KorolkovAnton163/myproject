@@ -72,6 +72,7 @@
                     this.$set(this.params, 'current_page', this.params.current_page - 1);
                     this.changePage(this.params.current_page);
                     this.callback();
+                    this.scrollTo();
                 }
             },
             showNext () {
@@ -79,6 +80,7 @@
                     this.$set(this.params, 'current_page', this.params.current_page + 1);
                     this.changePage(this.params.current_page);
                     this.callback();
+                    this.scrollTo();
                 }
             },
             changePage (page) {
@@ -91,10 +93,18 @@
                     this.$router.push({name: this.params.url_params, query: query});
                 }
                 this.callback();
+                this.scrollTo();
             },
             calculatePage () {
                 this.$set(this.params, 'pages', Math.ceil(this.params.total / this.params.on_page));
-            }
+            },
+            scrollTo () {
+                if (!!this.params.scroll_to) {
+                    $('html, body').animate({
+                        scrollTop: $(this.params.scroll_to).offset().top - 50
+                    }, 'slow');
+                }
+            },
         },
         created () {
             this.callback();

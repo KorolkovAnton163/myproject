@@ -31,7 +31,8 @@
                     total: 0,
                     on_page: 10,
                     current_page: 1,
-                    url_params: null
+                    url_params: null,
+                    scroll_to: '.comments-wrapper'
                 }
             }
         },

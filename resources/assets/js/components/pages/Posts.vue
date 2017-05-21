@@ -35,7 +35,8 @@
                     total: 0,
                     on_page: 10,
                     current_page: 1,
-                    url_params: 'posts'
+                    url_params: 'posts',
+                    scroll_to: '.posts-page-container'
                 },
                 loading: false
             }
