@@ -2,34 +2,39 @@
     margin: 0 1rem 0 0;
     cursor: pointer;
     position: relative;
-    top: -0.375rem;
-    &:before {
-        content: "";
-        position: absolute;
-        left: 0;
-        z-index: 1;
-        width: 1rem;
-        height: 1rem;
-        border: 2px solid $dustyGray;
-        transition: all 0.3s ease-in-out;
-    }
-    &:after {
-        content: "";
-        position: absolute;
-        top: -0.125rem;
-        left: 0;
-        width: 1.1rem;
-        height: 1.1rem;
-        background: $white;
-        cursor: pointer;
+    top: 0;
+    outline: none;
+    & + label {
+        &:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            z-index: 1;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid $dustyGray;
+            transition: all 0.3s ease-in-out;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1.1rem;
+            height: 1.1rem;
+            background: $white;
+            cursor: pointer;
+        }
     }
     &:checked {
-        &:before {
-            transform: rotate(-45deg);
-            height: .5rem;
-            border-color: $oceanGreen;
-            border-top-style: none;
-            border-right-style: none;
+        & + label {
+            &:before {
+                transform: rotate(-45deg);
+                height: .5rem;
+                border-color: $oceanGreen;
+                border-top-style: none;
+                border-right-style: none;
+            }
         }
     }
 }

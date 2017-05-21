@@ -15,10 +15,11 @@
                 </select>
             </div>
             <div class="tags-container" v-if="tags" :class="{'open': show}">
-                <label class="tag" v-for="tag in tags">
+                <div class="tag" v-for="tag in tags">
                     <input @click="addTag" class="checkbox" type="checkbox" name="tags"
-                           :id="tag.id" :value="tag.id" :checked="tag.checked">{{ tag.name }}
-                </label>
+                           :id="tag.id" :value="tag.id" :checked="tag.checked">
+                    <label :for="tag.id" >{{ tag.name }}</label>
+                </div>
             </div>
         </div>
     </div>
