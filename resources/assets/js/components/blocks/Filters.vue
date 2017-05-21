@@ -29,7 +29,7 @@
         data () {
             return {
                 inputTags: [],
-                show: window.innerWidth > 650,
+                show: window.innerWidth > 860,
                 currentYear: ''
             }
         },
@@ -43,7 +43,7 @@
         },
         mounted() {
             window.addEventListener('resize', () => {
-                this.show = window.innerWidth > 650;
+                this.show = window.innerWidth > 860;
             });
         },
         watch: {
@@ -96,7 +96,7 @@
                 this.$root.$emit('changeYear');
             },
             showTags () {
-                if (window.innerWidth < 650) {
+                if (window.innerWidth < 860) {
                     this.show = !this.show;
                 }
             },
