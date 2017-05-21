@@ -1,10 +1,10 @@
 .checkbox {
     margin: 0 1rem 0 0;
-    cursor: pointer;
     position: relative;
     top: 0;
     outline: none;
     & + label {
+        cursor: pointer;
         &:before {
             content: "";
             position: absolute;

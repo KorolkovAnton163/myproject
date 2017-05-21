@@ -13,12 +13,11 @@
                     <tbody>
                     <tr v-for="permission in permissions">
                         <td v-for="role in roles">
-                            <label class="checkbox-label">
-                                <input class="checkbox" type="checkbox" name="permissions"
-                                       @click="setPermission(role, permission)"
-                                       :checked="isActive(role, permission)">
-                                {{ permission.name }}
-                            </label>
+                            <div class="role">
+                                <input class="checkbox" type="checkbox" name="permissions" :id="getId(permission, role)"
+                                       @click="setPermission(role, permission)" :checked="isActive(role, permission)">
+                                <label :for="getId(permission, role)">{{ permission.name }}</label>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -46,6 +45,9 @@
             'popup-role-create': require('../blocks/PopupRoleCreate.vue'),
         },
         methods: {
+            getId (permission, role) {
+                return permission.id + '-' + role.id
+            },
             getRoles () {
                 this.$http.post(location.origin + '/roles').then((responce) => {
                     this.roles = responce.data.roles;

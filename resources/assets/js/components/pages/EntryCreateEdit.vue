@@ -3,12 +3,12 @@
         <div class="entry-container" v-if="user && user.canEntryEdit">
             <form @submit.prevent="save" novalidate>
                 <div class="tags-container" v-if="tags">
-                    <label class="tag" v-for="tag in tags">
-                        <input v-validate="{ rules: { required: true } }" @click="changeTag" class="checkbox"
-                               type="checkbox" name="tags" :value="tag.id" :checked="tag.checked">{{ tag.name }}
-                    </label>
+                    <div class="tag" v-for="tag in tags">
+                        <input @click="changeTag" class="checkbox"
+                               type="checkbox" name="tags" :id="tag.id" :value="tag.id" :checked="tag.checked">
+                        <label :for="tag.id" >{{ tag.name }}</label>
+                    </div>
                 </div>
-                <span class="error" v-show="errors.has('tags')">{{ errors.first('tags') }}</span>
                 <label for="year">Год</label>
                 <fieldset class="select-field">
                     <select id="year" v-validate="{ rules: { required: true } }" name="year" v-model="entry.year">

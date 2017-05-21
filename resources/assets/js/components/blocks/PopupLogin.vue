@@ -21,9 +21,10 @@
                     </fieldset>
                     <span class="error" v-show="errors.has('password')">{{ errors.first('password') }}</span>
                     <span class="error" v-if="error">{{ error }}</span>
-                    <label class="checkbox-label">
-                        <input class="checkbox" type="checkbox" name="remember_token">Запомнить
-                    </label>
+                    <div class="checkbox-label">
+                        <input class="checkbox" type="checkbox" id="remember" name="remember_token">
+                        <label for="remember">Запомнить</label>
+                    </div>
                     <button class="ripple">Войти</button>
                 </form>
             </div>
