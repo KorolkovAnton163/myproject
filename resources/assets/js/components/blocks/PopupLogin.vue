@@ -22,7 +22,7 @@
                         <input class="checkbox" type="checkbox" id="remember" name="remember_token">
                         <label for="remember">Запомнить</label>
                     </div>
-                    <button class="ripple">Войти</button>
+                    <button type="submit" class="ripple">Войти</button>
                 </form>
             </div>
         </div>
@@ -57,7 +57,7 @@
                 if (+newVal !== +oldVal) {
                     this.error.password = null;
                 }
-            },
+            }
         },
         methods: {
             togglePopup () {

@@ -49,9 +49,9 @@ return [
     'ip'                   => 'The :attribute must be a valid IP address.',
     'json'                 => 'The :attribute must be a valid JSON string.',
     'max'                  => [
-        'numeric' => 'The :attribute may not be greater than :max.',
-        'file'    => 'The :attribute may not be greater than :max kilobytes.',
-        'string'  => 'The :attribute may not be greater than :max characters.',
+        'numeric' => 'Число не должно быть больше :max.',
+        'file'    => 'Фаил не должен превышать :max килобайт.',
+        'string'  => 'Максимальная длина поля :max символов.',
         'array'   => 'The :attribute may not have more than :max items.',
     ],
     'mimes'                => 'The :attribute must be a file of type: :values.',
@@ -99,10 +99,12 @@ return [
 
     'custom' => [
         'email' => [
+            'unique' => 'Пользователь с таким адресом электронной почты уже существует.',
             'exists' => 'Неверный адрес электронной почты.',
         ],
         'password' => [
-            'password' => 'Неверный пароль.'
+            'password' => 'Неверный пароль.',
+            'confirmed' => 'Пароли не совпадают.'
         ]
     ],
 
