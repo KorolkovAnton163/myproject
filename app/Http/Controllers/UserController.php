@@ -49,22 +49,19 @@ class UserController extends Controller
 
     public function register(RequestUserStore $request)
     {
-        event(new Registered($user = $this->create($request->all())));
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'role_id' => Role::where('name', 'User')->first()->id,
+            'password' => $request->input('password'),
+        ]);
+
+        event(new Registered($user));
 
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
             ?: response()->json($user->present()->user());
-    }
-
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'role_id' => Role::where('name', 'User')->first()->id,
-            'password' => $data['password'],
-        ]);
     }
 
     public function login(RequestUserLogin $request)
@@ -81,7 +78,7 @@ class UserController extends Controller
 
         $this->incrementLoginAttempts($request);
 
-        return $this->sendFailedLoginResponse($request);
+        return response()->json([], 422);
     }
 
     public function logout(Request $request)
@@ -101,38 +98,14 @@ class UserController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        return $this->authenticated($request, $this->guard()->user())
-            ?: response()->json(Auth::user()->present()->user());
-    }
-
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        $errors = ['email' => trans('auth.failed')];
-
-        if ($request->expectsJson()) {
-            return response()->json($errors, 422);
-        }
-
-        return redirect()->back()
-            ->withInput($request->only($this->username(), 'remember'))
-            ->withErrors($errors);
-    }
-
-    protected function authenticated(Request $request, $user)
-    {
-        //
+        return response()->json(Auth::user()->present()->user());
     }
 
     protected function attemptLogin(Request $request)
     {
         return $this->guard()->attempt(
-            $this->credentials($request), $request->has('remember')
+            $request->only($this->username(), 'password'), $request->has('remember')
         );
-    }
-
-    protected function credentials(Request $request)
-    {
-        return $request->only($this->username(), 'password');
     }
 
     protected function username()

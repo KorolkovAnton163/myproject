@@ -14,8 +14,8 @@ class RequestUserLogin extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'password' => 'required',
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:6|max:25|password:' . $this->input('email'),
         ];
     }
 }
