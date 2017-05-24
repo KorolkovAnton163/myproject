@@ -69,4 +69,9 @@
         transition: transform 300ms ease;
         pointer-events: none;
     }
+    &.error {
+        label {
+            color: $pomegranate;
+        }
+    }
 }

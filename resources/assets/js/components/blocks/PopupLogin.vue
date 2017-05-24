@@ -6,13 +6,13 @@
             <div>Вход</div>
             <div class="content">
                 <form @submit.prevent="login" novalidate>
-                    <fieldset class="field-text">
+                    <fieldset class="field-text" :class="{ error: error.email }">
                         <input v-model="email" type="email" name="email" required>
                         <hr>
                         <label>Почта</label>
                     </fieldset>
                     <span class="error" v-if="error.email">{{ error.email }}</span>
-                    <fieldset class="field-text">
+                    <fieldset class="field-text" :class="{ error: error.password }">
                         <input v-model="password" type="password" name="password" required>
                         <hr>
                         <label>Пароль</label>
