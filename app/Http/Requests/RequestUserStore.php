@@ -8,7 +8,7 @@ class RequestUserStore extends FormRequest
 {
     public function authorize()
     {
-        return true;
+        return auth()->guest();
     }
 
     public function rules()

@@ -36,6 +36,7 @@
         box-shadow: 0 1px 4px rgba(0, 0, 0, .8);
     }
     &:active {
+        outline: none;
         transition: .2s;
         box-shadow: 0 1px 4px transparent;
     }

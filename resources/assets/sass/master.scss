@@ -24,6 +24,7 @@ a {
     color: $oceanGreen;
     cursor: pointer;
     text-decoration: none;
+    outline: none;
 }
 
 a:hover {
@@ -62,11 +63,4 @@ body {
     padding: 20px 0;
     flex: 1 0 auto;
     box-sizing: border-box;
-}
-
-.error {
-    display: block;
-    font-size: .7em;
-    color: $pomegranate;
-    padding: 0 10px;
 }
