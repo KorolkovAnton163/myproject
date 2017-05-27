@@ -102,7 +102,7 @@
                 if (!!this.params.scroll_to) {
                     $('html, body').animate({
                         scrollTop: $(this.params.scroll_to).offset().top - 50
-                    }, 'slow');
+                    }, 1000);
                 }
             },
         },

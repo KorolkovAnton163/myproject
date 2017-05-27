@@ -42,5 +42,8 @@
         <symbol id="icon-plus" viewBox="0 0 24 24">
             <path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
         </symbol>
+        <symbol id="icon-arrow" viewBox="0 0 18 10">
+            <path fill-rule="evenodd" d="M16.88.29A1.001 1.001 0 0 0 15.461.3L8.585 7.166 1.71.299A1.001 1.001 0 0 0 .29.291C-.1.68-.095 1.316.291 1.702l8.294 8.294 8.294-8.294A.995.995 0 0 0 16.88.291z"></path>
+        </symbol>
     </defs>
 </svg>

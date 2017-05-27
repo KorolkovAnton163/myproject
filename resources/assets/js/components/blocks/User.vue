@@ -10,10 +10,6 @@
             </router-link>
             <a class="logout" href="/logout">Выход</a>
         </div>
-        <div class="login-section" v-else>
-            <login-popup></login-popup>
-            <register-popup></register-popup>
-        </div>
     </div>
 </template>
 <script>
@@ -23,9 +19,5 @@
                 return this.$store.getters.user
             }
         },
-        components: {
-            'login-popup': require('./PopupLogin.vue'),
-            'register-popup': require('./PopupRegister.vue')
-        }
     }
 </script>

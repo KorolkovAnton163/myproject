@@ -1,12 +1,27 @@
 <template>
     <div class="header-container"  :class="{'border': !show && isAccount}">
         <div class="header" v-if="!isAccount">
-            <div class="header-inner">
-                <router-link v-if="entries" v-for="entry in entries"
-                             :to="{name:'entry', params: {alias: entry.alias}}"
-                             :style="{backgroundImage: 'url(' + entry.image.path + ')'}">
-                    <span class="title">{{ entry.title }}</span>
-                </router-link>
+            <div class="introduction-outer-container">
+                <div class="introduction-inner-container">
+                    <h1>MyAniList</h1>
+                    <auth></auth>
+                </div>
+            </div>
+            <div class="previews-outer-container">
+                <span class="more-button" @click="scrollTo">
+                    <svg class="svg-icon">
+                        <use xlink:href="#icon-arrow"></use>
+                    </svg>
+                </span>
+                <div class="previews-inner-container">
+                    <div class="previews-wrapper">
+                        <router-link v-if="entries" v-for="entry in entries"
+                                     :to="{name:'entry', params: {alias: entry.alias}}"
+                                     :style="{backgroundImage: 'url(' + entry.image.path + ')'}">
+                            <span class="title">{{ entry.title }}</span>
+                        </router-link>
+                    </div>
+                </div>
             </div>
         </div>
         <account-menu v-else v-show="show"></account-menu>
@@ -30,7 +45,8 @@
             }
         },
         components: {
-            'account-menu': require('./AccountMenu.vue')
+            'account-menu': require('./AccountMenu.vue'),
+            'auth': require('./Auth.vue')
         },
         mounted () {
             window.addEventListener('resize', () => {
@@ -48,6 +64,11 @@
             checkIsAccount () {
                 this.isAccount = (this.$route.path.indexOf('profile') !== -1) ||
                     (this.$route.path.indexOf('admin') !== -1);
+            },
+            scrollTo () {
+                $('html, body').animate({
+                    scrollTop: $('.previews-inner-container').offset().top - 50
+                }, 1000);
             }
         },
         created () {

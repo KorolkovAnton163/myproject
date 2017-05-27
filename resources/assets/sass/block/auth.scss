@@ -1,0 +1,74 @@
+.auth-block-container {
+    max-width: 350px;
+    height: 430px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    transition: all .5s;
+    .login-container,
+    .registered-container {
+        flex: 1 0 350px;
+        margin-left: 0;
+        transition: all .5s;
+        h3 {
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: $alabaster;
+            background: $fiord;
+            padding: 20px;
+        }
+        form {
+            height: 340px;
+            padding: 10px;
+            box-sizing: border-box;
+            position: relative;
+            background: $alabaster;
+            .field-text {
+                margin: 20px 0 0 0;
+            }
+            .checkbox-label {
+                margin-top: 20px;
+                position: relative;
+            }
+            button {
+                position: absolute;
+                bottom: 5px;
+                left: 0;
+                width: 94%;
+                margin: 10px;
+            }
+        }
+        a {
+            display: block;
+            text-align: center;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+    }
+    .login-container {
+        &.hide {
+            margin-left: -100%;
+        }
+    }
+    .registered-container {
+        &.hide {
+            margin-right: -100%;
+        }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .auth-block-container {
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .auth-block-container {
+        .login-container,
+        .registered-container {
+            flex: 1 0 280px;
+        }
+    }
+}

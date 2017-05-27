@@ -44,12 +44,15 @@
         mounted () {
             this.$root.$on('changeTags', () => {
                 this.getPosts();
+                this.scrollTo();
             });
             this.$root.$on('changeYear', () => {
                 this.getPosts();
+                this.scrollTo();
             });
             this.$root.$on('search', () => {
                 this.getPosts();
+                this.scrollTo();
             });
             this.$root.$on('home', () => {
                 this.getPosts();
@@ -102,6 +105,11 @@
                 this.$root.$emit('clearSearch');
                 this.$router.push({name: 'posts'});
                 this.getPosts();
+            },
+            scrollTo () {
+                $('html, body').animate({
+                    scrollTop: $('.posts-page-container').offset().top - 50
+                }, 1000);
             }
         },
         destroyed () {
