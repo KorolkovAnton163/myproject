@@ -5,17 +5,12 @@
                 <use xlink:href="#icon-search"></use>
             </svg>
         </div>
-        <form class="search-form" @submit.prevent="search" v-show="show" novalidate>
+        <form class="search-form" :class="{ show: show}" @submit.prevent="search" novalidate>
             <fieldset class="field-text">
                 <input id="search-input" v-model="searchQuery" type="text" name="query" required>
                 <hr>
                 <label>Поиск:</label>
             </fieldset>
-            <button type="submit" class="ripple-effect">
-                <svg class="svg-icon">
-                    <use xlink:href="#icon-triangle"></use>
-                </svg>
-            </button>
         </form>
     </div>
 </template>
@@ -44,6 +39,7 @@
                 this.$root.$emit('search');
             },
             showSearchForm () {
+                this.show && this.searchQuery && this.search();
                 this.show = !this.show;
             }
         },

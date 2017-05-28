@@ -23,7 +23,6 @@
             color: transparent;
         }
         &:focus,
-        &:hover,
         &:valid {
             & ~ label {
                 transform: scale(0.6);
