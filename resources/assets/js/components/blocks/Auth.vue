@@ -107,8 +107,8 @@
             login () {
                 let formData = new FormData();
 
-                formData.append('email', this.email);
-                formData.append('password', this.password);
+                this.email && formData.append('email', this.email);
+                this.password && formData.append('password', this.password);
 
                 this.error.email = null;
                 this.error.password = null;
@@ -127,10 +127,10 @@
             registered () {
                 let formData = new FormData();
 
-                formData.append('name', this.name);
-                formData.append('email', this.email);
-                formData.append('password', this.password);
-                formData.append('password_confirmation', this.confirmedPassword);
+                this.name && formData.append('name', this.name);
+                this.email && formData.append('email', this.email);
+                this.password && formData.append('password', this.password);
+                this.confirmedPassword && formData.append('password_confirmation', this.confirmedPassword);
 
                 this.error.name = null;
                 this.error.email = null;

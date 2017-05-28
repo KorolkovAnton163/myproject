@@ -1,14 +1,13 @@
 <template>
     <div class="comments-container">
         <h3>Комментарии</h3>
-        <form v-if="user" @submit.prevent="save">
-            <fieldset class="textarea">
-                <textarea v-validate="{ rules: { required: true } }" v-model="comment"
-                          name="text" id="text" required></textarea>
+        <form v-if="user" @submit.prevent="save" novalidate>
+            <fieldset class="textarea" :class="{ error: error.text }">
+                <textarea v-model="comment" name="text" id="text" required></textarea>
                 <hr>
                 <label>Ваш комментарий</label>
             </fieldset>
-            <span class="error" v-show="errors.has('text')">{{ errors.first('text') }}</span>
+            <span class="error-message" v-if="error.text">{{ error.text }}</span>
             <button type="submit" class="ripple">Отправить</button>
         </form>
         <h3 v-else>Только зарегистрированные пользователи могут оставлять комментарии.</h3>
@@ -33,6 +32,9 @@
                     current_page: 1,
                     url_params: null,
                     scroll_to: '.comments-wrapper'
+                },
+                error: {
+                    text: null
                 }
             }
         },
@@ -55,6 +57,11 @@
                     this.params.current_page = 1;
                     this.getComments();
                 }
+            },
+            'comment' (newVal, oldVal) {
+                if (+newVal !== +oldVal) {
+                    this.error.text = null;
+                }
             }
         },
         methods: {
@@ -68,21 +75,21 @@
                 });
             },
             save () {
-                this.$validator.validateAll().then(() => {
-                    let formData = new FormData();
-                    formData.append('text', this.comment);
+                let formData = new FormData();
+                this.comment && formData.append('text', this.comment);
 
-                    this.$http.post(location.origin + '/comments/' + this.entry.id + '/' + this.user.id + '/store', formData).then((responce) => {
-                        this.comment = null;
-                        this.params.current_page = 1;
-                        this.comments = responce.data.comments;
-                        this.params.total = parseInt(responce.data.count);
-                        this.$root.$emit('success', 'Комментарий добавлен.');
-                    }, (responce) => {
-                        this.$root.$emit('fail', responce);
+                this.$http.post(location.origin + '/comments/' + this.entry.id + '/' + this.user.id + '/store', formData).then((responce) => {
+                    this.comment = null;
+                    this.params.current_page = 1;
+                    this.comments = responce.data.comments;
+                    this.params.total = parseInt(responce.data.count);
+                    this.$root.$emit('success', 'Комментарий добавлен.');
+                }, (responce) => {
+                    let error = JSON.parse(responce.bodyText);
+
+                    Object.keys(error).forEach((property) => {
+                        this.error[property] = error[property][0];
                     });
-                }).catch(() => {
-                    //
                 });
             }
         }

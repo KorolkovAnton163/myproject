@@ -32,7 +32,9 @@
     }
     .toggle-search-button {
         height: 50px;
+        z-index: 2;
         cursor: pointer;
+        background: $white;
         box-sizing: border-box;
         .svg-icon {
             width: 20px;
