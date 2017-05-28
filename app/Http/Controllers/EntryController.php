@@ -94,10 +94,14 @@ class EntryController extends Controller
         DB::transaction(function () use ($entry, $request) {
             $input = $request->input();
 
-            $entry->title = $input['title'];
-            $entry->description = $input['description'];
+            $entry->fill($request->only([
+                'title',
+                'description',
+                'year',
+                'episodes',
+            ]));
+
             $entry->alias = $input['title'];
-            $entry->year = $input['year'];
 
             $entry->save();
 
@@ -115,6 +119,7 @@ class EntryController extends Controller
                 'description' => $input['description'],
                 'alias' => $input['title'],
                 'year' => $input['year'],
+                'episodes' => $input['episodes']
             ]);
 
             $entry->save();

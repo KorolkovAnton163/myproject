@@ -13,7 +13,7 @@ class Entry extends Model
     use PresentableTrait;
 
     protected $fillable = [
-        'title', 'description', 'alias', 'year'
+        'title', 'description', 'alias', 'year', 'episodes'
     ];
 
     public function images()

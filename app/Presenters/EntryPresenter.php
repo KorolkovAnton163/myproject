@@ -18,6 +18,8 @@ class EntryPresenter extends Presenter
             'image' => $this->image(),
             'tags' => $this->entity->tags,
             'titles' => $this->entity->titles,
+            'episodes' => $this->entity->episodes ? $this->entity->episodes : '??',
+            'currentEpisodes' => $this->entity->videos()->count() ? $this->entity->videos()->count() : '??',
         ];
     }
 
@@ -37,6 +39,8 @@ class EntryPresenter extends Presenter
                 return $video->present()->show($user);
             }),
             'videosCount' => $this->entity->videos()->count(),
+            'episodes' => $this->entity->episodes ? $this->entity->episodes : '??',
+            'currentEpisodes' => $this->entity->videos()->count() ? $this->entity->videos()->count() : '??',
         ];
     }
 
@@ -50,6 +54,7 @@ class EntryPresenter extends Presenter
             'image' => !empty($this->image()['id']) ? $this->image() : [],
             'tags' => $this->entity->tags->pluck('id'),
             'titles' => $this->entity->titles,
+            'episodes' => $this->entity->episodes,
             'videos' => $this->entity->videos()->orderBy('id')->get()->map(function ($video) {
                 return $video->present()->edit();
             }),

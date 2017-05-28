@@ -17,6 +17,11 @@
                 </fieldset>
                 <span class="error" v-show="errors.has('year')">{{ errors.first('year') }}</span>
                 <fieldset class="field-text">
+                    <input type="number" name="episodes" v-model="entry.episodes" autocomplete="off" required>
+                    <hr>
+                    <label>Серий</label>
+                </fieldset>
+                <fieldset class="field-text">
                     <input v-validate="{ rules: { required: true } }" type="text" name="title" v-model="entry.title"
                            autocomplete="off" required>
                     <hr>

@@ -45,6 +45,19 @@
             }
         }
     }
+    .videos {
+        counter-reset: number;
+        .video-container {
+            counter-increment: number;
+            position: relative;
+            &:before {
+                position: absolute;
+                left: -80px;
+                top: 15px;
+                content: "Серия " counter(number) ".";
+            }
+        }
+    }
     .textarea {
         max-width: 600px;
     }

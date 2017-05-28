@@ -13,6 +13,9 @@
                 </div>
                 <p v-if="entry.year"><strong>Год:</strong>&nbsp;{{ entry.year }}</p>
                 <p class="tags" v-if="entry.tags">
+                    <strong>Серий:</strong>&nbsp;{{ entry.currentEpisodes }} из {{ entry.episodes }}
+                </p>
+                <p class="tags" v-if="entry.tags">
                     <strong>Жанры:</strong>&nbsp;
                     <a v-for="tag in entry.tags" @click="search(tag.id)">{{ tag.name }}</a>
                 </p>

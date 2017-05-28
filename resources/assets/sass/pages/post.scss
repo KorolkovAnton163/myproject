@@ -68,6 +68,9 @@
                 box-sizing: border-box;
                 font-size: 1.2em;
                 font-weight: 400;
+                &:first-of-type {
+                    margin: 0;
+                }
                 &.active {
                    background: $lynch;
                     cursor: default;
