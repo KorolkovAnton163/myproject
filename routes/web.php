@@ -59,6 +59,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('{entry}/{user}/store', 'CommentController@store');
     });
 
+    Route::group(['prefix' => 'entry-statuses'], function () {
+       Route::post('{entry}/store', 'UserEntryStatusController@store');
+       Route::post('{entry}/update', 'UserEntryStatusController@update');
+    });
+
     Route::group(['prefix' => 'videos'], function () {
        Route::post('/{entry}/{video}/bookmark', 'VideoController@bookmark');
     });

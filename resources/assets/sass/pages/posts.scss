@@ -57,6 +57,11 @@
 @media screen and (max-width: 860px) {
     .posts-page-container {
         flex-direction: column-reverse;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .posts-page-container {
         .post {
             .description-container {
                 flex-direction: column !important;

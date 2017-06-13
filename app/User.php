@@ -41,6 +41,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function entriesStatuses()
+    {
+        return $this->hasMany(UserEntryStatus::class);
+    }
+
     public function checkPermission($user, $permission)
     {
         return (bool) $user->role->permissions->where('name', $permission)->first();

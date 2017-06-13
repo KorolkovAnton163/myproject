@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'MyProject',
 
     /*
     |--------------------------------------------------------------------------
@@ -134,6 +134,8 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+
+    'version' => env('APP_VERSION', '1.0'),
 
     'providers' => [
 

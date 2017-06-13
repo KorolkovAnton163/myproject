@@ -15,7 +15,7 @@
                 </span>
                 <div class="previews-inner-container">
                     <div class="previews-wrapper">
-                        <router-link v-if="entries" v-for="entry in entries"
+                        <router-link v-if="entries" v-for="entry in entries" :key="entry.id"
                                      :to="{name:'entry', params: {alias: entry.alias}}"
                                      :style="{backgroundImage: 'url(' + entry.image.path + ')'}">
                             <span class="title">{{ entry.title }}</span>

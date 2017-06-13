@@ -23,7 +23,7 @@ class RequestEntryStore extends FormRequest
             'tags' => 'required',
             'tags.*' => 'exists:tags,id',
             'year' => 'required|in:' . implode(',', range(Carbon::now()->format('Y'), '1985')),
-            'episodes' => 'number',
+            'episodes' => 'integer',
         ];
     }
 }

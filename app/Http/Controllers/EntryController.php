@@ -22,13 +22,12 @@ class EntryController extends Controller
     {
         $query = Entry::query();
 
-        // TODO ILIKE use only postgresql
         if ($request->has('search')) {
             $query->where(function ($query) use ($request) {
-                $query->where('title', 'ilike', '%' . trim($request->input('search')) . '%')
-                    ->orWhere('description', 'ilike', '%' . trim($request->input('search')) . '%')
+                $query->where('title', 'like', '%' . trim($request->input('search')) . '%')
+                    ->orWhere('description', 'like', '%' . trim($request->input('search')) . '%')
                     ->orWhereHas('titles', function ($query) use ($request) {
-                        $query->where('name', 'ilike', '%' . trim($request->input('search')) . '%');
+                        $query->where('name', 'like', '%' . trim($request->input('search')) . '%');
                     });
             });
         }

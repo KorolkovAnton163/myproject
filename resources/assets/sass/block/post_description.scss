@@ -35,12 +35,16 @@
             .tags {
                 a {
                     font-size: .8em;
-                    margin:0 5px;
+                    margin: 0 5px;
+                    display: inline-block;
                 }
             }
             .description {
                 white-space: pre-wrap;
             }
+        }
+        .status {
+            max-width: 220px;
         }
         .action-block {
             text-align: center;
@@ -55,7 +59,7 @@
         }
     }
 }
-@media screen and (max-width: 860px) {
+@media screen and (max-width: 640px) {
     .description-container {
         .image-block {
             img {

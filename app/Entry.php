@@ -42,6 +42,11 @@ class Entry extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function statuses()
+    {
+        return $this->hasMany(UserEntryStatus::class);
+    }
+
     public function setAliasAttribute($value)
     {
         $this->attributes['alias'] = str_slug($value);

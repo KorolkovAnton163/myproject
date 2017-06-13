@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <meta name="description" content="This my site">
     <title>myproject</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}?v={{ strtotime(date('d-m-y')) }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}?v={{ config('app.version') }}"/>
     <script type="text/javascript">
         window.Laravel = {!!  json_encode(['csrfToken' => csrf_token()]) !!}
     </script>
@@ -25,6 +25,6 @@
     <app-footer></app-footer>
     <div style="display: none;"><?php include public_path('svg/sprites.svg'); ?></div>
 </div>
-<script type="text/javascript" src="{{ asset('js/app.js') }}?v={{ strtotime(date('d-m-y')) }}"></script>
+<script type="text/javascript" src="{{ asset('js/app.js') }}?v={{ config('app.version') }}"></script>
 </body>
 </html>

@@ -43,19 +43,16 @@
         },
         mounted () {
             this.$root.$on('changeTags', () => {
-                this.getPosts();
-                this.scrollTo();
+                this.getPosts(true);
             });
             this.$root.$on('changeYear', () => {
-                this.getPosts();
-                this.scrollTo();
+                this.getPosts(true);
             });
             this.$root.$on('search', () => {
-                this.getPosts();
-                this.scrollTo();
+                this.getPosts(true);
             });
             this.$root.$on('home', () => {
-                this.getPosts();
+                this.getPosts(false);
             });
         },
         components: {
@@ -65,7 +62,7 @@
             'loader': require('../blocks/Loader.vue')
         },
         methods: {
-            getPosts () {
+            getPosts (scroll) {
                 let formData = new FormData(),
                     page = this.$route.query.page ? this.$route.query.page : 1,
                     tags = this.$route.query.tags ? this.$route.query.tags : null,
@@ -73,21 +70,10 @@
                     searchQuery = this.$route.query.search ? this.$route.query.search : null;
 
                 formData.append('page', page);
-
-                if (searchQuery) {
-                    formData.append('search', searchQuery);
-                }
-
-                if (tags) {
-                    formData.append('tags', tags.split('-tag-'));
-                }
-
-                if (year) {
-                    formData.append('year', year);
-                }
-
+                !!searchQuery && formData.append('search', searchQuery);
+                !!tags && formData.append('tags', tags.split('-tag-'));
+                !!year && formData.append('year', year);
                 this.params.current_page = parseInt(page);
-
                 this.loading = true;
 
                 this.$http.post(location.origin + '/entries', formData).then((responce) => {
@@ -96,6 +82,7 @@
                     this.tags = responce.data.tags;
                     this.years = responce.data.years;
                     this.loading = false;
+                    !!scroll && this.scrollTo();
                 }, (responce) => {
                     this.$root.$emit('fail', responce);
                     this.loading = false;
@@ -104,7 +91,7 @@
             clearQuery () {
                 this.$root.$emit('clearSearch');
                 this.$router.push({name: 'posts'});
-                this.getPosts();
+                this.getPosts(true);
             },
             scrollTo () {
                 $('html, body').animate({

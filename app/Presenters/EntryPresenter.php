@@ -20,6 +20,8 @@ class EntryPresenter extends Presenter
             'titles' => $this->entity->titles,
             'episodes' => $this->entity->episodes ? $this->entity->episodes : '??',
             'currentEpisodes' => $this->entity->videos()->count() ? $this->entity->videos()->count() : '??',
+            'statuses' => trans('texts.statuses'),
+            'currentStatus' => !empty($user) ? $this->entity->statuses()->where('user_id', $user->id)->first() : null,
         ];
     }
 
@@ -41,6 +43,8 @@ class EntryPresenter extends Presenter
             'videosCount' => $this->entity->videos()->count(),
             'episodes' => $this->entity->episodes ? $this->entity->episodes : '??',
             'currentEpisodes' => $this->entity->videos()->count() ? $this->entity->videos()->count() : '??',
+            'statuses' => trans('texts.statuses'),
+            'currentStatus' => !empty($user) ? $this->entity->statuses()->where('user_id', $user->id)->first() : null,
         ];
     }
 
