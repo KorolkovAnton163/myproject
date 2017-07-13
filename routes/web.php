@@ -47,10 +47,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/{user}/update', 'UserController@update');
     });
 
-    // TODO rename prefix on entries
     Route::group(['prefix' => 'entry'], function () {
         Route::post('/', 'EntryController@create');
         Route::post('/store', 'EntryController@store');
+        Route::post('/import', 'EntryController@import');
         Route::post('/{entry}', 'EntryController@edit');
         Route::post('/{entry}/update', 'EntryController@update');
     });

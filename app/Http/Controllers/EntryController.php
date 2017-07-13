@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Entry;
 use App\Http\Requests\RequestEntryCreate;
 use App\Http\Requests\RequestEntryEdit;
+use App\Http\Requests\RequestEntryImport;
 use App\Http\Requests\RequestEntryStore;
 use App\Http\Requests\RequestEntryUpdate;
 use App\Tag;
@@ -170,5 +171,11 @@ class EntryController extends Controller
         return Entry::orderBy('updated_at', 'desc')->take(5)->get()->map(function ($entry) {
             return $entry->present()->listing();
         });
+    }
+
+    public function import(RequestEntryImport $request)
+    {
+
+        var_dump($request->file('file'));
     }
 }

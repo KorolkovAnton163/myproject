@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RequestEntryCreate extends FormRequest
+class RequestEntryImport extends FormRequest
 {
     public function authorize()
     {
@@ -14,7 +14,7 @@ class RequestEntryCreate extends FormRequest
     public function rules()
     {
         return [
-           //
+            //
         ];
     }
 }

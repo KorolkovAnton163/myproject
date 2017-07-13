@@ -2,14 +2,13 @@
 
 namespace App\Http\Requests;
 
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RequestRoleStore extends FormRequest
 {
     public function authorize()
     {
-        return $this->user()->can('rolesEdit', User::class);
+        return $this->user()->can('rolesEdit', auth()->user());
     }
 
     public function rules()

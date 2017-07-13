@@ -1,6 +1,13 @@
 <template>
     <div class="page-container entry-page-container">
         <div class="entry-container" v-if="user && user.canEntryEdit">
+            <div class="entry-import-container">
+                <form method="POST" action="/entry/import">
+                    <input type="hidden" name="_token" :value="token">
+                    <input type="file" name="file">
+                    <button type="submit">Импортировать</button>
+                </form>
+            </div>
             <form @submit.prevent="save" novalidate>
                 <div class="tags-container" v-if="tags">
                     <div class="tag" v-for="tag in tags">
@@ -96,7 +103,8 @@
                 titles: [],
                 years: [],
                 videos: [],
-                removedVideos: []
+                removedVideos: [],
+                token: Laravel.csrfToken,
             }
         },
         computed: {
